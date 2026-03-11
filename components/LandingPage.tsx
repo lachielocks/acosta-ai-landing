@@ -52,7 +52,7 @@ export const LandingPage: React.FC = () => {
     }
     else if (mode === AppMode.HOME) setActiveTab('home');
     else {
-      window.open('https://heyacosta.com', '_blank');
+      window.open('https://platform.acosta-ai.com', '_blank');
     }
   };
 
@@ -102,7 +102,7 @@ export const LandingPage: React.FC = () => {
             ))}
             <div className="w-px h-4 bg-neutral-200 dark:border-neutral-800 mx-4" />
             <a 
-              href="https://heyacosta.com" 
+              href="https://platform.acosta-ai.com" 
               target="_blank" 
               rel="noopener noreferrer"
               className="px-6 py-2.5 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-full text-sm font-bold hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-xl shadow-black/10 dark:shadow-white/5"
@@ -152,7 +152,7 @@ export const LandingPage: React.FC = () => {
               ))}
               <div className="h-px bg-neutral-100 dark:bg-neutral-900 my-4" />
               <a 
-                href="https://heyacosta.com" 
+                href="https://platform.acosta-ai.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full py-5 bg-primary text-white rounded-3xl text-center font-bold text-xl shadow-2xl shadow-primary/20 flex items-center justify-center gap-3"
@@ -189,7 +189,7 @@ export const LandingPage: React.FC = () => {
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
                   <a 
-                    href="https://heyacosta.com" 
+                    href="https://platform.acosta-ai.com" 
                     className="w-full sm:w-auto px-12 py-6 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-3xl font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-black/20 dark:shadow-white/10 flex items-center justify-center gap-3"
                   >
                     Get Started Free
@@ -381,7 +381,7 @@ export const LandingPage: React.FC = () => {
                     <h2 className="text-5xl md:text-7xl font-black text-white relative z-10 tracking-tight">Ready to transform <br/> your learning?</h2>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
                         <a 
-                            href="https://heyacosta.com" 
+                            href="https://platform.acosta-ai.com" 
                             className="w-full sm:w-auto px-12 py-6 bg-white text-primary rounded-3xl font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-black/10 flex items-center justify-center gap-3"
                         >
                             Get Started Now
@@ -409,7 +409,7 @@ export const LandingPage: React.FC = () => {
                         <div className="flex flex-col gap-4 text-neutral-500 font-medium">
                             <button onClick={() => setActiveTab('home')} className="hover:text-primary transition-colors text-left">Home</button>
                             <button onClick={() => setActiveTab('pricing')} className="hover:text-primary transition-colors text-left">Pricing</button>
-                            <a href="https://heyacosta.com" className="hover:text-primary transition-colors">Launch App</a>
+                            <a href="https://platform.acosta-ai.com" className="hover:text-primary transition-colors">Launch App</a>
                         </div>
                     </div>
                     <div className="space-y-6">
@@ -446,9 +446,9 @@ export const LandingPage: React.FC = () => {
             >
               <PricingView 
                 onBack={() => setActiveTab('home')} 
-                onOpenStripePortal={() => window.open('https://heyacosta.com', '_blank')}
+                onOpenStripePortal={() => window.open('https://platform.acosta-ai.com', '_blank')}
                 isAnonymous={true}
-                onLogin={() => window.open('https://heyacosta.com', '_blank')}
+                onLogin={() => window.open('https://platform.acosta-ai.com', '_blank')}
               />
             </motion.div>
           )}
