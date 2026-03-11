@@ -317,7 +317,7 @@ export const LandingPage: React.FC = () => {
 
                 {/* Mission Quote */}
                 <div className="bg-white dark:bg-neutral-900 rounded-[40px] p-12 md:p-20 relative overflow-hidden shadow-xl shadow-black/5 border border-neutral-100 dark:border-neutral-800">
-                  <div className="absolute top-8 left-10 text-primary/20 select-none pointer-events-none">
+                  <div className="absolute top-8 left-10 text-primary opacity-30 select-none pointer-events-none">
                     <Quote className="w-24 h-24" strokeWidth={1.5} />
                   </div>
                   <blockquote className="relative z-10 space-y-10">
