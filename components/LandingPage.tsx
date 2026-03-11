@@ -307,6 +307,73 @@ export const LandingPage: React.FC = () => {
                 </div>
               </div>
 
+              {/* About Section */}
+              <div className="max-w-7xl mx-auto px-6 py-32 space-y-8">
+                <div className="text-center space-y-4">
+                  <h2 className="text-4xl md:text-6xl font-black tracking-tight">Built by a student,<br/>for students.</h2>
+                  <p className="text-xl text-neutral-500 max-w-2xl mx-auto">One person. One mission. A tool that students actually deserve.</p>
+                </div>
+
+                {/* Mission Quote */}
+                <div className="bg-white dark:bg-neutral-900 rounded-[40px] p-12 md:p-20 relative overflow-hidden shadow-xl shadow-black/5 border border-neutral-100 dark:border-neutral-800">
+                  <div className="absolute top-6 left-10 text-[160px] font-black text-primary/8 leading-none select-none pointer-events-none">"</div>
+                  <blockquote className="relative z-10 space-y-10">
+                    <p className="text-3xl md:text-5xl font-black text-neutral-900 dark:text-white leading-tight tracking-tight max-w-4xl">
+                      The best tools don't just perform — they earn your trust. Private by design. Beautiful by intention. Built to actually help.
+                    </p>
+                    <footer className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <GraduationCap className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-neutral-900 dark:text-white">Lachie Thurlow</p>
+                        <p className="text-sm text-neutral-400 font-medium">Founder & CEO, Acosta AI</p>
+                      </div>
+                    </footer>
+                  </blockquote>
+                </div>
+
+                {/* Founder + Mission Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white dark:bg-neutral-900 rounded-[32px] p-10 space-y-6 border border-neutral-100 dark:border-neutral-800 shadow-xl shadow-black/5">
+                    <div className="flex items-center gap-5">
+                      <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <GraduationCap className="w-8 h-8 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Lachie Thurlow</h3>
+                        <p className="text-sm text-neutral-400 font-medium">Founder & CEO</p>
+                      </div>
+                    </div>
+                    <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed font-medium">
+                      A high school student who got tired of AI tools that felt clunky, invasive, and built for someone else. So he built his own. Every line of code, every design decision, every feature in Acosta AI came from one person who just wanted a better way to learn.
+                    </p>
+                    <div className="flex items-center gap-3 pt-2">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 rounded-full text-xs font-bold uppercase tracking-widest border border-neutral-200 dark:border-neutral-700">
+                        A Transnology Company
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-primary rounded-[32px] p-10 space-y-6 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15)_0%,transparent_60%)]" />
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 text-white rounded-full text-xs font-bold uppercase tracking-widest relative z-10">
+                      Our Mission
+                    </div>
+                    <p className="text-white text-2xl font-black leading-tight relative z-10">
+                      Give every student access to a world-class learning companion.
+                    </p>
+                    <p className="text-white/70 leading-relaxed font-medium relative z-10">
+                      One that respects their privacy, adapts to their needs, and makes studying something worth doing. Not another surveillance tool dressed up as a tutor — a genuine partner in learning.
+                    </p>
+                    <div className="flex items-center gap-3 relative z-10 pt-2">
+                      <Heart className="w-5 h-5 text-white/50" />
+                      <span className="text-white/50 text-sm font-medium">Made with purpose, not profit.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Call to Action */}
               <div className="max-w-7xl mx-auto px-6 py-32">
                 <div className="bg-primary rounded-[40px] p-12 md:p-24 text-center space-y-10 relative overflow-hidden">
