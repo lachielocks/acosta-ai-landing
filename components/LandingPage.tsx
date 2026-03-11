@@ -22,7 +22,8 @@ import {
   Lock,
   Trophy,
   Layers,
-  Search
+  Search,
+  Quote
 } from 'lucide-react';
 import { PricingView } from './PricingView';
 import { PoliciesView } from './PoliciesView';
@@ -316,7 +317,9 @@ export const LandingPage: React.FC = () => {
 
                 {/* Mission Quote */}
                 <div className="bg-white dark:bg-neutral-900 rounded-[40px] p-12 md:p-20 relative overflow-hidden shadow-xl shadow-black/5 border border-neutral-100 dark:border-neutral-800">
-                  <div className="absolute top-6 left-10 text-[160px] font-black text-primary/8 leading-none select-none pointer-events-none">"</div>
+                  <div className="absolute top-8 left-10 text-primary/10 select-none pointer-events-none">
+                    <Quote className="w-24 h-24 fill-current" />
+                  </div>
                   <blockquote className="relative z-10 space-y-10">
                     <p className="text-3xl md:text-5xl font-black text-neutral-900 dark:text-white leading-tight tracking-tight max-w-4xl">
                       The best tools don't just perform — they earn your trust. Private by design. Beautiful by intention. Built to actually help.
@@ -348,11 +351,6 @@ export const LandingPage: React.FC = () => {
                     <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed font-medium">
                       A high school student who got tired of AI tools that felt clunky, invasive, and built for someone else. So he built his own. Every line of code, every design decision, every feature in Acosta AI came from one person who just wanted a better way to learn.
                     </p>
-                    <div className="flex items-center gap-3 pt-2">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 rounded-full text-xs font-bold uppercase tracking-widest border border-neutral-200 dark:border-neutral-700">
-                        A Transnology Company
-                      </div>
-                    </div>
                   </div>
 
                   <div className="bg-primary rounded-[32px] p-10 space-y-6 relative overflow-hidden">
