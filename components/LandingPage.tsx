@@ -417,6 +417,7 @@ export const LandingPage: React.FC = () => {
                             <button onClick={() => navigateToPolicy('TERMS')} className="hover:text-primary transition-colors text-left">Terms of Service</button>
                             <button onClick={() => navigateToPolicy('SAFETY')} className="hover:text-primary transition-colors text-left">Safety Features</button>
                             <a href="mailto:support@acosta-ai.com" className="hover:text-primary transition-colors">Support</a>
+                            <a href="https://status.acosta-ai.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Status</a>
                         </div>
                     </div>
                 </div>
