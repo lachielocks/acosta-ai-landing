@@ -23,7 +23,9 @@ import {
   Trophy,
   Layers,
   Search,
-  Quote
+  Quote,
+  ChevronDown,
+  Check
 } from 'lucide-react';
 import { PricingView } from './PricingView';
 import { PoliciesView } from './PoliciesView';
@@ -36,6 +38,7 @@ export const LandingPage: React.FC = () => {
   const [policySection, setPolicySection] = useState<'MENU' | 'TERMS' | 'PRIVACY' | 'SAFETY'>('MENU');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -308,6 +311,56 @@ export const LandingPage: React.FC = () => {
                 </div>
               </div>
 
+              {/* Comparison Section */}
+              <div className="max-w-7xl mx-auto px-6 py-32 space-y-12">
+                <div className="text-center space-y-4">
+                  <h2 className="text-4xl md:text-6xl font-black tracking-tight">Built for learners and educators.<br/>Not just anyone.</h2>
+                  <p className="text-xl text-neutral-500 max-w-2xl mx-auto">Generic AI wasn't designed with classrooms in mind.</p>
+                </div>
+                <div className="overflow-x-auto rounded-[32px] border border-neutral-100 dark:border-neutral-800 shadow-xl shadow-black/5">
+                  <table className="w-full min-w-[560px] bg-white dark:bg-neutral-900">
+                    <thead>
+                      <tr className="border-b border-neutral-100 dark:border-neutral-800">
+                        <th className="text-left px-8 py-6 text-sm font-bold uppercase tracking-widest text-neutral-400 w-1/2">Feature</th>
+                        <th className="px-8 py-6 text-center text-sm font-bold uppercase tracking-widest text-primary w-1/4">Acosta AI</th>
+                        <th className="px-8 py-6 text-center text-sm font-bold uppercase tracking-widest text-neutral-400 w-1/4">General AI</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { feature: 'Designed for students & teachers', acosta: true, general: false },
+                        { feature: 'Exam simulation & syllabus alignment', acosta: true, general: false },
+                        { feature: 'Academic integrity built-in', acosta: true, general: false },
+                        { feature: 'Student wellbeing monitoring', acosta: true, general: false },
+                        { feature: 'Lesson planning & teaching tools', acosta: true, general: false },
+                        { feature: 'Real-time web search with citations', acosta: true, general: 'partial' },
+                        { feature: 'PDF & handwritten note analysis', acosta: true, general: 'partial' },
+                        { feature: 'Live voice interaction', acosta: true, general: 'partial' },
+                        { feature: 'Private — no data sold', acosta: true, general: false },
+                      ].map((row, i) => (
+                        <tr key={i} className={`border-b border-neutral-100 dark:border-neutral-800 last:border-0 ${i % 2 === 0 ? 'bg-neutral-50/50 dark:bg-neutral-800/20' : ''}`}>
+                          <td className="px-8 py-5 font-medium text-neutral-700 dark:text-neutral-300">{row.feature}</td>
+                          <td className="px-8 py-5 text-center">
+                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10">
+                              <Check className="w-4 h-4 text-primary" strokeWidth={3} />
+                            </span>
+                          </td>
+                          <td className="px-8 py-5 text-center">
+                            {row.general === 'partial' ? (
+                              <span className="text-sm font-semibold text-neutral-400">Partial</span>
+                            ) : (
+                              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800">
+                                <X className="w-4 h-4 text-neutral-400" strokeWidth={3} />
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
               {/* About Section */}
               <div className="max-w-7xl mx-auto px-6 py-32 space-y-8">
                 <div className="text-center space-y-4">
@@ -386,6 +439,75 @@ export const LandingPage: React.FC = () => {
                             <ArrowRight className="w-7 h-7" />
                         </a>
                     </div>
+                </div>
+              </div>
+
+              {/* FAQ Section */}
+              <div className="max-w-4xl mx-auto px-6 py-32 space-y-12">
+                <div className="text-center space-y-4">
+                  <h2 className="text-4xl md:text-6xl font-black tracking-tight">Frequently Asked Questions</h2>
+                  <p className="text-xl text-neutral-500">Everything you need to know before getting started.</p>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    {
+                      q: 'Is using Acosta AI considered cheating?',
+                      a: 'Acosta AI is a learning companion, not an answer machine. It\'s designed to help students understand and teachers teach — not to bypass effort. Features like step-by-step reasoning and exam simulation are built to develop your skills, not replace them.'
+                    },
+                    {
+                      q: 'Is it for teachers too?',
+                      a: 'Absolutely. Acosta AI is built for both students and teachers. Educators can use it for lesson planning, generating practice questions, and supporting student wellbeing — all in one platform.'
+                    },
+                    {
+                      q: 'Is my data private?',
+                      a: 'Yes. We never sell your data. All conversations are private to you, and the platform is built on strict privacy principles. You can read more in our Privacy Policy.'
+                    },
+                    {
+                      q: 'What\'s included in the free plan?',
+                      a: 'The free plan gives you access to core study and teaching features with a monthly credit limit. No credit card required to get started.'
+                    },
+                    {
+                      q: 'What is beta, and how do I get access?',
+                      a: 'Acosta AI is currently in beta — meaning we\'re actively building and improving the platform. You can sign up and start using it right now at platform.acosta-ai.com.'
+                    },
+                    {
+                      q: 'What subjects and exams does it support?',
+                      a: 'Acosta AI supports a wide range of subjects and curricula. Whether you\'re studying for IB, HSC, A-Levels, SATs, or general coursework, the platform adapts to your needs.'
+                    },
+                    {
+                      q: 'How is Acosta AI different from ChatGPT?',
+                      a: 'ChatGPT is a general-purpose tool. Acosta AI is purpose-built for education — with exam prep, teacher tools, student wellbeing monitoring, academic integrity features, and a privacy-first design that general AI tools simply don\'t offer.'
+                    },
+                  ].map((item, i) => (
+                    <div key={i} className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-100 dark:border-neutral-800 overflow-hidden shadow-sm shadow-black/5">
+                      <button
+                        className="w-full flex items-center justify-between px-8 py-6 text-left gap-6"
+                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      >
+                        <span className="font-bold text-neutral-900 dark:text-white text-lg">{item.q}</span>
+                        <motion.div
+                          animate={{ rotate: openFaq === i ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="shrink-0 text-neutral-400"
+                        >
+                          <ChevronDown className="w-5 h-5" />
+                        </motion.div>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {openFaq === i && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="overflow-hidden"
+                          >
+                            <p className="px-8 pb-6 text-neutral-500 dark:text-neutral-400 leading-relaxed font-medium">{item.a}</p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
                 </div>
               </div>
 
