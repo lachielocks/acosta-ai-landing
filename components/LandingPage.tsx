@@ -25,7 +25,8 @@ import {
   Search,
   Quote,
   ChevronDown,
-  Check
+  Check,
+  Globe
 } from 'lucide-react';
 import { PricingView } from './PricingView';
 import { PoliciesView } from './PoliciesView';
@@ -39,6 +40,8 @@ export const LandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [browseName, setBrowseName] = useState('');
+  const [browseEmail, setBrowseEmail] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -420,6 +423,143 @@ export const LandingPage: React.FC = () => {
                     <div className="flex items-center gap-3 relative z-10 pt-2">
                       <Heart className="w-5 h-5 text-white/50" />
                       <span className="text-white/50 text-sm font-medium">Made with purpose, not profit.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Acosta Browse Section */}
+              <div className="max-w-7xl mx-auto px-6 py-32">
+                <div className="relative overflow-hidden rounded-[40px] bg-neutral-950 border border-neutral-800 p-12 md:p-20">
+                  {/* Background glows */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.18)_0%,transparent_55%)] pointer-events-none" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(37,99,235,0.12)_0%,transparent_55%)] pointer-events-none" />
+
+                  <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    {/* Left: Content */}
+                    <div className="space-y-8">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full">
+                        <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse" />
+                        <span className="text-indigo-400 text-xs font-bold uppercase tracking-widest">Early Access</span>
+                      </div>
+
+                      <div className="space-y-5">
+                        <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight leading-none">
+                          Acosta Browse
+                        </h2>
+                        <p className="text-xl text-neutral-400 leading-relaxed font-medium">
+                          A browser built for how students actually work. Inspired by the spatial, AI-native philosophy of Deta Surf, Acosta Browse brings intelligent browsing to learners — with study mode, AI tab summaries, and a privacy-first design built around you.
+                        </p>
+                      </div>
+
+                      {/* Feature pills */}
+                      <div className="flex flex-wrap gap-3">
+                        {['AI tab summaries', 'Study mode', 'Privacy first', 'Note-linked tabs', 'Distraction blocker', 'Spatial workspace'].map(f => (
+                          <span key={f} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-neutral-300 text-sm font-medium">
+                            {f}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Beta form */}
+                      <div className="space-y-4 pt-2">
+                        <p className="text-neutral-500 text-sm font-medium">
+                          Be among the first to try it. Express your interest and we'll reach out when early access opens.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <input
+                            type="text"
+                            placeholder="Your name"
+                            value={browseName}
+                            onChange={e => setBrowseName(e.target.value)}
+                            className="flex-1 px-5 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-neutral-600 font-medium focus:outline-none focus:border-indigo-500/50 transition-colors text-sm"
+                          />
+                          <input
+                            type="email"
+                            placeholder="Your email (optional)"
+                            value={browseEmail}
+                            onChange={e => setBrowseEmail(e.target.value)}
+                            className="flex-1 px-5 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-neutral-600 font-medium focus:outline-none focus:border-indigo-500/50 transition-colors text-sm"
+                          />
+                        </div>
+                        <a
+                          href={`mailto:hello@heyacosta.com?subject=Acosta%20Browse&body=${encodeURIComponent(`Hi Acosta team,\n\nI'd love to get early access to Acosta Browse!\n\n${browseName ? `Name: ${browseName}\n` : ''}${browseEmail ? `Email: ${browseEmail}\n` : ''}\nLooking forward to trying the browser.\n\nThanks!`)}`}
+                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-bold text-base transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-indigo-900/40"
+                        >
+                          <Globe className="w-5 h-5" />
+                          Request Early Access
+                          <ArrowRight className="w-5 h-5" />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Right: Browser mockup */}
+                    <div className="relative hidden lg:block">
+                      <div className="bg-neutral-900 rounded-2xl border border-neutral-700/60 overflow-hidden shadow-2xl shadow-black/60">
+                        {/* Browser chrome */}
+                        <div className="bg-neutral-800/80 px-4 py-3 flex items-center gap-3 border-b border-neutral-700/60">
+                          <div className="flex gap-1.5 shrink-0">
+                            <div className="w-3 h-3 bg-red-500/60 rounded-full" />
+                            <div className="w-3 h-3 bg-yellow-500/60 rounded-full" />
+                            <div className="w-3 h-3 bg-green-500/60 rounded-full" />
+                          </div>
+                          {/* Tabs */}
+                          <div className="flex items-end gap-1 flex-1 overflow-hidden">
+                            <div className="bg-neutral-900 px-3 py-1.5 rounded-t-lg text-white text-xs font-semibold flex items-center gap-2 border-t border-x border-neutral-700/60 shrink-0">
+                              <div className="w-3 h-3 bg-indigo-500 rounded-sm shrink-0" />
+                              Study Mode — Physics
+                            </div>
+                            <div className="bg-neutral-800/50 px-3 py-1.5 rounded-t-lg text-neutral-500 text-xs font-medium flex items-center gap-2 shrink-0">
+                              <div className="w-3 h-3 bg-neutral-600 rounded-sm shrink-0" />
+                              Research Hub
+                            </div>
+                          </div>
+                        </div>
+                        {/* Address bar */}
+                        <div className="bg-neutral-900 px-4 py-2.5 flex items-center gap-2 border-b border-neutral-700/40">
+                          <Globe className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
+                          <div className="flex-1 bg-neutral-800/60 px-3 py-1.5 rounded-lg text-neutral-400 text-xs font-mono">
+                            acosta://studyhub/physics/waves-and-optics
+                          </div>
+                        </div>
+                        {/* Browser content */}
+                        <div className="p-6 space-y-5 min-h-[220px] bg-neutral-900/50">
+                          <div className="flex gap-5">
+                            {/* Main content skeleton */}
+                            <div className="flex-1 space-y-2.5">
+                              <div className="h-3 bg-neutral-700/60 rounded-full w-2/3" />
+                              <div className="h-2 bg-neutral-800/80 rounded-full" />
+                              <div className="h-2 bg-neutral-800/80 rounded-full w-5/6" />
+                              <div className="h-2 bg-neutral-800/80 rounded-full w-4/5" />
+                              <div className="h-2 bg-neutral-800/80 rounded-full" />
+                              <div className="h-2 bg-neutral-800/80 rounded-full w-3/4" />
+                            </div>
+                            {/* Divider */}
+                            <div className="w-px bg-neutral-700/60 self-stretch" />
+                            {/* AI panel */}
+                            <div className="w-36 space-y-2.5 shrink-0">
+                              <div className="flex items-center gap-1.5">
+                                <div className="w-2 h-2 bg-indigo-500 rounded-full" />
+                                <span className="text-indigo-400 text-xs font-bold uppercase tracking-wide">AI Summary</span>
+                              </div>
+                              <div className="h-2 bg-indigo-900/50 rounded-full" />
+                              <div className="h-2 bg-indigo-900/50 rounded-full w-4/5" />
+                              <div className="h-2 bg-indigo-900/50 rounded-full" />
+                              <div className="h-2 bg-indigo-900/30 rounded-full w-3/4" />
+                              <div className="mt-4 px-2 py-1.5 bg-indigo-600/20 border border-indigo-600/30 rounded-lg">
+                                <span className="text-indigo-300 text-xs font-medium">Save to notes?</span>
+                              </div>
+                            </div>
+                          </div>
+                          {/* Bottom bar */}
+                          <div className="flex items-center gap-2 pt-2 border-t border-neutral-700/40">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                            <span className="text-neutral-500 text-xs font-medium">Study mode active — distractions blocked</span>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Glow under mockup */}
+                      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-indigo-600/20 blur-2xl rounded-full pointer-events-none" />
                     </div>
                   </div>
                 </div>
