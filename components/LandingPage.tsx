@@ -435,8 +435,7 @@ export const LandingPage: React.FC = () => {
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.18)_0%,transparent_55%)] pointer-events-none" />
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(37,99,235,0.12)_0%,transparent_55%)] pointer-events-none" />
 
-                  <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    {/* Left: Content */}
+                  <div className="relative z-10 max-w-2xl">
                     <div className="space-y-8">
                       <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full">
                         <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse" />
@@ -491,75 +490,6 @@ export const LandingPage: React.FC = () => {
                           <ArrowRight className="w-5 h-5" />
                         </a>
                       </div>
-                    </div>
-
-                    {/* Right: Browser mockup */}
-                    <div className="relative hidden lg:block">
-                      <div className="bg-neutral-900 rounded-2xl border border-neutral-700/60 overflow-hidden shadow-2xl shadow-black/60">
-                        {/* Browser chrome */}
-                        <div className="bg-neutral-800/80 px-4 py-3 flex items-center gap-3 border-b border-neutral-700/60">
-                          <div className="flex gap-1.5 shrink-0">
-                            <div className="w-3 h-3 bg-red-500/60 rounded-full" />
-                            <div className="w-3 h-3 bg-yellow-500/60 rounded-full" />
-                            <div className="w-3 h-3 bg-green-500/60 rounded-full" />
-                          </div>
-                          {/* Tabs */}
-                          <div className="flex items-end gap-1 flex-1 overflow-hidden">
-                            <div className="bg-neutral-900 px-3 py-1.5 rounded-t-lg text-white text-xs font-semibold flex items-center gap-2 border-t border-x border-neutral-700/60 shrink-0">
-                              <div className="w-3 h-3 bg-indigo-500 rounded-sm shrink-0" />
-                              Study Mode — Physics
-                            </div>
-                            <div className="bg-neutral-800/50 px-3 py-1.5 rounded-t-lg text-neutral-500 text-xs font-medium flex items-center gap-2 shrink-0">
-                              <div className="w-3 h-3 bg-neutral-600 rounded-sm shrink-0" />
-                              Research Hub
-                            </div>
-                          </div>
-                        </div>
-                        {/* Address bar */}
-                        <div className="bg-neutral-900 px-4 py-2.5 flex items-center gap-2 border-b border-neutral-700/40">
-                          <Globe className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
-                          <div className="flex-1 bg-neutral-800/60 px-3 py-1.5 rounded-lg text-neutral-400 text-xs font-mono">
-                            acosta://studyhub/physics/waves-and-optics
-                          </div>
-                        </div>
-                        {/* Browser content */}
-                        <div className="p-6 space-y-5 min-h-[220px] bg-neutral-900/50">
-                          <div className="flex gap-5">
-                            {/* Main content skeleton */}
-                            <div className="flex-1 space-y-2.5">
-                              <div className="h-3 bg-neutral-700/60 rounded-full w-2/3" />
-                              <div className="h-2 bg-neutral-800/80 rounded-full" />
-                              <div className="h-2 bg-neutral-800/80 rounded-full w-5/6" />
-                              <div className="h-2 bg-neutral-800/80 rounded-full w-4/5" />
-                              <div className="h-2 bg-neutral-800/80 rounded-full" />
-                              <div className="h-2 bg-neutral-800/80 rounded-full w-3/4" />
-                            </div>
-                            {/* Divider */}
-                            <div className="w-px bg-neutral-700/60 self-stretch" />
-                            {/* AI panel */}
-                            <div className="w-36 space-y-2.5 shrink-0">
-                              <div className="flex items-center gap-1.5">
-                                <div className="w-2 h-2 bg-indigo-500 rounded-full" />
-                                <span className="text-indigo-400 text-xs font-bold uppercase tracking-wide">AI Summary</span>
-                              </div>
-                              <div className="h-2 bg-indigo-900/50 rounded-full" />
-                              <div className="h-2 bg-indigo-900/50 rounded-full w-4/5" />
-                              <div className="h-2 bg-indigo-900/50 rounded-full" />
-                              <div className="h-2 bg-indigo-900/30 rounded-full w-3/4" />
-                              <div className="mt-4 px-2 py-1.5 bg-indigo-600/20 border border-indigo-600/30 rounded-lg">
-                                <span className="text-indigo-300 text-xs font-medium">Save to notes?</span>
-                              </div>
-                            </div>
-                          </div>
-                          {/* Bottom bar */}
-                          <div className="flex items-center gap-2 pt-2 border-t border-neutral-700/40">
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                            <span className="text-neutral-500 text-xs font-medium">Study mode active — distractions blocked</span>
-                          </div>
-                        </div>
-                      </div>
-                      {/* Glow under mockup */}
-                      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-indigo-600/20 blur-2xl rounded-full pointer-events-none" />
                     </div>
                   </div>
                 </div>
