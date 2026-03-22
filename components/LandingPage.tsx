@@ -688,7 +688,7 @@ export const LandingPage: React.FC = () => {
                         © 2026 Transnology. All rights reserved.
                     </p>
                     <div className="flex items-center gap-6">
-                        <a href="https://transnology.store" target="_blank" rel="noreferrer" className="text-neutral-400 hover:text-primary transition-colors text-sm font-bold">Transnology</a>
+                        <a href="https://transnology.co" target="_blank" rel="noreferrer" className="text-neutral-400 hover:text-primary transition-colors text-sm font-bold">Transnology</a>
                         <div className="w-1 h-1 bg-neutral-300 rounded-full" />
                         <span className="text-neutral-400 text-sm font-medium">Built with ❤️ for Students and Teachers</span>
                     </div>

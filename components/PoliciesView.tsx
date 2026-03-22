@@ -128,7 +128,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
       
       <div className="text-center pt-8">
           <p className="text-xs text-neutral-400">
-              Acosta AI is a <a href="https://transnology.store" target="_blank" rel="noreferrer" className="underline hover:text-neutral-600 dark:hover:text-neutral-300">Transnology</a> company.
+              Acosta AI is a <a href="https://transnology.co" target="_blank" rel="noreferrer" className="underline hover:text-neutral-600 dark:hover:text-neutral-300">Transnology</a> company.
           </p>
       </div>
     </div>
@@ -160,7 +160,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
             </div>
             <div className="mt-12 pt-8 border-t border-neutral-100 dark:border-neutral-800 text-center">
                 <p className="text-xs text-neutral-400">
-                    Acosta AI is a <a href="https://transnology.store" target="_blank" rel="noreferrer" className="underline hover:text-neutral-600 dark:hover:text-neutral-300">Transnology</a> company.
+                    Acosta AI is a <a href="https://transnology.co" target="_blank" rel="noreferrer" className="underline hover:text-neutral-600 dark:hover:text-neutral-300">Transnology</a> company.
                 </p>
             </div>
         </div>
