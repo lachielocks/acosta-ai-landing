@@ -185,7 +185,7 @@ export const LandingPage: React.FC = () => {
             >
               {/* Hero Section */}
               <div className="max-w-7xl mx-auto px-6 pt-20 pb-32 text-center space-y-10">
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] text-neutral-900 dark:text-white">
+                <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] text-neutral-900 dark:text-white">
                   Learn <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-indigo-600">smarter.</span>
                 </h1>
 
@@ -219,7 +219,7 @@ export const LandingPage: React.FC = () => {
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-neutral-100 text-neutral-500 rounded-full text-xs font-bold uppercase tracking-widest border border-neutral-200">
                             Proprietary Intelligence
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-black text-black leading-tight">
+                        <h2 className="font-heading text-4xl md:text-6xl font-black text-black leading-tight">
                             Our own models, <br/>
                             built on <RotatingText 
                                 texts={['privacy.', 'security.', 'speed.', 'trust.']}
@@ -253,7 +253,7 @@ export const LandingPage: React.FC = () => {
               {/* Features Grid */}
               <div className="max-w-7xl mx-auto px-6 py-32 space-y-20">
                 <div className="text-center space-y-4">
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight">Everything you need to excel.</h2>
+                    <h2 className="font-heading text-4xl md:text-6xl font-black tracking-tight">Everything you need to excel.</h2>
                     <p className="text-xl text-neutral-500 max-w-2xl mx-auto">A complete suite of tools designed for the modern student.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -317,7 +317,7 @@ export const LandingPage: React.FC = () => {
               {/* Comparison Section */}
               <div className="max-w-7xl mx-auto px-6 py-32 space-y-12">
                 <div className="text-center space-y-4">
-                  <h2 className="text-4xl md:text-6xl font-black tracking-tight">Built for learners and educators.<br/>Not just anyone.</h2>
+                  <h2 className="font-heading text-4xl md:text-6xl font-black tracking-tight">Built for learners and educators.<br/>Not just anyone.</h2>
                   <p className="text-xl text-neutral-500 max-w-2xl mx-auto">Generic AI wasn't designed with classrooms in mind.</p>
                 </div>
                 <div className="overflow-x-auto rounded-[32px] border border-neutral-100 dark:border-neutral-800 shadow-xl shadow-black/5">
@@ -367,7 +367,7 @@ export const LandingPage: React.FC = () => {
               {/* About Section */}
               <div className="max-w-7xl mx-auto px-6 py-32 space-y-8">
                 <div className="text-center space-y-4">
-                  <h2 className="text-4xl md:text-6xl font-black tracking-tight">Built by a student,<br/>for students.</h2>
+                  <h2 className="font-heading text-4xl md:text-6xl font-black tracking-tight">Built by a student,<br/>for students.</h2>
                   <p className="text-xl text-neutral-500 max-w-2xl mx-auto">One person. One mission. A tool that students actually deserve.</p>
                 </div>
 
@@ -400,7 +400,7 @@ export const LandingPage: React.FC = () => {
                         <GraduationCap className="w-8 h-8 text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Lachie Thurlow</h3>
+                        <h3 className="font-heading text-xl font-bold text-neutral-900 dark:text-white">Lachie Thurlow</h3>
                         <p className="text-sm text-neutral-400 font-medium">Founder & CEO</p>
                       </div>
                     </div>
@@ -443,7 +443,7 @@ export const LandingPage: React.FC = () => {
                       </div>
 
                       <div className="space-y-5">
-                        <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight leading-none">
+                        <h2 className="font-heading text-5xl md:text-6xl font-black text-white tracking-tight leading-none">
                           Acosta Browse
                         </h2>
                         <p className="text-xl text-neutral-400 leading-relaxed font-medium">
@@ -499,7 +499,7 @@ export const LandingPage: React.FC = () => {
               <div className="max-w-7xl mx-auto px-6 py-32">
                 <div className="bg-primary rounded-[40px] p-12 md:p-24 text-center space-y-10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_70%)]" />
-                    <h2 className="text-5xl md:text-7xl font-black text-white relative z-10 tracking-tight">Ready to transform <br/> your learning?</h2>
+                    <h2 className="font-heading text-5xl md:text-7xl font-black text-white relative z-10 tracking-tight">Ready to transform <br/> your learning?</h2>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
                         <a 
                             href="https://platform.acosta-ai.com" 
@@ -515,7 +515,7 @@ export const LandingPage: React.FC = () => {
               {/* FAQ Section */}
               <div className="max-w-4xl mx-auto px-6 py-32 space-y-12">
                 <div className="text-center space-y-4">
-                  <h2 className="text-4xl md:text-6xl font-black tracking-tight">Frequently Asked Questions</h2>
+                  <h2 className="font-heading text-4xl md:text-6xl font-black tracking-tight">Frequently Asked Questions</h2>
                   <p className="text-xl text-neutral-500">Everything you need to know before getting started.</p>
                 </div>
                 <div className="space-y-3">
@@ -671,7 +671,7 @@ const FeatureCard: React.FC<{ icon: React.ReactNode, title: string, desc: string
       {icon}
     </div>
     <div className="space-y-3 relative z-10">
-        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">{title}</h3>
+        <h3 className="font-heading text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">{title}</h3>
         <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed font-medium">
         {desc}
         </p>
