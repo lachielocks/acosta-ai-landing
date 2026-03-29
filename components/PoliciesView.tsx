@@ -54,21 +54,6 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
 
   const renderMenu = () => (
     <div className="max-w-6xl mx-auto relative py-12 px-4 sm:px-6 lg:px-8">
-      {onBack && (
-        <motion.button 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            whileHover={{ x: -8 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={onBack}
-            className="group flex items-center gap-3 text-sm font-bold text-neutral-500 hover:text-neutral-900 dark:hover:text-white mb-12 transition-colors"
-        >
-            <div className="p-2.5 rounded-2xl bg-white dark:bg-neutral-900 shadow-sm border border-neutral-200 dark:border-neutral-800 group-hover:scale-110 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-300">
-                <ArrowLeft className="w-4 h-4" />
-            </div>
-            <span className="tracking-tight">Back to Login</span>
-        </motion.button>
-      )}
 
       <div className="text-center max-w-3xl mx-auto mb-20 space-y-8">
         <motion.div 
