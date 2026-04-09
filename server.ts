@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +30,17 @@ async function startServer() {
         appType: "spa",
       });
       app.use(vite.middlewares);
+      // SPA fallback: serve Vite-transformed index.html for all unmatched routes
+      app.use(async (req, res, next) => {
+        try {
+          const template = fs.readFileSync(path.join(__dirname, "index.html"), "utf-8");
+          const html = await vite.transformIndexHtml(req.originalUrl, template);
+          res.status(200).set({ "Content-Type": "text/html" }).end(html);
+        } catch (e) {
+          vite.ssrFixStacktrace(e as Error);
+          next(e);
+        }
+      });
       console.log("Vite middleware enabled");
     } catch (e) {
       console.warn("Vite not found, falling back to static serving");
