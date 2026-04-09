@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ArrowRight, 
-  Shield, 
-  CreditCard, 
-  Home, 
-  ExternalLink, 
-  Sparkles, 
-  Brain, 
-  Mic, 
-  ScanEye, 
+import {
+  ArrowRight,
+  Shield,
+  CreditCard,
+  Home,
+  ExternalLink,
+  Sparkles,
+  Brain,
+  Mic,
+  ScanEye,
   MessageSquare,
   Menu,
   X,
@@ -30,13 +30,30 @@ import {
 } from 'lucide-react';
 import { PricingView } from './PricingView';
 import { PoliciesView } from './PoliciesView';
-import { AppMode } from '../types';
 import LiquidEther from './LiquidEther';
 import RotatingText from './RotatingText';
+import { useRouter } from '../router';
+
+type PolicySection = 'MENU' | 'TERMS' | 'PRIVACY' | 'SAFETY';
+
+function pathnameToTab(pathname: string): 'home' | 'pricing' | 'policies' {
+  if (pathname === '/pricing') return 'pricing';
+  if (['/privacy', '/terms', '/safety', '/policies'].includes(pathname)) return 'policies';
+  return 'home';
+}
+
+function pathnameToSection(pathname: string): PolicySection {
+  if (pathname === '/privacy') return 'PRIVACY';
+  if (pathname === '/terms') return 'TERMS';
+  if (pathname === '/safety') return 'SAFETY';
+  return 'MENU';
+}
 
 export const LandingPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'home' | 'pricing' | 'policies'>('home');
-  const [policySection, setPolicySection] = useState<'MENU' | 'TERMS' | 'PRIVACY' | 'SAFETY'>('MENU');
+  const { pathname, navigate } = useRouter();
+  const activeTab = pathnameToTab(pathname);
+  const policySection = pathnameToSection(pathname);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -51,28 +68,10 @@ export const LandingPage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavigate = (mode: AppMode) => {
-    if (mode === AppMode.PRICING) setActiveTab('pricing');
-    else if (mode === AppMode.POLICIES) {
-      setActiveTab('policies');
-      setPolicySection('MENU');
-    }
-    else if (mode === AppMode.HOME) setActiveTab('home');
-    else {
-      window.open('https://platform.acosta-ai.com', '_blank');
-    }
-  };
-
-  const navigateToPolicy = (section: 'MENU' | 'TERMS' | 'PRIVACY' | 'SAFETY') => {
-    setActiveTab('policies');
-    setPolicySection(section);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const navItems = [
-    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" /> },
-    { id: 'pricing', label: 'Pricing', icon: <CreditCard className="w-4 h-4" /> },
-    { id: 'policies', label: 'Trust Centre', icon: <Shield className="w-4 h-4" /> },
+    { id: 'home', label: 'Home', path: '/', icon: <Home className="w-4 h-4" /> },
+    { id: 'pricing', label: 'Pricing', path: '/pricing', icon: <CreditCard className="w-4 h-4" /> },
+    { id: 'policies', label: 'Trust Centre', path: '/policies', icon: <Shield className="w-4 h-4" /> },
   ];
 
   return (
@@ -85,9 +84,9 @@ export const LandingPage: React.FC = () => {
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/70 dark:bg-black/70 backdrop-blur-2xl border-b border-neutral-200/50 dark:border-neutral-800/50 py-3' : 'bg-white/10 dark:bg-black/10 backdrop-blur-md py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div 
+          <div
             className="flex items-center gap-3 cursor-pointer group"
-            onClick={() => setActiveTab('home')}
+            onClick={() => navigate('/')}
           >
             <div className="relative w-8 h-8 flex items-center justify-center">
                 <img src="https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png" alt="Acosta AI" className="h-8 w-auto group-hover:scale-110 transition-transform duration-500" />
@@ -100,7 +99,7 @@ export const LandingPage: React.FC = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id as any)}
+                onClick={() => navigate(item.path)}
                 className={`px-4 py-2 text-sm font-medium transition-all rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-900 flex items-center gap-2 ${activeTab === item.id ? 'text-primary bg-primary/5' : 'text-neutral-500 dark:text-neutral-400'}`}
               >
                 {item.icon}
@@ -143,7 +142,7 @@ export const LandingPage: React.FC = () => {
                 <button
                   key={item.id}
                   onClick={() => {
-                    setActiveTab(item.id as any);
+                    navigate(item.path);
                     setIsMenuOpen(false);
                   }}
                   className={`text-3xl font-bold flex items-center justify-between p-4 rounded-3xl transition-all ${activeTab === item.id ? 'text-primary bg-primary/5' : 'text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-900'}`}
@@ -202,8 +201,8 @@ export const LandingPage: React.FC = () => {
                     Get Started Free
                     <ArrowRight className="w-7 h-7" />
                   </a>
-                  <button 
-                    onClick={() => setActiveTab('pricing')}
+                  <button
+                    onClick={() => navigate('/pricing')}
                     className="w-full sm:w-auto px-12 py-6 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800 rounded-3xl font-bold text-2xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all"
                   >
                     View Pricing
@@ -597,17 +596,17 @@ export const LandingPage: React.FC = () => {
                     <div className="space-y-6">
                         <h4 className="font-bold text-sm uppercase tracking-widest text-neutral-400">Platform</h4>
                         <div className="flex flex-col gap-4 text-neutral-500 font-medium">
-                            <button onClick={() => setActiveTab('home')} className="hover:text-primary transition-colors text-left">Home</button>
-                            <button onClick={() => setActiveTab('pricing')} className="hover:text-primary transition-colors text-left">Pricing</button>
+                            <button onClick={() => navigate('/')} className="hover:text-primary transition-colors text-left">Home</button>
+                            <button onClick={() => navigate('/pricing')} className="hover:text-primary transition-colors text-left">Pricing</button>
                             <a href="https://platform.acosta-ai.com" className="hover:text-primary transition-colors">Launch App</a>
                         </div>
                     </div>
                     <div className="space-y-6">
                         <h4 className="font-bold text-sm uppercase tracking-widest text-neutral-400">Trust</h4>
                         <div className="flex flex-col gap-4 text-neutral-500 font-medium">
-                            <button onClick={() => navigateToPolicy('PRIVACY')} className="hover:text-primary transition-colors text-left">Privacy Policy</button>
-                            <button onClick={() => navigateToPolicy('TERMS')} className="hover:text-primary transition-colors text-left">Terms of Service</button>
-                            <button onClick={() => navigateToPolicy('SAFETY')} className="hover:text-primary transition-colors text-left">Safety Features</button>
+                            <a href="/privacy" onClick={(e) => { e.preventDefault(); navigate('/privacy'); }} className="hover:text-primary transition-colors text-left">Privacy Policy</a>
+                            <a href="/terms" onClick={(e) => { e.preventDefault(); navigate('/terms'); }} className="hover:text-primary transition-colors text-left">Terms of Service</a>
+                            <a href="/safety" onClick={(e) => { e.preventDefault(); navigate('/safety'); }} className="hover:text-primary transition-colors text-left">Safety Features</a>
                             <a href="mailto:support@acosta-ai.com" className="hover:text-primary transition-colors">Support</a>
                             <a href="https://status.acosta-ai.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Status</a>
                         </div>
@@ -635,8 +634,8 @@ export const LandingPage: React.FC = () => {
               exit={{ opacity: 0, x: -20 }}
               className="h-full"
             >
-              <PricingView 
-                onBack={() => setActiveTab('home')} 
+              <PricingView
+                onBack={() => navigate('/')}
                 onOpenStripePortal={() => window.open('https://platform.acosta-ai.com', '_blank')}
                 isAnonymous={true}
                 onLogin={() => window.open('https://platform.acosta-ai.com', '_blank')}
@@ -652,9 +651,10 @@ export const LandingPage: React.FC = () => {
               exit={{ opacity: 0, x: -20 }}
               className="h-full"
             >
-              <PoliciesView 
-                onBack={() => setActiveTab('home')}
+              <PoliciesView
+                onBack={() => navigate('/')}
                 initialSection={policySection}
+                navigate={navigate}
               />
             </motion.div>
           )}
