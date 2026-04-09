@@ -27,7 +27,7 @@ async function startServer() {
       const { createServer: createViteServer } = await import("vite");
       const vite = await createViteServer({
         server: { middlewareMode: true },
-        appType: "spa",
+        appType: "custom", // Let us handle HTML serving ourselves
       });
       app.use(vite.middlewares);
       // SPA fallback: serve Vite-transformed index.html for all unmatched routes
@@ -37,7 +37,6 @@ async function startServer() {
           const html = await vite.transformIndexHtml(req.originalUrl, template);
           res.status(200).set({ "Content-Type": "text/html" }).end(html);
         } catch (e) {
-          vite.ssrFixStacktrace(e as Error);
           next(e);
         }
       });
