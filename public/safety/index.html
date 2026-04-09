@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Safety Features - Acosta AI</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: 'var(--bg-background)',
+              surface: 'var(--bg-surface)',
+              primary: 'var(--color-primary)',
+              secondary: 'var(--color-secondary)',
+            },
+            fontFamily: {
+              sans: ['Geist', 'sans-serif'],
+              heading: ['Bricolage Grotesque', 'sans-serif'],
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px) scale(0.98)' },
+                '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '0% 0%' },
+                '100%': { backgroundPosition: '200% 0%' },
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'fade-in-up': 'fadeInUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'shimmer': 'shimmer 3s linear infinite',
+            }
+          },
+        },
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-background: #ffffff;
+        --bg-surface: #f8fafc;
+        --text-main: #0f172a;
+        --color-primary: #2563eb;
+        --color-secondary: #4f46e5;
+      }
+      .dark {
+        --bg-background: #000000;
+        --bg-surface: #0a0a0a;
+        --text-main: #e5e5e5;
+        --color-primary: #3b82f6;
+        --color-secondary: #6366f1;
+      }
+      html, body {
+        height: 100dvh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        overscroll-behavior: none;
+        font-family: 'Geist', sans-serif;
+        background-color: var(--bg-background);
+        color: var(--text-main);
+      }
+      #root {
+        height: 100dvh;
+        width: 100vw;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #525252; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #737373; }
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+      ::view-transition-new(root) { z-index: 9999; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.13.1",
+    "gsap": "https://aistudiocdn.com/gsap@^3.12.5",
+    "three": "https://aistudiocdn.com/three@^0.174.0",
+    "react-dom": "https://esm.sh/react-dom@^19.2.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
