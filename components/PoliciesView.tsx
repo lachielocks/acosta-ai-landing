@@ -15,6 +15,7 @@ interface PoliciesViewProps {
     onBack?: () => void;
     initialSection?: PolicySection;
     onNavigate?: (mode: any) => void;
+    navigate?: (path: string) => void;
 }
 
 const SectionHeader: React.FC<{ icon: React.ElementType, title: string }> = ({ icon: Icon, title }) => (
@@ -38,7 +39,7 @@ const PolicyPoint: React.FC<{ title: string; children: React.ReactNode }> = ({ t
     </div>
 );
 
-export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = true, onBack, initialSection = 'MENU', onNavigate }) => {
+export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = true, onBack, initialSection = 'MENU', onNavigate, navigate: navigateProp }) => {
   const [view, setView] = useState<PolicySection>(initialSection);
 
   useEffect(() => {
@@ -46,6 +47,20 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
           setView(initialSection);
       }
   }, [initialSection]);
+
+  const goToSection = (section: PolicySection) => {
+    if (navigateProp) {
+      const pathMap: Record<PolicySection, string> = {
+        MENU: '/policies',
+        PRIVACY: '/privacy',
+        TERMS: '/terms',
+        SAFETY: '/safety',
+      };
+      navigateProp(pathMap[section]);
+    } else {
+      setView(section);
+    }
+  };
 
   const scrollToTop = () => {
     const el = document.getElementById('policy-content');
@@ -108,7 +123,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
             <SpotlightCard 
             className="group h-full flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-500 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-md border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-2xl hover:shadow-emerald-500/10 rounded-[3rem] p-10 relative overflow-hidden"
             spotlightColor="rgba(16, 185, 129, 0.15)"
-            onClick={() => { setView('PRIVACY'); scrollToTop(); }}
+            onClick={() => { goToSection('PRIVACY'); scrollToTop(); }}
             disabled={!spotlightEnabled}
             >
                 <motion.div whileHover={{ y: -5 }} transition={{ type: "spring", stiffness: 300 }}>
@@ -141,7 +156,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
             <SpotlightCard 
             className="group h-full flex flex-col justify-between hover:border-red-500/50 transition-all duration-500 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-md border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-2xl hover:shadow-red-500/10 rounded-[3rem] p-10 relative overflow-hidden"
             spotlightColor="rgba(239, 68, 68, 0.15)"
-            onClick={() => { setView('SAFETY'); scrollToTop(); }}
+            onClick={() => { goToSection('SAFETY'); scrollToTop(); }}
             disabled={!spotlightEnabled}
             >
                 <motion.div whileHover={{ y: -5 }} transition={{ type: "spring", stiffness: 300 }}>
@@ -174,7 +189,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
             <SpotlightCard 
             className="group h-full flex flex-col justify-between hover:border-blue-500/50 transition-all duration-500 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-md border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 rounded-[3rem] p-10 relative overflow-hidden"
             spotlightColor="rgba(59, 130, 246, 0.15)"
-            onClick={() => { setView('TERMS'); scrollToTop(); }}
+            onClick={() => { goToSection('TERMS'); scrollToTop(); }}
             disabled={!spotlightEnabled}
             >
                 <motion.div whileHover={{ y: -5 }} transition={{ type: "spring", stiffness: 300 }}>
@@ -229,7 +244,7 @@ export const PoliciesView: React.FC<PoliciesViewProps> = ({ spotlightEnabled = t
                     animate={{ opacity: 1, x: 0 }}
                     whileHover={{ x: -8 }}
                     whileTap={{ scale: 0.96 }}
-                    onClick={() => setView('MENU')}
+                    onClick={() => goToSection('MENU')}
                     className="group flex items-center gap-3 text-sm font-bold text-neutral-500 hover:text-neutral-900 dark:hover:text-white mb-12 transition-colors"
                 >
                     <div className="p-2.5 rounded-2xl bg-white dark:bg-neutral-900 shadow-sm border border-neutral-200 dark:border-neutral-800 group-hover:scale-110 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-300">
