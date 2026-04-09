@@ -29,9 +29,10 @@ async function startServer() {
         server: { middlewareMode: true },
         appType: "custom", // Let us handle HTML serving ourselves
       });
-      app.use(vite.middlewares);
-      // SPA fallback: serve Vite-transformed index.html for all unmatched routes
-      app.use(async (req, res, next) => {
+
+      // Serve SPA routes BEFORE vite.middlewares so public/ files don't
+      // bypass transformIndexHtml (which injects the React Fast Refresh preamble).
+      const serveIndex = async (req: any, res: any, next: any) => {
         try {
           const template = fs.readFileSync(path.join(__dirname, "index.html"), "utf-8");
           const html = await vite.transformIndexHtml(req.originalUrl, template);
@@ -39,7 +40,15 @@ async function startServer() {
         } catch (e) {
           next(e);
         }
-      });
+      };
+
+      const spaRoutes = ["/", "/pricing", "/privacy", "/terms", "/safety", "/policies"];
+      app.get(spaRoutes, serveIndex);
+
+      app.use(vite.middlewares);
+
+      // Catch-all fallback for any other unmatched GET (e.g. nested paths)
+      app.use(serveIndex);
       console.log("Vite middleware enabled");
     } catch (e) {
       console.warn("Vite not found, falling back to static serving");
