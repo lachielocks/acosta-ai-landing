@@ -373,7 +373,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ isDarkMode, onToggleDa
               {/* About Section */}
               <div className="max-w-7xl mx-auto px-6 py-32 space-y-8">
                 <div className="text-center space-y-4">
-                  <h2 className="font-heading text-4xl md:text-6xl font-black tracking-tight">Built by a student,<br/>for students.</h2>
+                  <h2 className="font-heading text-4xl md:text-6xl font-black tracking-tight">Built by a student,<br/>for students. (and teachers!)</h2>
                   <p className="text-xl text-neutral-500 max-w-2xl mx-auto">One person. One mission. A tool that students actually deserve.</p>
                 </div>
 
