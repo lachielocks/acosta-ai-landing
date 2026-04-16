@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight,
+  Sun,
+  Moon,
   Shield,
   CreditCard,
   Home,
@@ -36,6 +38,11 @@ import { useRouter } from '../router';
 
 type PolicySection = 'MENU' | 'TERMS' | 'PRIVACY' | 'SAFETY';
 
+interface LandingPageProps {
+  isDarkMode: boolean;
+  onToggleDarkMode: () => void;
+}
+
 function pathnameToTab(pathname: string): 'home' | 'pricing' | 'policies' {
   if (pathname === '/pricing') return 'pricing';
   if (['/privacy', '/terms', '/safety', '/policies'].includes(pathname)) return 'policies';
@@ -49,7 +56,7 @@ function pathnameToSection(pathname: string): PolicySection {
   return 'MENU';
 }
 
-export const LandingPage: React.FC = () => {
+export const LandingPage: React.FC<LandingPageProps> = ({ isDarkMode, onToggleDarkMode }) => {
   const { pathname, navigate } = useRouter();
   const activeTab = pathnameToTab(pathname);
   const policySection = pathnameToSection(pathname);
@@ -660,6 +667,15 @@ export const LandingPage: React.FC = () => {
           )}
         </AnimatePresence>
       </main>
+
+      <button
+        type="button"
+        onClick={onToggleDarkMode}
+        aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        className="fixed bottom-6 left-6 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200/80 bg-white/90 text-neutral-700 shadow-lg backdrop-blur transition-all hover:scale-105 hover:bg-white dark:border-neutral-700/80 dark:bg-neutral-900/90 dark:text-neutral-200 dark:hover:bg-neutral-900"
+      >
+        {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      </button>
     </div>
   );
 };
