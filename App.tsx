@@ -23,7 +23,10 @@ function App() {
   return (
     <ErrorBoundary>
       <ToastProvider>
-        <LandingPage />
+        <LandingPage
+          isDarkMode={isDarkMode}
+          onToggleDarkMode={() => setIsDarkMode((currentMode) => !currentMode)}
+        />
       </ToastProvider>
     </ErrorBoundary>
   );
