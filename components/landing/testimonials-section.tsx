@@ -1,25 +1,27 @@
 "use client";
 
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
     quote:
       "Acosta helps me break down hard topics into steps I can actually follow. It feels like having a tutor on demand.",
-    author: "Year 11 Student",
-    role: "HSC Pathway",
+    author: "Ava M.",
+    role: "Year 11 Student (HSC)",
   },
   {
     quote:
       "The exam simulation tools are genuinely useful in class prep. Students come in more confident and focused.",
-    author: "High School Teacher",
+    author: "Mr. Daniel R.",
     role: "Science Department",
   },
   {
     quote:
       "I use Acosta daily for revision plans and quick feedback. It saves me hours each week without shortcuts.",
-    author: "University Student",
-    role: "STEM Faculty",
+    author: "Noah T.",
+    role: "First-Year Engineering Student",
   },
 ];
 
@@ -59,8 +61,19 @@ export function TestimonialsSection() {
     };
   }, []);
 
+  const goPrevious = () => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    restartInterval();
+  };
+
+  const goNext = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    restartInterval();
+  };
+
   return (
     <section
+      id="testimonials"
       ref={sectionRef}
       className="relative py-28 lg:py-36 border-y border-foreground/10"
     >
@@ -73,12 +86,22 @@ export function TestimonialsSection() {
         </div>
 
         <blockquote
-          className={`text-3xl md:text-4xl lg:text-5xl font-display leading-[1.2] transition-all duration-700 ${
+          className={`min-h-[170px] text-3xl md:text-4xl lg:text-5xl font-display leading-[1.2] transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
-          key={activeIndex}
         >
-          “{testimonials[activeIndex].quote}”
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={activeIndex}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="inline-block"
+            >
+              “{testimonials[activeIndex].quote}”
+            </motion.span>
+          </AnimatePresence>
         </blockquote>
 
         <div className="mt-8 flex items-center justify-between gap-6 flex-wrap">
@@ -87,7 +110,15 @@ export function TestimonialsSection() {
             <p className="text-sm">{testimonials[activeIndex].role}</p>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous testimonial"
+              onClick={goPrevious}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/70 transition hover:border-foreground hover:text-foreground"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
@@ -102,6 +133,14 @@ export function TestimonialsSection() {
                 }`}
               />
             ))}
+            <button
+              type="button"
+              aria-label="Next testimonial"
+              onClick={goNext}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/70 transition hover:border-foreground hover:text-foreground"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </div>

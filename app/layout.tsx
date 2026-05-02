@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   title: 'Acosta AI - Learn Smarter',
   description: 'Acosta AI is a private, student-first learning platform with tutoring, exam prep, and teacher tools.',
   generator: 'v0.app',
+  icons: {
+    icon: "https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png",
+    shortcut: "https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png",
+    apple: "https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png",
+  },
 }
 
 export default function RootLayout({

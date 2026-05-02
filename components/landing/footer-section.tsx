@@ -8,9 +8,9 @@ const footerLinks = {
     { name: "Get Started", href: "https://platform.acosta-ai.com" },
   ],
   Trust: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
-    { name: "Safety", href: "#" },
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Service", href: "/terms" },
+    { name: "Safety Features", href: "/safety" },
     { name: "Status", href: "https://status.acosta-ai.com" },
   ],
   Company: [
