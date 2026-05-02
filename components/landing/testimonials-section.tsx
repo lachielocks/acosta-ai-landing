@@ -27,6 +27,7 @@ export function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,11 +41,22 @@ export function TestimonialsSection() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const restartInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
     }, 7000);
-    return () => clearInterval(interval);
+  };
+
+  useEffect(() => {
+    restartInterval();
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -81,7 +93,10 @@ export function TestimonialsSection() {
                 key={idx}
                 type="button"
                 aria-label={`Show testimonial ${idx + 1}`}
-                onClick={() => setActiveIndex(idx)}
+                onClick={() => {
+                  setActiveIndex(idx);
+                  restartInterval();
+                }}
                 className={`h-1.5 w-10 transition-all ${
                   idx === activeIndex ? "bg-foreground" : "bg-foreground/20"
                 }`}

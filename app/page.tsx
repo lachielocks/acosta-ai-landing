@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/landing/hero-section";
 import { FeaturesSection } from "@/components/landing/features-section";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { PricingSection } from "@/components/landing/pricing-section";
+import { FounderSection } from "@/components/landing/founder-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <FeaturesSection />
       <TestimonialsSection />
       <PricingSection />
+      <FounderSection />
       <CtaSection />
       <FooterSection />
     </main>

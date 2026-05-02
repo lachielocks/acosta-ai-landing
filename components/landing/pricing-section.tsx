@@ -1,54 +1,72 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Check, Zap } from "lucide-react";
+import { ArrowRight, Check, Sparkles, Leaf } from "lucide-react";
 
 const plans = [
   {
     name: "Free",
-    description: "For getting started with study and teaching tools",
-    price: { monthly: 0, annual: 0 },
-    features: [
-      "Core tutoring and chat",
-      "Basic study tools",
-      "Monthly credit allowance",
-      "No credit card required",
+    tagline: "The essentials for casual learning.",
+    monthlyLabel: "$0",
+    annualLabel: "$0",
+    description: "Acosta AI Free",
+    featureList: [
+      "Unlimited Fast Mode",
+      "Unlimited Live Conversation",
+      "Unlimited Audio Tools",
+      "Search Messages / mo: 500",
+      "Thinking Messages / mo: 10",
+      "Study Tools / mo: 10",
+      "Images / mo: 10",
+      "Analysis / mo: 5",
+      "Exam Simulations / mo: 1",
     ],
     cta: "Get started",
     highlight: false,
   },
   {
     name: "Go",
-    description: "For consistent learners who need more power",
-    price: { monthly: 9, annual: 7 },
-    features: [
-      "Higher monthly limits",
-      "Exam simulation tools",
-      "Advanced reasoning modes",
-      "Priority model access",
-      "Faster generation speeds",
+    tagline: "For serious students and power users.",
+    monthlyLabel: "$10",
+    annualLabel: "$105",
+    description: "Acosta AI Go",
+    featureList: [
+      "Everything in Free",
+      "Unlimited Search Mode",
+      "Thinking Messages / mo: 50",
+      "Study Tools / mo: 50",
+      "Images / mo: 50",
+      "Analysis / mo: 30",
+      "Exam Simulations / mo: 10",
     ],
     cta: "Start Go",
     highlight: true,
+    carbonMonthly: "$0.50/mo",
+    carbonAnnual: "$5.25/yr",
   },
   {
     name: "Max",
-    description: "For power users, educators, and heavy workflows",
-    price: { monthly: 19, annual: 15 },
-    features: [
+    tagline: "Limitless intelligence without boundaries.",
+    monthlyLabel: "$30",
+    annualLabel: "$315",
+    description: "Acosta AI Max",
+    featureList: [
       "Everything in Go",
-      "Highest usage limits",
-      "Teacher and planning workflows",
-      "Premium support",
-      "Early feature access",
+      "Unlimited Thinking Mode",
+      "Unlimited Study Tools",
+      "Unlimited Image Generation",
+      "Unlimited Content Analysis",
+      "Unlimited Exam Simulations",
     ],
     cta: "Choose Max",
     highlight: false,
+    carbonMonthly: "$1.50/mo",
+    carbonAnnual: "$15.75/yr",
   },
 ];
 
 export function PricingSection() {
-  const [isAnnual, setIsAnnual] = useState(true);
+  const [isAnnual, setIsAnnual] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -76,25 +94,28 @@ export function PricingSection() {
             <h2 className={`text-5xl md:text-7xl lg:text-[112px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
-              Plans that
+              Learn with
               <br />
-              <span className="text-muted-foreground">scale with you.</span>
+              <span className="text-muted-foreground">confidence.</span>
             </h2>
           </div>
 
           <div className="lg:col-span-4 flex items-end lg:justify-end">
             <div className={`transition-all duration-1000 delay-100 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-              <button
-                onClick={() => setIsAnnual((current) => !current)}
-                className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.03] p-1 text-sm"
-              >
-                <span className={`rounded-full px-4 py-2 transition-colors ${!isAnnual ? "bg-foreground text-background" : "text-muted-foreground"}`}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.03] p-1 text-sm">
+                <button
+                  onClick={() => setIsAnnual(false)}
+                  className={`rounded-full px-4 py-2 transition-colors ${!isAnnual ? "bg-foreground text-background" : "text-muted-foreground"}`}
+                >
                   Monthly
-                </span>
-                <span className={`rounded-full px-4 py-2 transition-colors ${isAnnual ? "bg-foreground text-background" : "text-muted-foreground"}`}>
+                </button>
+                <button
+                  onClick={() => setIsAnnual(true)}
+                  className={`rounded-full px-4 py-2 transition-colors ${isAnnual ? "bg-foreground text-background" : "text-muted-foreground"}`}
+                >
                   Annual
-                </span>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -111,11 +132,11 @@ export function PricingSection() {
                 } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                {plan.highlight && (
+                {plan.highlight && !isAnnual && (
                   <div className="absolute -top-4 left-8 right-8 flex justify-center">
                     <span className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background text-xs font-mono uppercase tracking-widest">
-                      <Zap className="w-3 h-3" />
-                      Most Popular
+                      <Sparkles className="w-3 h-3" />
+                      30-Day Free Trial
                     </span>
                   </div>
                 )}
@@ -126,29 +147,27 @@ export function PricingSection() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <h3 className="text-2xl lg:text-3xl font-display mt-2">{plan.name}</h3>
-                    <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{plan.description}</p>
+                    <p className="text-sm text-muted-foreground mt-2">{plan.tagline}</p>
                   </div>
 
                   <div className="mb-8">
-                    {plan.price.monthly !== null && plan.price.annual !== null ? (
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-5xl lg:text-6xl font-display">
-                          ${isAnnual ? plan.price.annual : plan.price.monthly}
-                        </span>
-                        <span className="text-muted-foreground text-sm">/month</span>
-                      </div>
-                    ) : (
-                      <span className="text-4xl font-display">Custom</span>
-                    )}
-                    {plan.price.monthly !== null && plan.price.monthly > 0 && (
-                      <p className="text-xs text-muted-foreground mt-2 font-mono">
-                        {isAnnual ? "billed annually (save 20%)" : "billed monthly"}
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-5xl lg:text-6xl font-display">
+                        {isAnnual ? plan.annualLabel : plan.monthlyLabel}
+                      </span>
+                      <span className="text-muted-foreground text-sm">{isAnnual ? "/yr" : "/mo"}</span>
+                    </div>
+                    {plan.carbonMonthly && plan.carbonAnnual && (
+                      <p className="text-xs text-green-600 mt-2 font-mono inline-flex items-center gap-1">
+                        <Leaf className="w-3 h-3" />
+                        Contributes {isAnnual ? plan.carbonAnnual : plan.carbonMonthly} to carbon removal
                       </p>
                     )}
                   </div>
 
                   <ul className="space-y-3 mb-10">
-                    {plan.features.map((feature) => (
+                    {plan.featureList.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
                         <Check className="w-4 h-4 text-[#eca8d6] mt-0.5 shrink-0" />
                         <span className="text-sm text-muted-foreground">{feature}</span>
@@ -192,9 +211,7 @@ export function PricingSection() {
               Student-first design
             </span>
           </div>
-          <a href="https://platform.acosta-ai.com" target="_blank" rel="noreferrer" className="text-sm underline underline-offset-4 hover:text-foreground transition-colors">
-            Open platform
-          </a>
+          <span className="text-sm text-muted-foreground">Acosta AI Free, Go, and Max tiers from the original pricing model.</span>
         </div>
       </div>
     </section>
