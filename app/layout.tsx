@@ -21,8 +21,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'COMPUTE - AI Agents for Distributed Computing',
-  description: 'Deploy autonomous AI agents on distributed infrastructure. Offload complex tasks to intelligent workers that run 24/7.',
+  title: 'Acosta AI - Learn Smarter',
+  description: 'Acosta AI is a private, student-first learning platform with tutoring, exam prep, and teacher tools.',
   generator: 'v0.app',
 }
 
