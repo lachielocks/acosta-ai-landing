@@ -76,12 +76,12 @@ export function Navigation() {
           <div className="hidden md:flex items-center">
             <Button
               size="sm"
-              className={`group rounded-full overflow-hidden transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 hover:px-5 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6 hover:px-7"}`}
+              className={`group rounded-full overflow-hidden transition-all duration-300 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs hover:scale-[1.03]" : "bg-white hover:bg-white/90 text-black px-6 hover:scale-[1.03]"}`}
               asChild
             >
-              <a href="https://platform.acosta-ai.com" className="inline-flex items-center">
+              <a href="https://platform.acosta-ai.com" className="relative inline-flex items-center justify-center">
                 <span>Try Acosta</span>
-                <ArrowRight className="ml-0 w-0 h-3.5 opacity-0 transition-all duration-300 group-hover:ml-2 group-hover:w-3.5 group-hover:opacity-100" />
+                <ArrowRight className="pointer-events-none absolute left-full ml-1 h-3.5 w-3.5 translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </a>
             </Button>
           </div>
@@ -143,13 +143,13 @@ export function Navigation() {
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
             <Button 
-              className="group w-full bg-foreground text-background rounded-full h-14 text-base overflow-hidden transition-all duration-300 hover:px-8"
+              className="group w-full bg-foreground text-background rounded-full h-14 text-base overflow-hidden transition-all duration-300 hover:scale-[1.01]"
               asChild
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <a href="https://platform.acosta-ai.com" className="inline-flex items-center">
+              <a href="https://platform.acosta-ai.com" className="relative inline-flex items-center justify-center">
                 <span>Try Acosta</span>
-                <ArrowRight className="ml-0 w-0 h-4 opacity-0 transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" />
+                <ArrowRight className="pointer-events-none absolute left-full ml-1 h-4 w-4 translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </a>
             </Button>
           </div>
