@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Features", href: "#features" },
   { name: "Testimonials", href: "#testimonials" },
   { name: "Pricing", href: "#pricing" },
   { name: "Trust Centre", href: "/policies" },
-  { name: "Get Started", href: "#get-started" },
 ];
 
 export function Navigation() {
@@ -77,10 +76,13 @@ export function Navigation() {
           <div className="hidden md:flex items-center">
             <Button
               size="sm"
-              className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
+              className={`group rounded-full overflow-hidden transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 hover:px-5 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6 hover:px-7"}`}
               asChild
             >
-              <a href="https://platform.acosta-ai.com">Try Acosta</a>
+              <a href="https://platform.acosta-ai.com" className="inline-flex items-center">
+                <span>Try Acosta</span>
+                <ArrowRight className="ml-0 w-0 h-3.5 opacity-0 transition-all duration-300 group-hover:ml-2 group-hover:w-3.5 group-hover:opacity-100" />
+              </a>
             </Button>
           </div>
 
@@ -141,11 +143,14 @@ export function Navigation() {
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
             <Button 
-              className="w-full bg-foreground text-background rounded-full h-14 text-base"
+              className="group w-full bg-foreground text-background rounded-full h-14 text-base overflow-hidden transition-all duration-300 hover:px-8"
               asChild
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <a href="https://platform.acosta-ai.com">Try Acosta</a>
+              <a href="https://platform.acosta-ai.com" className="inline-flex items-center">
+                <span>Try Acosta</span>
+                <ArrowRight className="ml-0 w-0 h-4 opacity-0 transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" />
+              </a>
             </Button>
           </div>
         </div>
