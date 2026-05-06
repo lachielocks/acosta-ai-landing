@@ -1,0 +1,95 @@
+"use client";
+
+import Link from "next/link";
+import { ChevronDown } from "lucide-react";
+
+const faqs = [
+  {
+    question: "Is using Acosta AI considered cheating?",
+    answer:
+      "Acosta AI is a learning companion, not an answer machine. It's designed to help students understand and teachers teach - not to bypass effort. Features like step-by-step reasoning and exam simulation are built to develop your skills, not replace them.",
+  },
+  {
+    question: "Is it for teachers too?",
+    answer:
+      "Absolutely. Acosta AI is built for both students and teachers. Educators can use it for lesson planning, generating practice questions, and supporting student wellbeing - all in one platform.",
+  },
+  {
+    question: "Is my data private?",
+    answer:
+      "Yes. We never sell your data. All conversations are private to you, and the platform is built on strict privacy principles.",
+  },
+  {
+    question: "What's included in the free plan?",
+    answer:
+      "The free plan gives you access to core study and teaching features with a monthly credit limit. You can also top up your account with credits by buying a top-up pack. These last as long as your account is active. No credit/debit card required to get started.",
+  },
+  {
+    question: "What is beta, and how do I get access?",
+    answer:
+      "Acosta AI is currently in beta - meaning we're actively building and improving the platform, but you also may experience the occasional bug.",
+  },
+  {
+    question: "What subjects and exams does it support?",
+    answer:
+      "Acosta AI supports a wide range of subjects and curricula. Whether you're studying for IB, HSC, A-Levels, SATs, general coursework, or anything else, at any level, the platform adapts to your needs.",
+  },
+  {
+    question: "How is Acosta AI different from ChatGPT?",
+    answer:
+      "ChatGPT is a general-purpose tool. Acosta AI is purpose-built for education - with exam prep, teacher tools, student wellbeing monitoring, academic integrity features, and a privacy-first design that general AI tools simply don't offer.",
+  },
+];
+
+export function FaqSection() {
+  return (
+    <section id="faq" className="relative py-24 lg:py-32 border-t border-foreground/10">
+      <div className="max-w-[1000px] mx-auto px-6">
+        <div className="text-center mb-14">
+          <p className="text-sm font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4">FAQ</p>
+          <h2 className="text-4xl md:text-6xl font-display tracking-tight">Common questions, clear answers.</h2>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq) => (
+            <details
+              key={faq.question}
+              className="group rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-6 open:border-foreground/25"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left">
+                <span className="text-lg md:text-xl font-semibold">{faq.question}</span>
+                <ChevronDown className="h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-180" />
+              </summary>
+              <p className="mt-4 text-muted-foreground leading-relaxed">{faq.answer}</p>
+
+              {faq.question === "Is my data private?" && (
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  Read more in our{" "}
+                  <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
+              )}
+
+              {faq.question === "What is beta, and how do I get access?" && (
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  You can sign up and start using it right now at{" "}
+                  <a
+                    href="https://platform.acosta-ai.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-4 hover:text-foreground"
+                  >
+                    platform.acosta-ai.com
+                  </a>
+                  .
+                </p>
+              )}
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
