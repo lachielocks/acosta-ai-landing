@@ -14,9 +14,10 @@ const footerLinks = {
     { name: "Status", href: "https://status.acosta-ai.com" },
   ],
   Company: [
-    { name: "About", href: "#" },
+    { name: "About", href: "https://transnology.co" },
     { name: "Support", href: "mailto:support@acosta-ai.com" },
-    { name: "Contact", href: "mailto:hello@heyacosta.com" },
+    { name: "Contact", href: "https://transnology.co/contact" },
+    { name: "Work Here", href: "https://transnology.co/work-here" },
   ],
 };
 

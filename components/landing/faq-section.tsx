@@ -1,5 +1,7 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
@@ -42,6 +44,8 @@ const faqs = [
 ];
 
 export function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <section id="faq" className="relative py-24 lg:py-32 border-t border-foreground/10">
       <div className="max-w-[1000px] mx-auto px-6">
@@ -51,43 +55,82 @@ export function FaqSection() {
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq) => (
-            <details
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+
+            return (
+            <motion.article
               key={faq.question}
-              className="group rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-6 open:border-foreground/25"
+              layout
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className={`group rounded-3xl border bg-foreground/[0.02] p-6 ${
+                isOpen ? "border-foreground/25" : "border-foreground/10"
+              }`}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                className="flex w-full cursor-pointer items-center justify-between gap-6 text-left"
+                aria-expanded={isOpen}
+              >
                 <span className="text-lg md:text-xl font-semibold">{faq.question}</span>
-                <ChevronDown className="h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-180" />
-              </summary>
-              <p className="mt-4 text-muted-foreground leading-relaxed">{faq.answer}</p>
+                <ChevronDown
+                  className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                    isOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
 
-              {faq.question === "Is my data private?" && (
-                <p className="mt-3 text-muted-foreground leading-relaxed">
-                  Read more in our{" "}
-                  <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">
-                    Privacy Policy
-                  </Link>
-                  .
-                </p>
-              )}
-
-              {faq.question === "What is beta, and how do I get access?" && (
-                <p className="mt-3 text-muted-foreground leading-relaxed">
-                  You can sign up and start using it right now at{" "}
-                  <a
-                    href="https://platform.acosta-ai.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="underline underline-offset-4 hover:text-foreground"
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="overflow-hidden"
                   >
-                    platform.acosta-ai.com
-                  </a>
-                  .
-                </p>
-              )}
-            </details>
-          ))}
+                    <motion.p
+                      initial={{ y: -6, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -6, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="mt-4 text-muted-foreground leading-relaxed"
+                    >
+                      {faq.answer}
+                    </motion.p>
+
+                    {faq.question === "Is my data private?" && (
+                      <p className="mt-3 text-muted-foreground leading-relaxed">
+                        Read more in our{" "}
+                        <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">
+                          Privacy Policy
+                        </Link>
+                        .
+                      </p>
+                    )}
+
+                    {faq.question === "What is beta, and how do I get access?" && (
+                      <p className="mt-3 text-muted-foreground leading-relaxed">
+                        You can sign up and start using it right now at{" "}
+                        <a
+                          href="https://platform.acosta-ai.com"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="underline underline-offset-4 hover:text-foreground"
+                        >
+                          platform.acosta-ai.com
+                        </a>
+                        .
+                      </p>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>
