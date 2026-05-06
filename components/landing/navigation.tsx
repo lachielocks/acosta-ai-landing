@@ -70,7 +70,13 @@ export function Navigation() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href="https://platform.acosta-ai.com"
+              className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}
+            >
+              Launch app
+            </a>
             <Button
               size="sm"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
@@ -134,7 +140,15 @@ export function Navigation() {
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
             <Button 
-              className="w-full bg-foreground text-background rounded-full h-14 text-base"
+              variant="outline" 
+              className="flex-1 rounded-full h-14 text-base"
+              asChild
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <a href="https://platform.acosta-ai.com">Launch app</a>
+            </Button>
+            <Button 
+              className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
               asChild
               onClick={() => setIsMobileMenuOpen(false)}
             >
