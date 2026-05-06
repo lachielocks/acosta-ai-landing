@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Shield } from "lucide-react";
+import { ArrowLeft, ArrowRight, Shield } from "lucide-react";
 
 const cards = [
   {
@@ -27,8 +27,9 @@ export default function PoliciesPage() {
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-5xl px-6 py-20">
         <div className="mb-8">
-          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
-            ← Back to home
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+            <ArrowLeft className="h-4 w-4" />
+            Back to home
           </Link>
         </div>
         <div className="text-center mb-12">
@@ -48,12 +49,16 @@ export default function PoliciesPage() {
             <Link
               key={card.title}
               href={card.href}
-              className="rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-6 transition hover:border-foreground/30 hover:-translate-y-1"
+              className="group rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-6 transition hover:border-foreground/30 hover:-translate-y-1"
             >
               <h2 className="text-xl font-semibold">{card.title}</h2>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                 {card.description}
               </p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm text-foreground">
+                Read policy
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
             </Link>
           ))}
         </div>

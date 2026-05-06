@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { ArrowLeft } from "lucide-react";
 
 interface PolicyPageShellProps {
   title: string;
@@ -17,8 +18,9 @@ export function PolicyPageShell({
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <Link href="/policies" className="text-sm text-muted-foreground hover:text-foreground">
-          ← Back to Trust Centre
+        <Link href="/policies" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <ArrowLeft className="h-4 w-4" />
+          Back to Trust Centre
         </Link>
 
         <header className="mt-6 mb-10 space-y-4">

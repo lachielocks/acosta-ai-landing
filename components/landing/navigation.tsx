@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Features", href: "#features" },
   { name: "Testimonials", href: "#testimonials" },
   { name: "Pricing", href: "#pricing" },
+  { name: "Trust Centre", href: "/policies" },
   { name: "Get Started", href: "#get-started" },
 ];
 
@@ -63,20 +64,17 @@ export function Navigation() {
                 href={link.href}
                 className={`text-sm transition-colors duration-300 relative group ${isScrolled ? "text-foreground/70 hover:text-foreground" : "text-white/70 hover:text-white"}`}
               >
-                {link.name}
+                <span className="inline-flex items-center gap-1.5">
+                  {link.name}
+                  {link.href === "/policies" && <ArrowUpRight className="h-3.5 w-3.5" />}
+                </span>
                 <span className={`absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full ${isScrolled ? "bg-foreground" : "bg-white"}`} />
               </a>
             ))}
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href="https://platform.acosta-ai.com"
-              className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}
-            >
-              Launch app
-            </a>
+          <div className="hidden md:flex items-center">
             <Button
               size="sm"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
@@ -126,7 +124,10 @@ export function Navigation() {
                 }`}
                 style={{ transitionDelay: isMobileMenuOpen ? `${i * 75}ms` : "0ms" }}
               >
-                {link.name}
+                <span className="inline-flex items-center gap-2">
+                  {link.name}
+                  {link.href === "/policies" && <ArrowUpRight className="h-5 w-5" />}
+                </span>
               </a>
             ))}
           </div>
@@ -140,15 +141,7 @@ export function Navigation() {
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
             <Button 
-              variant="outline" 
-              className="flex-1 rounded-full h-14 text-base"
-              asChild
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <a href="https://platform.acosta-ai.com">Launch app</a>
-            </Button>
-            <Button 
-              className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
+              className="w-full bg-foreground text-background rounded-full h-14 text-base"
               asChild
               onClick={() => setIsMobileMenuOpen(false)}
             >

@@ -211,7 +211,6 @@ export function PricingSection() {
               Student-first design
             </span>
           </div>
-          <span className="text-sm text-muted-foreground">Acosta AI Free, Go, and Max tiers from the original pricing model.</span>
           <a href="https://platform.acosta-ai.com" target="_blank" rel="noreferrer" className="text-sm underline underline-offset-4 hover:text-foreground transition-colors">
             Open platform
           </a>
