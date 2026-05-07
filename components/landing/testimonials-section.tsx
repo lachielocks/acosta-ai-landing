@@ -7,9 +7,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "Acosta helps me break down hard topics into steps I can actually follow. It feels like having a tutor on demand.",
-    author: "Ava M.",
-    role: "Year 11 Student (HSC)",
+      "I love the swirly mouse thingy.",
+    author: "Cassidy M.",
+    role: "Year 9 Student",
   },
   {
     quote:
