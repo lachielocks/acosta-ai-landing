@@ -12,13 +12,13 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
-        <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -50% 0px">
+        <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-white/75">
             Student-first AI platform
           </p>
         </Reveal>
 
-        <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -50% 0px">
+        <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <h1 className="font-display text-5xl leading-[0.95] tracking-tight sm:text-6xl lg:text-8xl">
             Learn{" "}
             <span className="bg-gradient-to-r from-[#93c5fd] via-[#a78bfa] to-[#22d3ee] bg-clip-text text-transparent">
@@ -27,13 +27,13 @@ export function HeroSection() {
           </h1>
         </Reveal>
 
-        <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -50% 0px">
+        <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
             Acosta AI is your private tutor, study partner, and classroom assistant built for students and teachers.
           </p>
         </Reveal>
 
-        <Reveal delay={0.22} distance={10} blur={4} triggerMargin="0px 0px -50% 0px">
+        <Reveal delay={0.22} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="https://platform.acosta-ai.com"
@@ -65,7 +65,7 @@ export function HeroSection() {
               direction="up"
               distance={10}
               blur={4}
-              triggerMargin="0px 0px -50% 0px"
+              triggerMargin="0px 0px -12% 0px"
             >
               <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-5">
                 <p className="font-display text-3xl">{stat.value}</p>

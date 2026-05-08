@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 type RevealDirection = "up" | "down" | "left" | "right" | "none";
 
@@ -44,14 +44,27 @@ export function Reveal({
   amount?: number;
   triggerMargin?: string;
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const offset = directionOffset(direction, distance);
+  const effectiveAmount = isMobile ? Math.min(amount, 0.15) : amount;
+  const effectiveMargin = isMobile ? "0px 0px -8% 0px" : triggerMargin;
+  const effectiveBlur = isMobile ? Math.min(blur, 2) : blur;
 
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, ...offset, filter: blur ? `blur(${blur}px)` : undefined }}
+      initial={{ opacity: 0, ...offset, filter: effectiveBlur ? `blur(${effectiveBlur}px)` : undefined }}
       whileInView={{ opacity: 1, x: 0, y: 0, filter: "blur(0px)" }}
-      viewport={{ once, amount, margin: triggerMargin }}
+      viewport={{ once, amount: effectiveAmount, margin: effectiveMargin }}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -84,13 +97,26 @@ export function Stagger({
   amount?: number;
   triggerMargin?: string;
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const effectiveAmount = isMobile ? Math.min(amount, 0.15) : amount;
+  const effectiveMargin = isMobile ? "0px 0px -8% 0px" : triggerMargin;
+
   return (
     <motion.div
       className={className}
       variants={staggerVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once, amount, margin: triggerMargin }}
+      viewport={{ once, amount: effectiveAmount, margin: effectiveMargin }}
     >
       {children}
     </motion.div>

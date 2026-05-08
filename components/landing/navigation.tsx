@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
   { name: "Features", href: "#features" },
@@ -94,11 +94,31 @@ export function Navigation() {
             className={`md:hidden p-2 transition-colors duration-500 ${isScrolled || isMobileMenuOpen ? "text-foreground" : "text-white"}`}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            <AnimatePresence mode="wait" initial={false}>
+              {isMobileMenuOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90, scale: 0.85 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: 90, scale: 0.85 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="inline-flex"
+                >
+                  <X className="w-6 h-6" />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu"
+                  initial={{ opacity: 0, rotate: 90, scale: 0.85 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: -90, scale: 0.85 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="inline-flex"
+                >
+                  <Menu className="w-6 h-6" />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </motion.div>
 
