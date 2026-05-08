@@ -3,13 +3,69 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Check, Sparkles, Leaf } from "lucide-react";
 
-const plans = [
+type PlanAccent = "neutral" | "blue" | "pink";
+
+const planAccentClasses: Record<
+  PlanAccent,
+  {
+    check: string;
+    cardBorder: string;
+    cardBorderHighlight: string;
+    trialBadge: string;
+    cta: string;
+    planName: string;
+    indexLabel: string;
+  }
+> = {
+  neutral: {
+    check: "text-muted-foreground",
+    cardBorder: "border-foreground/10",
+    cardBorderHighlight: "",
+    trialBadge: "",
+    cta: "border border-foreground/20 text-foreground hover:border-foreground hover:bg-foreground/5",
+    planName: "",
+    indexLabel: "text-muted-foreground",
+  },
+  blue: {
+    check: "text-blue-600",
+    cardBorder: "border-blue-500/25",
+    cardBorderHighlight: "border-blue-500/50 lg:ring-2 lg:ring-blue-500/20",
+    trialBadge: "bg-blue-600 text-white",
+    cta: "bg-blue-600 text-white hover:bg-blue-700",
+    planName: "text-blue-700 dark:text-blue-400",
+    indexLabel: "text-blue-600/90 dark:text-blue-400/90",
+  },
+  pink: {
+    check: "text-pink-600 dark:text-pink-400",
+    cardBorder: "border-pink-500/25",
+    cardBorderHighlight: "",
+    trialBadge: "",
+    cta: "bg-pink-600 text-white hover:bg-pink-700 dark:bg-pink-500 dark:hover:bg-pink-600",
+    planName: "text-pink-700 dark:text-pink-400",
+    indexLabel: "text-pink-600/90 dark:text-pink-400/90",
+  },
+};
+
+const plans: Array<{
+  name: string;
+  tagline: string;
+  monthlyLabel: string;
+  annualLabel: string;
+  description: string;
+  featureList: string[];
+  cta: string;
+  highlight: boolean;
+  accent: PlanAccent;
+  carbonMonthly?: string;
+  carbonAnnual?: string;
+}> = [
   {
     name: "Free",
     tagline: "The essentials for casual learning.",
     monthlyLabel: "$0",
     annualLabel: "$0",
     description: "Acosta AI Free",
+    accent: "neutral",
     featureList: [
       "Unlimited Fast Mode",
       "Unlimited Live Conversation",
@@ -41,6 +97,7 @@ const plans = [
     ],
     cta: "Start Go",
     highlight: true,
+    accent: "blue",
     carbonMonthly: "$0.50/mo",
     carbonAnnual: "$5.25/yr",
   },
@@ -60,6 +117,7 @@ const plans = [
     ],
     cta: "Choose Max",
     highlight: false,
+    accent: "pink",
     carbonMonthly: "$1.50/mo",
     carbonAnnual: "$15.75/yr",
   },
@@ -122,19 +180,27 @@ export function PricingSection() {
 
         <div className="relative">
           <div className="grid lg:grid-cols-3 gap-4 lg:gap-0">
-            {plans.map((plan, index) => (
+            {plans.map((plan, index) => {
+              const accent = planAccentClasses[plan.accent];
+              return (
               <div
                 key={plan.name}
                 className={`relative bg-background border transition-all duration-700 ${
-                  plan.highlight 
-                    ? "border-foreground lg:-mx-2 lg:z-10 lg:scale-105" 
-                    : "border-foreground/10 lg:first:-mr-2 lg:last:-ml-2"
+                  accent.cardBorder
+                } ${
+                  plan.highlight
+                    ? `${accent.cardBorderHighlight} lg:-mx-2 lg:z-10 lg:scale-105`
+                    : "lg:first:-mr-2 lg:last:-ml-2"
                 } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {plan.highlight && !isAnnual && (
                   <div className="absolute -top-4 left-8 right-8 flex justify-center">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background text-xs font-mono uppercase tracking-widest">
+                    <span
+                      className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-widest ${
+                        accent.trialBadge || "bg-foreground text-background"
+                      }`}
+                    >
                       <Sparkles className="w-3 h-3" />
                       30-Day Free Trial
                     </span>
@@ -143,10 +209,10 @@ export function PricingSection() {
 
                 <div className="p-8 lg:p-10">
                   <div className="mb-8 pb-8 border-b border-foreground/10">
-                    <span className="font-mono text-xs text-muted-foreground">
+                    <span className={`font-mono text-xs ${accent.indexLabel}`}>
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="text-2xl lg:text-3xl font-display mt-2">{plan.name}</h3>
+                    <h3 className={`text-2xl lg:text-3xl font-display mt-2 ${accent.planName}`}>{plan.name}</h3>
                     <p className="text-sm text-muted-foreground mt-1">{plan.description}</p>
                     <p className="text-sm text-muted-foreground mt-2">{plan.tagline}</p>
                   </div>
@@ -169,7 +235,7 @@ export function PricingSection() {
                   <ul className="space-y-3 mb-10">
                     {plan.featureList.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <Check className="w-4 h-4 text-[#eca8d6] mt-0.5 shrink-0" />
+                        <Check className={`w-4 h-4 mt-0.5 shrink-0 ${accent.check}`} />
                         <span className="text-sm text-muted-foreground">{feature}</span>
                       </li>
                     ))}
@@ -179,18 +245,15 @@ export function PricingSection() {
                     href="https://platform.acosta-ai.com"
                     target="_blank"
                     rel="noreferrer"
-                    className={`w-full py-4 flex items-center justify-center gap-2 text-sm font-medium transition-all group ${
-                      plan.highlight
-                        ? "bg-foreground text-background hover:bg-foreground/90"
-                        : "border border-foreground/20 text-foreground hover:border-foreground hover:bg-foreground/5"
-                    }`}
+                    className={`w-full py-4 flex items-center justify-center gap-2 text-sm font-medium transition-all group ${accent.cta}`}
                   >
                     {plan.cta}
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </a>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -199,15 +262,15 @@ export function PricingSection() {
         }`}>
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-[#eca8d6]" />
+              <Check className="w-4 h-4 shrink-0 text-blue-600 dark:text-blue-400" />
               Encrypted execution
             </span>
             <span className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-[#eca8d6]" />
+              <Check className="w-4 h-4 shrink-0 text-pink-600 dark:text-pink-400" />
               Full audit logs
             </span>
             <span className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-[#eca8d6]" />
+              <Check className="w-4 h-4 shrink-0 text-muted-foreground" />
               Student-first design
             </span>
           </div>
