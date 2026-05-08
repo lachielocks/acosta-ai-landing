@@ -104,7 +104,7 @@ export function IntegrationsSection() {
       {/* Header — centré verticalement sur l'image */}
       <div className="relative z-10 pt-32 lg:pt-40 text-center">
         <span className={`inline-flex items-center gap-4 text-sm font-mono text-muted-foreground mb-8 transition-all duration-700 justify-center ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}>
           <span className="w-12 h-px bg-foreground/20" />
           Integrations
@@ -112,7 +112,7 @@ export function IntegrationsSection() {
         </span>
 
         <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
         }`}>
           Connect
           <br />
@@ -120,7 +120,7 @@ export function IntegrationsSection() {
         </h2>
 
         <p className={`mt-8 text-xl text-muted-foreground leading-relaxed max-w-lg mx-auto transition-all duration-1000 delay-100 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}>
           Your agents connect to 100+ tools and services. They read, write, and act autonomously across your entire stack.
         </p>
@@ -128,7 +128,7 @@ export function IntegrationsSection() {
 
       {/* Full-width image */}
       <div className={`relative left-1/2 -translate-x-1/2 w-screen -mt-16 transition-all duration-1000 delay-200 ${
-        isVisible ? "opacity-100" : "opacity-0"
+        isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
       }`}>
         <img
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/connection-KeJwWPQvn6l0a7C48tCARYtNEdC92H.png"
@@ -148,7 +148,9 @@ export function IntegrationsSection() {
                 hoveredIndex === index
                   ? "border-foreground bg-foreground/[0.04] scale-[1.02]"
                   : "border-foreground/10 hover:border-foreground/30"
-              } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              } ${
+                isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
+              }`}
               style={{
                 transitionDelay: `${index * 30 + 300}ms`,
               }}
@@ -206,7 +208,7 @@ export function IntegrationsSection() {
 
         {/* Bottom stats row */}
         <div className={`flex flex-wrap items-center justify-between gap-8 pt-12 border-t border-foreground/10 transition-all duration-1000 delay-500 pb-32 lg:pb-40 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}>
           <div className="flex flex-wrap gap-12">
             {[

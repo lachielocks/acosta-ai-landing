@@ -150,7 +150,7 @@ export function PricingSection() {
               Pricing
             </span>
             <h2 className={`text-5xl md:text-7xl lg:text-[112px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
             }`}>
               Learn with
               <br />
@@ -159,7 +159,11 @@ export function PricingSection() {
           </div>
 
           <div className="lg:col-span-4 flex items-end lg:justify-end">
-            <div className={`transition-all duration-1000 delay-100 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+            <div
+              className={`transition-all duration-1000 delay-100 ${
+                isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
+              }`}
+            >
               <div className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.03] p-1 text-sm">
                 <button
                   onClick={() => setIsAnnual(false)}
@@ -191,7 +195,11 @@ export function PricingSection() {
                   plan.highlight
                     ? `${accent.cardBorderHighlight} lg:-mx-2 lg:z-10 lg:scale-105`
                     : "lg:first:-mr-2 lg:last:-ml-2"
-                } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+                } ${
+                  isVisible
+                    ? "opacity-100 translate-y-0 blur-0 scale-100"
+                    : "opacity-0 translate-y-12 blur-md scale-[0.98]"
+                }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {plan.highlight && !isAnnual && (
@@ -295,7 +303,7 @@ export function PricingSection() {
         </div>
 
         <div className={`mt-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 pt-12 border-t border-foreground/10 transition-all duration-1000 delay-500 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}>
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">

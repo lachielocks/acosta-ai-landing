@@ -43,7 +43,7 @@ export function DevelopersSection() {
       {/* Image — absolute, bottom-right, behind all content */}
       <div
         className={`absolute bottom-0 right-0 w-[55%] h-[85%] pointer-events-none transition-all duration-1000 delay-300 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}
       >
         <img
@@ -63,7 +63,7 @@ export function DevelopersSection() {
         {/* Header — Full width */}
         <div
           className={`mb-16 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
           }`}
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
@@ -80,7 +80,7 @@ export function DevelopersSection() {
         {/* Description + Features — left half only */}
         <div
           className={`max-w-[50%] transition-all duration-700 delay-100 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
           }`}
         >
           <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-md">
@@ -92,7 +92,7 @@ export function DevelopersSection() {
               <div
                 key={feature.title}
                 className={`transition-all duration-500 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-4 blur-md scale-[0.98]"
                 }`}
                 style={{ transitionDelay: `${index * 50 + 200}ms` }}
               >

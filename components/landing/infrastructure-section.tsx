@@ -41,7 +41,7 @@ export function InfrastructureSection() {
         {/* Header */}
         <div className="mb-20">
           <span className={`inline-flex items-center gap-4 text-sm font-mono text-muted-foreground mb-8 transition-all duration-700 ${
-            isVisible ? "opacity-100" : "opacity-0"
+            isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
           }`}>
             <span className="w-12 h-px bg-foreground/20" />
             Global infrastructure
@@ -50,7 +50,7 @@ export function InfrastructureSection() {
           <div className="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-16 items-stretch">
             {/* Image globe — colonne gauche, pleine hauteur */}
             <div className={`w-48 lg:w-72 xl:w-80 shrink-0 transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
             }`}>
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/world-3i68QNWJwmO7W19ztZWbevAwJQHzYL.png"
@@ -62,7 +62,7 @@ export function InfrastructureSection() {
             {/* Titre + description empilés */}
             <div className="flex flex-col justify-center">
               <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
               }`}>
                 Global by
                 <br />
@@ -70,7 +70,7 @@ export function InfrastructureSection() {
               </h2>
 
               <p className={`mt-8 text-xl text-muted-foreground leading-relaxed max-w-lg transition-all duration-1000 delay-100 ${
-                isVisible ? "opacity-100" : "opacity-0"
+                isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
               }`}>
                 Your agents run on distributed infrastructure across 29 regions.
                 Sub-50ms latency to 99% of the world.
@@ -83,7 +83,7 @@ export function InfrastructureSection() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Large stat card */}
           <div className={`lg:col-span-2 relative p-8 lg:p-12 border border-foreground/10 bg-foreground/[0.02] overflow-hidden transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
           }`}>
             {/* Animated dots background with connecting lines */}
             <div className="absolute inset-0 opacity-70">
@@ -156,14 +156,14 @@ export function InfrastructureSection() {
           {/* Stacked stat cards */}
           <div className="flex flex-col gap-6">
             <div className={`p-8 border border-foreground/10 bg-foreground/[0.02] transition-all duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
             }`}>
               <span className="text-5xl lg:text-6xl font-display">99.99%</span>
               <span className="block text-sm text-muted-foreground mt-2">Uptime SLA</span>
             </div>
             
             <div className={`p-8 border border-foreground/10 bg-foreground/[0.02] transition-all duration-700 delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
             }`}>
               <span className="text-5xl lg:text-6xl font-display">&lt;50ms</span>
               <span className="block text-sm text-muted-foreground mt-2">Global latency</span>
@@ -173,7 +173,7 @@ export function InfrastructureSection() {
 
         {/* Region list */}
         <div className={`mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 transition-all duration-1000 delay-300 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}>
           {regions.map((region, index) => (
             <div
@@ -182,7 +182,10 @@ export function InfrastructureSection() {
                 activeRegion === index 
                   ? "border-foreground/30 bg-foreground/[0.04]" 
                   : "border-foreground/10"
+              } ${
+                isVisible ? "opacity-100 blur-0 translate-y-0 scale-100" : "opacity-0 blur-md translate-y-4 scale-[0.98]"
               }`}
+              style={{ transitionDelay: `${index * 80 + 120}ms` }}
             >
               <div className="flex items-center gap-2 mb-3">
                 <span className={`w-2 h-2 rounded-full transition-colors ${

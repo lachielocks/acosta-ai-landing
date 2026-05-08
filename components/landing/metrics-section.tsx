@@ -257,7 +257,7 @@ export function MetricsSection() {
             </div>
 
             <h2 className={`text-6xl md:text-7xl lg:text-[140px] font-display tracking-tight leading-[0.95] transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
             }`}>
               Real-time
               <br />
@@ -268,7 +268,7 @@ export function MetricsSection() {
 
         {/* Organic graph image */}
         <div className={`w-full mb-0 transition-all duration-1000 delay-200 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}>
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/real-time-graph-INFmn3u0MlUwvNPynoIhwxtPaPjxM5.png"
@@ -282,7 +282,7 @@ export function MetricsSection() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Large metric */}
           <div className={`lg:col-span-1 bg-foreground/[0.02] border border-foreground/10 p-10 lg:p-14 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-12 blur-md scale-[0.98]"
           }`}>
             <div className="text-4xl md:text-5xl lg:text-6xl font-display tracking-tight mb-4 whitespace-nowrap overflow-hidden">
               <AnimatedNumber end={metrics[0].value} suffix={metrics[0].suffix} prefix={metrics[0].prefix} />
@@ -299,7 +299,7 @@ export function MetricsSection() {
             <div
               key={metric.label}
               className={`bg-foreground/[0.02] border border-foreground/10 p-8 flex flex-col items-start justify-between gap-6 transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-12 blur-md scale-[0.98]"
               }`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}
             >
@@ -326,7 +326,7 @@ export function MetricsSection() {
 
         {/* Bottom ticker */}
         <div className={`mt-16 pt-8 border-t border-foreground/10 flex flex-wrap items-center gap-x-12 gap-y-4 text-sm font-mono text-muted-foreground transition-all duration-1000 delay-500 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
         }`}>
           <span>OpenAI GPT-4 Turbo</span>
           <span>Anthropic Claude 3</span>

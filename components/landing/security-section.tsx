@@ -64,7 +64,7 @@ export function SecuritySection() {
         {/* Header */}
         <div className="mb-20">
           <span className={`inline-flex items-center gap-4 text-sm font-mono text-muted-foreground mb-8 transition-all duration-700 ${
-            isVisible ? "opacity-100" : "opacity-0"
+            isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
           }`}>
             <span className="w-12 h-px bg-foreground/20" />
             Security
@@ -72,7 +72,7 @@ export function SecuritySection() {
           
           {/* Title — full width */}
           <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] mb-12 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
           }`}>
             Autonomous,
             <br />
@@ -81,7 +81,7 @@ export function SecuritySection() {
           
           {/* Description — below title */}
           <div className={`transition-all duration-1000 delay-100 ${
-            isVisible ? "opacity-100" : "opacity-0"
+            isVisible ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-[0.98]"
           }`}>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
               Your agents are powerful but constrained. Enterprise-grade security ensures they only do what you allow.
@@ -93,7 +93,7 @@ export function SecuritySection() {
         <div className="grid lg:grid-cols-12 gap-6">
           {/* Large visual card */}
           <div className={`lg:col-span-7 relative p-8 lg:p-12 border border-foreground/10 min-h-[400px] overflow-hidden transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
           }`}>
             {/* Dynamic feature image with cross-fade — desktop only */}
             <div className="absolute inset-0 pointer-events-none items-center justify-end hidden lg:flex">
@@ -122,7 +122,7 @@ export function SecuritySection() {
                 <span
                   key={cert}
                   className={`px-3 py-1 border border-foreground/10 text-xs font-mono text-muted-foreground transition-all duration-500 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-4 blur-md scale-[0.98]"
                   }`}
                   style={{ transitionDelay: `${index * 100 + 300}ms` }}
                 >
@@ -141,7 +141,9 @@ export function SecuritySection() {
                   activeFeature === index 
                     ? "border-foreground/30 bg-foreground/[0.04]" 
                     : "border-foreground/10"
-                } ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
+                } ${
+                  isVisible ? "opacity-100 translate-x-0 blur-0 scale-100" : "opacity-0 translate-x-8 blur-md scale-[0.98]"
+                }`}
                 style={{ transitionDelay: `${index * 80}ms` }}
                 onClick={() => setActiveFeature(index)}
                 onMouseEnter={() => setActiveFeature(index)}
