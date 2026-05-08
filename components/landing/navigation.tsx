@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "Features", href: "#features" },
@@ -39,7 +40,10 @@ export function Navigation() {
             : "bg-transparent max-w-[1400px]"
         }`}
       >
-        <div 
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className={`flex items-center justify-between transition-all duration-500 px-6 lg:px-8 ${
             isScrolled ? "h-14" : "h-20"
           }`}
@@ -96,7 +100,7 @@ export function Navigation() {
               <Menu className="w-6 h-6" />
             )}
           </button>
-        </div>
+        </motion.div>
 
       </nav>
       

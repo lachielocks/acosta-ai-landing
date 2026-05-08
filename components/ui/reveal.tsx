@@ -30,6 +30,8 @@ export function Reveal({
   delay = 0,
   blur = 6,
   once = true,
+  amount = 0.25,
+  triggerMargin = "0px 0px -20% 0px",
 }: {
   children: ReactNode;
   className?: string;
@@ -39,6 +41,8 @@ export function Reveal({
   delay?: number;
   blur?: number;
   once?: boolean;
+  amount?: number;
+  triggerMargin?: string;
 }) {
   const offset = directionOffset(direction, distance);
 
@@ -47,7 +51,7 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, ...offset, filter: blur ? `blur(${blur}px)` : undefined }}
       whileInView={{ opacity: 1, x: 0, y: 0, filter: "blur(0px)" }}
-      viewport={{ once, amount: 0.25 }}
+      viewport={{ once, amount, margin: triggerMargin }}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -71,10 +75,14 @@ export function Stagger({
   children,
   className,
   once = true,
+  amount = 0.25,
+  triggerMargin = "0px 0px -20% 0px",
 }: {
   children: ReactNode;
   className?: string;
   once?: boolean;
+  amount?: number;
+  triggerMargin?: string;
 }) {
   return (
     <motion.div
@@ -82,7 +90,7 @@ export function Stagger({
       variants={staggerVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once, amount: 0.25 }}
+      viewport={{ once, amount, margin: triggerMargin }}
     >
       {children}
     </motion.div>

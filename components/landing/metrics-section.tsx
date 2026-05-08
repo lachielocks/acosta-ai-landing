@@ -50,7 +50,7 @@ function AnimatedNumber({ end, suffix = "", prefix = "" }: { end: number; suffix
           requestAnimationFrame(animate);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.65, rootMargin: "0px 0px -20% 0px" }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -232,7 +232,7 @@ export function MetricsSection() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.2, rootMargin: "0px 0px -20% 0px" }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();

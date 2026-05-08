@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 const faqs = [
   {
@@ -55,8 +56,12 @@ export function FaqSection() {
     <section id="faq" className="relative py-24 lg:py-32 border-t border-foreground/10">
       <div className="max-w-[1000px] mx-auto px-6">
         <div className="text-center mb-14">
-          <p className="text-sm font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4">FAQ</p>
-          <h2 className="text-4xl md:text-6xl font-display tracking-tight">Common questions, clear answers.</h2>
+          <Reveal delay={0.02} direction="up" distance={10} blur={4}>
+            <p className="text-sm font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4">FAQ</p>
+          </Reveal>
+          <Reveal delay={0.08} direction="up" distance={10} blur={4}>
+            <h2 className="text-4xl md:text-6xl font-display tracking-tight">Common questions, clear answers.</h2>
+          </Reveal>
         </div>
 
         <div className="space-y-4">
@@ -67,7 +72,10 @@ export function FaqSection() {
             <motion.article
               key={faq.question}
               layout
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.2, margin: "0px 0px -20% 0px" }}
+              transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.05 }}
               className={`group rounded-3xl border bg-foreground/[0.02] p-6 ${
                 isOpen ? "border-foreground/25" : "border-foreground/10"
               }`}

@@ -30,7 +30,7 @@ export function DevelopersSection() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.2, rootMargin: "0px 0px -20% 0px" }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);

@@ -1,5 +1,7 @@
 "use client";
 
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
+
 const footerLinks = {
   Product: [
     { name: "Home", href: "#" },
@@ -25,41 +27,51 @@ export function FooterSection() {
   return (
     <footer className="border-t border-foreground/10 py-16 lg:py-20">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-5">
-          <div className="md:col-span-2">
-            <a href="#" className="link-wipe text-2xl font-display tracking-tight">
-              Acosta AI
-            </a>
-            <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              Private, student-first AI for deeper learning, smarter study, and better outcomes.
-            </p>
-          </div>
+        <Stagger
+          className="grid gap-12 md:grid-cols-5"
+          amount={0.2}
+          triggerMargin="0px 0px -20% 0px"
+        >
+          <StaggerItem>
+            <div className="md:col-span-2">
+              <a href="#" className="link-wipe text-2xl font-display tracking-tight">
+                Acosta AI
+              </a>
+              <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
+                Private, student-first AI for deeper learning, smarter study, and better outcomes.
+              </p>
+            </div>
+          </StaggerItem>
 
           {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="text-sm font-medium mb-4">{title}</h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="link-wipe text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      target={link.href.startsWith("http") ? "_blank" : undefined}
-                      rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <StaggerItem key={title}>
+              <div>
+                <h3 className="text-sm font-medium mb-4">{title}</h3>
+                <ul className="space-y-3">
+                  {links.map((link) => (
+                    <li key={link.name}>
+                      <a
+                        href={link.href}
+                        className="link-wipe text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        target={link.href.startsWith("http") ? "_blank" : undefined}
+                        rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                      >
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
-        <div className="mt-12 pt-8 border-t border-foreground/10 flex flex-col gap-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>&copy; 2026 Acosta AI. All rights reserved.</p>
-          <p>Built for students and teachers.</p>
-        </div>
+        <Reveal delay={0.08} direction="up" distance={12} blur={4}>
+          <div className="mt-12 pt-8 border-t border-foreground/10 flex flex-col gap-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+            <p>&copy; 2026 Acosta AI. All rights reserved.</p>
+            <p>Built for students and teachers.</p>
+          </div>
+        </Reveal>
       </div>
     </footer>
   );
