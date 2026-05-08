@@ -18,7 +18,7 @@ export function PolicyPageShell({
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <Link href="/policies" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <Link href="/policies" className="link-wipe link-wipe-flex text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" />
           Back to Trust Centre
         </Link>
@@ -40,7 +40,7 @@ export function PolicyPageShell({
               href="https://transnology.co"
               target="_blank"
               rel="noreferrer"
-              className="underline"
+              className="link-wipe"
             >
               Transnology
             </a>{" "}

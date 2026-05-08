@@ -27,7 +27,7 @@ export default function PoliciesPage() {
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-5xl px-6 py-20">
         <div className="mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <Link href="/" className="link-wipe link-wipe-flex text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" />
             Back to home
           </Link>

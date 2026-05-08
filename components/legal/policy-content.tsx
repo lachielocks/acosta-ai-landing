@@ -139,7 +139,7 @@ export function PrivacyPolicyContent() {
           href="https://stripe.com/au/privacy"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-primary hover:underline"
+          className="link-wipe font-medium text-primary"
         >
           Stripe&apos;s Privacy Policy
         </a>
@@ -177,7 +177,7 @@ export function PrivacyPolicyContent() {
       </div>
       <p className="text-base text-muted-foreground">
         For privacy inquiries, contact{" "}
-        <a href="mailto:support@acosta-ai.com" className="font-medium text-primary hover:underline">
+        <a href="mailto:support@acosta-ai.com" className="link-wipe font-medium text-primary">
           support@acosta-ai.com
         </a>
         .
@@ -250,7 +250,7 @@ export function TermsPolicyContent() {
       </PolicyPoint>
       <p className="mt-6 text-base text-muted-foreground">
         For payment issues, contact{" "}
-        <a href="mailto:payments@acosta-ai.com" className="font-medium text-primary hover:underline">
+        <a href="mailto:payments@acosta-ai.com" className="link-wipe font-medium text-primary">
           payments@acosta-ai.com
         </a>
         .
@@ -401,7 +401,7 @@ export function PolicyFooter() {
           href="https://transnology.co"
           target="_blank"
           rel="noreferrer"
-          className="font-bold text-foreground hover:text-primary"
+          className="link-wipe font-bold text-foreground hover:text-primary"
         >
           Transnology
         </a>{" "}

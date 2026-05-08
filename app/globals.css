@@ -94,6 +94,60 @@
 }
 
 @layer utilities {
+  /* Static hairline underline + blue left-to-right sweep on hover (matches nav motion) */
+  .link-wipe {
+    display: inline;
+    padding-bottom: 0.15em;
+    text-decoration: none;
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklch, currentColor 42%, transparent),
+        color-mix(in oklch, currentColor 42%, transparent)
+      ),
+      linear-gradient(to right, rgb(37, 99, 235), rgb(59, 130, 246));
+    background-size: 100% 1px, 0% 2px;
+    background-position: 0 100%, 0 100%;
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition:
+      color 0.25s ease,
+      background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .link-wipe:hover {
+    background-size: 100% 1px, 100% 2px;
+  }
+
+  .link-wipe:focus-visible {
+    outline: 2px solid rgb(59, 130, 246);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-wipe {
+      transition: color 0.2s ease;
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+      text-decoration-color: color-mix(in oklch, currentColor 42%, transparent);
+      background-image: none;
+      background-size: auto;
+      padding-bottom: 0;
+    }
+    .link-wipe:hover {
+      text-decoration-color: color-mix(in oklch, currentColor 65%, transparent);
+      background-size: auto;
+    }
+  }
+
+  .link-wipe-flex {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   .font-display {
     font-family: var(--font-display);
   }

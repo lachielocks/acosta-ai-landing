@@ -66,7 +66,7 @@ export function PrivacyTrustSection() {
 
         <p className="mt-10 text-center text-sm text-muted-foreground">
           Want the receipts?{" "}
-          <Link href="/privacy" className="font-medium text-foreground underline underline-offset-4 hover:text-primary">
+          <Link href="/privacy" className="link-wipe font-medium text-foreground hover:text-primary">
             Read the full Privacy Policy
           </Link>
           .

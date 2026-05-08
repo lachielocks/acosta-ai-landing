@@ -27,7 +27,7 @@ export function FooterSection() {
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
-            <a href="#" className="text-2xl font-display tracking-tight">
+            <a href="#" className="link-wipe text-2xl font-display tracking-tight">
               Acosta AI
             </a>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
@@ -43,7 +43,7 @@ export function FooterSection() {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="link-wipe text-sm text-muted-foreground hover:text-foreground transition-colors"
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                     >

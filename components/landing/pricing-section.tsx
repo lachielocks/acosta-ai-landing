@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Check, Sparkles, Leaf } from "lucide-react";
+import { ArrowRight, Check, Sparkles, Leaf, PackageOpen, Heart } from "lucide-react";
 
 type PlanAccent = "neutral" | "blue" | "pink";
 
@@ -257,6 +257,43 @@ export function PricingSection() {
           </div>
         </div>
 
+        <div
+          className={`mt-16 grid gap-5 md:grid-cols-2 transition-all duration-1000 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <div className="rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-8 lg:p-10">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-foreground/10 bg-background text-blue-600 dark:text-blue-400">
+                <PackageOpen className="h-5 w-5" aria-hidden />
+              </span>
+              <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">Credit top-ups</h3>
+            </div>
+            <p className="m-0 text-sm leading-relaxed text-muted-foreground">
+              Bought more than your plan includes this month? Grab a one-time{" "}
+              <strong className="font-medium text-foreground">Top-Up Pack</strong> (for example, 50 Thinking Credits).
+              Top-ups <strong className="font-medium text-foreground">do not expire</strong> while your account is
+              active and are only used <strong className="font-medium text-foreground">after</strong> you reach your
+              plan&apos;s monthly limits. Available on the platform — one-time purchase, non-refundable.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-8 lg:p-10">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-foreground/10 bg-background text-pink-600 dark:text-pink-400">
+                <Heart className="h-5 w-5" aria-hidden />
+              </span>
+              <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">Donate &amp; support</h3>
+            </div>
+            <p className="m-0 text-sm leading-relaxed text-muted-foreground">
+              Love what we&apos;re building? Optional{" "}
+              <strong className="font-medium text-foreground">Supporter</strong> contributions are voluntary donations
+              that help sustain Acosta AI. They show a special badge in-app but{" "}
+              <strong className="font-medium text-foreground">don&apos;t add credits or features</strong> — they&apos;re
+              a way to say thanks. Non-refundable. Find it in the platform when you&apos;re ready.
+            </p>
+          </div>
+        </div>
+
         <div className={`mt-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 pt-12 border-t border-foreground/10 transition-all duration-1000 delay-500 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}>
@@ -274,7 +311,7 @@ export function PricingSection() {
               Student-first design
             </span>
           </div>
-          <a href="https://platform.acosta-ai.com" target="_blank" rel="noreferrer" className="text-sm underline underline-offset-4 hover:text-foreground transition-colors">
+          <a href="https://platform.acosta-ai.com" target="_blank" rel="noreferrer" className="link-wipe text-sm hover:text-foreground transition-colors">
             Open platform
           </a>
         </div>

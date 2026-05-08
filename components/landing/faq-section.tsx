@@ -110,7 +110,7 @@ export function FaqSection() {
                       faq.question === "What about privacy after the Canvas / Instructure news?") && (
                       <p className="mt-3 text-muted-foreground leading-relaxed">
                         Read more in our{" "}
-                        <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">
+                        <Link href="/privacy" className="link-wipe hover:text-foreground">
                           Privacy Policy
                         </Link>
                         .
@@ -124,7 +124,7 @@ export function FaqSection() {
                           href="https://platform.acosta-ai.com"
                           target="_blank"
                           rel="noreferrer"
-                          className="underline underline-offset-4 hover:text-foreground"
+                          className="link-wipe hover:text-foreground"
                         >
                           platform.acosta-ai.com
                         </a>
