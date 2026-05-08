@@ -19,7 +19,12 @@ const faqs = [
   {
     question: "Is my data private?",
     answer:
-      "Yes. We never sell your data. All conversations are private to you, and the platform is built on strict privacy principles.",
+      "Yes. We never sell your data. Your chats and generated study content stay in your private workspace on encrypted Google infrastructure, our AI providers do not train on what you send through Acosta, and you can delete individual sessions or your whole account when you want — same details we spell out in the Privacy Policy.",
+  },
+  {
+    question: "What about privacy after the Canvas / Instructure news?",
+    answer:
+      "Fair question. Instructure, which runs Canvas LMS, publicly confirmed a large-scale security incident in 2026 — the kind of story that makes everyone audit their vendors. Acosta is architected the boring way: TLS and encryption at rest on Google Cloud, enterprise API terms that exclude training on your traffic, Stripe for card data so we never store it, and Guardian burnout signals from session metadata — not by reading your messages. If Canvas has you side-eyeing edtech, we wrote our Privacy Policy so you can see exactly what we collect and why. TL;DR: we'd rather be forgettable on BleepingComputer than unforgettable on your dean's emergency email.",
   },
   {
     question: "What's included in the free plan?",
@@ -101,7 +106,8 @@ export function FaqSection() {
                       {faq.answer}
                     </motion.p>
 
-                    {faq.question === "Is my data private?" && (
+                    {(faq.question === "Is my data private?" ||
+                      faq.question === "What about privacy after the Canvas / Instructure news?") && (
                       <p className="mt-3 text-muted-foreground leading-relaxed">
                         Read more in our{" "}
                         <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">
