@@ -140,9 +140,10 @@ export function PrivacyPolicyContent() {
           href="https://stripe.com/au/privacy"
           target="_blank"
           rel="noopener noreferrer"
-          className="link-wipe font-medium text-primary"
+          className="link-wipe link-wipe-flex font-medium text-primary"
         >
           Stripe&apos;s Privacy Policy
+          <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
         .
       </PolicyPoint>
