@@ -286,9 +286,9 @@ export function SafetyPolicyContent() {
       </p>
 
       <div className="space-y-10">
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 shadow-lg shadow-blue-500/5 dark:border-blue-900/50 dark:from-blue-950/30 dark:to-indigo-950/30 md:p-12">
+        <div className="relative overflow-hidden rounded-[2.5rem] border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 text-slate-900 shadow-lg shadow-blue-500/5 dark:border-blue-900/50 dark:from-blue-950/30 dark:to-indigo-950/30 dark:text-slate-100 md:p-12">
           <div className="pointer-events-none absolute top-0 right-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
-          <h3 className="relative z-10 mt-0 mb-4 flex items-center gap-4 text-3xl font-bold">
+          <h3 className="relative z-10 mt-0 mb-4 flex items-center gap-4 text-3xl font-bold text-slate-900 dark:text-slate-50">
             <span className="rounded-2xl bg-blue-600 p-3 text-white shadow-xl shadow-blue-600/30">
               <Activity className="h-7 w-7" />
             </span>
@@ -310,12 +310,12 @@ export function SafetyPolicyContent() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="flex items-start gap-4 rounded-2xl border border-blue-100 bg-white/80 p-4 transition-colors hover:border-blue-300 dark:border-blue-900/30 dark:bg-black/40 dark:hover:border-blue-700/50"
+                className="flex items-start gap-4 rounded-2xl border border-blue-200 bg-white/95 p-4 transition-colors hover:border-blue-400 dark:border-blue-900/30 dark:bg-black/40 dark:hover:border-blue-700/50"
               >
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50" />
                 <div>
-                  <span className="mb-1 block text-base font-bold">{item.title}</span>
-                  <span className="text-sm leading-relaxed text-muted-foreground">{item.desc}</span>
+                  <span className="mb-1 block text-base font-bold text-slate-900 dark:text-slate-100">{item.title}</span>
+                  <span className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{item.desc}</span>
                 </div>
               </div>
             ))}
