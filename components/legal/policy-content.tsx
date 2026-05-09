@@ -376,13 +376,13 @@ export function SafetyPolicyContent() {
           </PolicyCard>
         </div>
 
-        <div className="flex flex-col items-start gap-6 rounded-3xl border border-amber-200 bg-amber-50 p-8 shadow-sm dark:border-amber-900/50 dark:bg-amber-900/10 sm:flex-row">
+        <div className="flex flex-col items-start gap-6 rounded-3xl border border-amber-300 bg-amber-50 p-8 text-amber-950 shadow-sm dark:border-amber-900/50 dark:bg-amber-900/10 dark:text-amber-100 sm:flex-row">
           <div className="shrink-0 rounded-2xl bg-amber-100 p-4 text-amber-600 shadow-inner dark:bg-amber-900/40 dark:text-amber-400">
             <Timer className="h-8 w-8" />
           </div>
           <div>
-            <h3 className="mb-2 text-xl font-bold">Session Security</h3>
-            <p className="text-base leading-relaxed text-muted-foreground">
+            <h3 className="mb-2 text-xl font-bold text-amber-950 dark:text-amber-100">Session Security</h3>
+            <p className="text-base leading-relaxed text-amber-900 dark:text-amber-200">
               To protect your account on shared devices, we automatically log you out after inactivity. This interval is configurable in Settings (Default: 30 mins).
             </p>
           </div>
