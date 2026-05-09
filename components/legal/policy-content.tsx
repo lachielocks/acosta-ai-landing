@@ -2,6 +2,7 @@ import {
   Activity,
   AlertOctagon,
   AlertTriangle,
+  ArrowUpRight,
   CreditCard,
   Database,
   Eye,
@@ -401,9 +402,10 @@ export function PolicyFooter() {
           href="https://transnology.co"
           target="_blank"
           rel="noreferrer"
-          className="link-wipe font-bold text-foreground hover:text-primary"
+          className="link-wipe link-wipe-flex font-bold text-foreground hover:text-primary"
         >
           Transnology
+          <ArrowUpRight className="h-3.5 w-3.5" />
         </a>{" "}
         company.
       </p>

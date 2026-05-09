@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
 interface PolicyPageShellProps {
   title: string;
@@ -40,9 +40,10 @@ export function PolicyPageShell({
               href="https://transnology.co"
               target="_blank"
               rel="noreferrer"
-              className="link-wipe"
+              className="link-wipe link-wipe-flex"
             >
               Transnology
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </a>{" "}
             company.
           </p>

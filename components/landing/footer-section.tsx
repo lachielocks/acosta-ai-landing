@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
+import { ArrowUpRight } from "lucide-react";
 
 const footerLinks = {
   Product: [
@@ -24,6 +25,8 @@ const footerLinks = {
 };
 
 export function FooterSection() {
+  const isExternalPageLink = (href: string) => href.startsWith("http");
+
   return (
     <footer className="border-t border-foreground/10 py-16 lg:py-20">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
@@ -50,14 +53,26 @@ export function FooterSection() {
                 <ul className="space-y-3">
                   {links.map((link) => (
                     <li key={link.name}>
+                      {isExternalPageLink(link.href) ? (
+                        <a
+                          href={link.href}
+                          className="link-wipe text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <span className="inline-flex items-center gap-1.5">
+                            {link.name}
+                            <ArrowUpRight className="h-3.5 w-3.5" />
+                          </span>
+                        </a>
+                      ) : (
                       <a
                         href={link.href}
                         className="link-wipe text-sm text-muted-foreground hover:text-foreground transition-colors"
-                        target={link.href.startsWith("http") ? "_blank" : undefined}
-                        rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                       >
                         {link.name}
                       </a>
+                      )}
                     </li>
                   ))}
                 </ul>
