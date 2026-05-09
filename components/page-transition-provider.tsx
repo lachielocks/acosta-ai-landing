@@ -30,6 +30,11 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const revealTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const revealAfterRef = useRef<number>(0);
+  const lastPathSearchRef = useRef<string>("");
+
+  useEffect(() => {
+    lastPathSearchRef.current = window.location.pathname + window.location.search;
+  }, [pathname]);
 
   useEffect(() => {
     if (!pendingRevealRef.current) return;
@@ -116,6 +121,10 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const onPopState = () => {
+      const nextPathSearch = window.location.pathname + window.location.search;
+      if (nextPathSearch === lastPathSearchRef.current) return;
+      lastPathSearchRef.current = nextPathSearch;
+
       if (duration === 0) return;
 
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
