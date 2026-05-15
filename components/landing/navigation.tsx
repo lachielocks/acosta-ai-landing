@@ -51,7 +51,11 @@ export function Navigation() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
             <img
-              src="https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png"
+              src={
+                isScrolled || isMobileMenuOpen
+                  ? "/branding/favicon-on-light-bg.png"
+                  : "/branding/favicon-on-dark-bg.png"
+              }
               alt="Acosta AI logo"
               className="h-8 w-auto transition-transform duration-500 group-hover:scale-105"
             />
