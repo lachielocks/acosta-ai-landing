@@ -41,7 +41,7 @@ export const PERKS = {
         id: 'supporter',
         name: 'Supporter Badge',
         price: 'Choose your price',
-        image: 'https://i.ibb.co/5pqY59b/Supporter.png'
+        image: '/logos/supporter-badge.svg'
     }
 };
 

@@ -365,12 +365,12 @@ export const PricingView: React.FC<PricingViewProps> = ({ onBack, onOpenStripePo
                                 <div className="space-y-2">
                                     <div className="h-14 w-full overflow-hidden relative mb-2 flex items-center justify-center">
                                         <img 
-                                            src="https://i.ibb.co/YFm8XZPC/Go.png" 
+                                            src="/logos/go-light.png" 
                                             alt="Go" 
                                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300%] w-auto max-w-none object-contain block dark:hidden" 
                                         />
                                         <img 
-                                            src="https://i.ibb.co/XBphZCJ/Go-Dark.png" 
+                                            src="/logos/go-dark.png" 
                                             alt="Go" 
                                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300%] w-auto max-w-none object-contain hidden dark:block" 
                                         />
@@ -415,12 +415,12 @@ export const PricingView: React.FC<PricingViewProps> = ({ onBack, onOpenStripePo
                                 <div className="space-y-2 relative">
                                     <div className="h-14 w-full overflow-hidden relative mb-2 flex items-center justify-center">
                                         <img 
-                                            src="https://i.ibb.co/hR6gLD90/Max.png" 
+                                            src="/logos/max-light.png" 
                                             alt="Max" 
                                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300%] w-auto max-w-none object-contain block dark:hidden" 
                                         />
                                         <img 
-                                            src="https://i.ibb.co/3Y7Y67Cj/Max-Dark.png" 
+                                            src="/logos/max-dark.png" 
                                             alt="Max" 
                                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300%] w-auto max-w-none object-contain hidden dark:block" 
                                         />

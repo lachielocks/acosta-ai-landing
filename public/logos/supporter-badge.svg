@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="supporterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="url(#supporterGrad)" opacity="0.18"/>
+  <path fill="url(#supporterGrad)" d="M60 92c-.6 0-1.2-.2-1.7-.6C45 82 28 68 28 50c0-12 8.5-20.5 19-20.5 5.8 0 11.2 2.7 14 7 2.8-4.3 8.2-7 14-7 10.5 0 19 8.5 19 20.5 0 18-17 32-30.3 41.4-.5.4-1.1.6-1.7.6Z"/>
+</svg>

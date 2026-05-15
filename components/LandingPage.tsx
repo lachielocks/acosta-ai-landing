@@ -96,7 +96,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ isDarkMode, onToggleDa
             onClick={() => navigate('/')}
           >
             <div className="relative w-8 h-8 flex items-center justify-center">
-                <img src="https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png" alt="Acosta AI" className="h-8 w-auto group-hover:scale-110 transition-transform duration-500" />
+                <img src="/logos/favicon-light.png" alt="Acosta AI" className="h-8 w-auto group-hover:scale-110 transition-transform duration-500 block dark:hidden" />
+                <img src="/logos/favicon-dark.png" alt="Acosta AI" className="h-8 w-auto group-hover:scale-110 transition-transform duration-500 hidden dark:block" />
             </div>
             <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400">Acosta AI</span>
           </div>
@@ -251,7 +252,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ isDarkMode, onToggleDa
                     </div>
                     <div className="flex-1 relative flex justify-center items-center">
                         <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full animate-pulse" />
-                        <img src="https://i.ibb.co/LDXpf68c/Acosta-1.png" alt="Acosta 1" className="w-full max-w-md h-auto relative z-10 drop-shadow-[0_0_50px_rgba(59,130,246,0.2)]" />
+                        <img src="/logos/acosta-1.png" alt="Acosta 1" className="w-full max-w-md h-auto relative z-10 drop-shadow-[0_0_50px_rgba(59,130,246,0.2)]" />
                     </div>
                 </div>
               </div>
@@ -592,7 +593,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ isDarkMode, onToggleDa
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div className="col-span-1 md:col-span-2 space-y-6">
                         <div className="flex items-center gap-3">
-                            <img src="https://i.ibb.co/C5B2KJTk/Favicon-Small-Icon.png" alt="Acosta AI" className="h-8 w-auto" />
+                            <img src="/logos/favicon-light.png" alt="Acosta AI" className="h-8 w-auto block dark:hidden" />
+                            <img src="/logos/favicon-dark.png" alt="Acosta AI" className="h-8 w-auto hidden dark:block" />
                             <span className="text-2xl font-bold tracking-tighter">Acosta AI</span>
                         </div>
                         <p className="text-neutral-500 max-w-sm leading-relaxed">
