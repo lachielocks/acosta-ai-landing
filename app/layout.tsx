@@ -26,8 +26,28 @@ export const metadata: Metadata = {
   description: 'Acosta AI is a private, student-first learning platform with tutoring, exam prep, and teacher tools.',
   generator: 'v0.app',
   icons: {
-    icon: "/branding/favicon.png",
-    shortcut: "/branding/favicon.png",
+    icon: [
+      { url: "/branding/favicon-on-light-bg.png" },
+      {
+        url: "/branding/favicon-on-light-bg.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/branding/favicon-on-dark-bg.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    shortcut: [
+      { url: "/branding/favicon-on-light-bg.png" },
+      {
+        url: "/branding/favicon-on-light-bg.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/branding/favicon-on-dark-bg.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
     apple: "/branding/apple-touch-icon.png",
   },
 }
