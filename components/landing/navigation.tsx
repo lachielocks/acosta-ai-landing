@@ -101,9 +101,20 @@ export function Navigation() {
                 rel="noopener noreferrer"
                 className={ctaLinkClass}
               >
-                <span className="inline-flex items-center gap-1.5">
-                  {labels.nav}
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                <span className="inline-flex flex-col items-end gap-0.5">
+                  <span className="inline-flex items-center gap-1.5">
+                    {labels.nav}
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </span>
+                  {labels.planLabel && (
+                    <span
+                      className={`text-[10px] font-mono uppercase tracking-wider ${
+                        isScrolled ? "text-foreground/45" : "text-white/45"
+                      }`}
+                    >
+                      {labels.planLabel}
+                    </span>
+                  )}
                 </span>
                 <span
                   className={`absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full ${
@@ -206,10 +217,17 @@ export function Navigation() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="link-wipe link-wipe-flex w-full justify-center text-lg font-medium text-foreground"
+                className="link-wipe link-wipe-flex w-full flex-col items-center gap-1 text-lg font-medium text-foreground"
               >
-                {labels.nav}
-                <ArrowUpRight className="h-4 w-4" />
+                <span className="inline-flex items-center gap-1.5">
+                  {labels.nav}
+                  <ArrowUpRight className="h-4 w-4" />
+                </span>
+                {labels.planLabel && (
+                  <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                    {labels.planLabel}
+                  </span>
+                )}
               </a>
             ) : (
               <Button 

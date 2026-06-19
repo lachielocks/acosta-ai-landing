@@ -2,6 +2,14 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Check, Sparkles, Leaf, PackageOpen, Heart } from "lucide-react";
+import { usePlatformUser } from "@/hooks/use-platform-user";
+import {
+  PLATFORM_URL,
+  getPlatformCtaLabels,
+  getPricingCardCta,
+  isCurrentPlan,
+  planToKey,
+} from "@/lib/platform-user";
 
 type PlanAccent = "neutral" | "blue" | "pink";
 
@@ -127,6 +135,8 @@ export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { user } = usePlatformUser();
+  const labels = getPlatformCtaLabels(user);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -156,6 +166,11 @@ export function PricingSection() {
               <br />
               <span className="text-muted-foreground">confidence.</span>
             </h2>
+            {labels.pricingIntro && (
+              <p className="mt-6 max-w-xl text-base text-muted-foreground leading-relaxed">
+                {labels.pricingIntro}
+              </p>
+            )}
           </div>
 
           <div className="lg:col-span-4 flex items-end lg:justify-end">
@@ -186,13 +201,18 @@ export function PricingSection() {
           <div className="grid lg:grid-cols-3 gap-4 lg:gap-0">
             {plans.map((plan, index) => {
               const accent = planAccentClasses[plan.accent];
+              const cardPlan = planToKey(plan.name);
+              const isYourPlan = isCurrentPlan(user, cardPlan);
+              const cardCta = getPricingCardCta(user, cardPlan, plan.cta);
               return (
               <div
                 key={plan.name}
                 className={`relative bg-background border transition-all duration-700 ${
                   accent.cardBorder
                 } ${
-                  plan.highlight
+                  isYourPlan
+                    ? "ring-2 ring-foreground/20 lg:z-10"
+                    : plan.highlight
                     ? `${accent.cardBorderHighlight} lg:-mx-2 lg:z-10 lg:scale-105`
                     : "lg:first:-mr-2 lg:last:-ml-2"
                 } ${
@@ -202,7 +222,15 @@ export function PricingSection() {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                {plan.highlight && !isAnnual && (
+                {isYourPlan && (
+                  <div className="absolute -top-4 left-8 right-8 flex justify-center">
+                    <span className="inline-flex items-center gap-2 bg-foreground px-4 py-2 text-xs font-mono uppercase tracking-widest text-background">
+                      Your plan
+                    </span>
+                  </div>
+                )}
+
+                {plan.highlight && !isAnnual && !isYourPlan && (
                   <div className="absolute -top-4 left-8 right-8 flex justify-center">
                     <span
                       className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-widest ${
@@ -250,12 +278,12 @@ export function PricingSection() {
                   </ul>
 
                   <a
-                    href="https://platform.acosta-ai.com"
+                    href={PLATFORM_URL}
                     target="_blank"
                     rel="noreferrer"
                     className={`w-full py-4 flex items-center justify-center gap-2 text-sm font-medium transition-all group ${accent.cta}`}
                   >
-                    {plan.cta}
+                    {cardCta}
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </a>
                 </div>
@@ -319,8 +347,8 @@ export function PricingSection() {
               Student-first design
             </span>
           </div>
-          <a href="https://platform.acosta-ai.com" target="_blank" rel="noreferrer" className="link-wipe text-sm hover:text-foreground transition-colors">
-            Open platform
+          <a href={PLATFORM_URL} target="_blank" rel="noreferrer" className="link-wipe text-sm hover:text-foreground transition-colors">
+            {user ? labels.primaryShort : "Open platform"}
           </a>
         </div>
       </div>

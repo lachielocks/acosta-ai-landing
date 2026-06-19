@@ -8,6 +8,10 @@ import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 export function HeroSection() {
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
+  const secondaryCta =
+    user?.plan === "free"
+      ? { href: "#pricing", label: "Compare plans" }
+      : { href: "#classes", label: "See Classes" };
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#060b18] via-[#0b132a] to-black text-white pt-36 pb-24 lg:pt-44 lg:pb-32">
@@ -50,10 +54,10 @@ export function HeroSection() {
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="#classes"
+              href={secondaryCta.href}
               className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10"
             >
-              See Classes
+              {secondaryCta.label}
             </a>
           </div>
         </Reveal>
