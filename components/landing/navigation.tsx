@@ -22,6 +22,11 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
+  const isSignedIn = Boolean(user);
+
+  const ctaLinkClass = `text-sm transition-colors duration-300 relative group ${
+    isScrolled ? "text-foreground/70 hover:text-foreground" : "text-white/70 hover:text-white"
+  }`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,15 +94,34 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
-            <Button
-              size="sm"
-              className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
-              asChild
-            >
-              <a href={PLATFORM_URL} target="_blank" rel="noopener noreferrer">
-                {labels.nav}
+            {isSignedIn ? (
+              <a
+                href={PLATFORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={ctaLinkClass}
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  {labels.nav}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
+                <span
+                  className={`absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full ${
+                    isScrolled ? "bg-foreground" : "bg-white"
+                  }`}
+                />
               </a>
-            </Button>
+            ) : (
+              <Button
+                size="sm"
+                className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
+                asChild
+              >
+                <a href={PLATFORM_URL} target="_blank" rel="noopener noreferrer">
+                  {labels.nav}
+                </a>
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -176,15 +200,28 @@ export function Navigation() {
           }`}
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
-            <Button 
-              className="w-full bg-foreground text-background rounded-full h-14 text-base"
-              asChild
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <a href={PLATFORM_URL} target="_blank" rel="noopener noreferrer">
+            {isSignedIn ? (
+              <a
+                href={PLATFORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="link-wipe link-wipe-flex w-full justify-center text-lg font-medium text-foreground"
+              >
                 {labels.nav}
+                <ArrowUpRight className="h-4 w-4" />
               </a>
-            </Button>
+            ) : (
+              <Button 
+                className="w-full bg-foreground text-background rounded-full h-14 text-base"
+                asChild
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <a href={PLATFORM_URL} target="_blank" rel="noopener noreferrer">
+                  {labels.nav}
+                </a>
+              </Button>
+            )}
           </div>
         </div>
       </div>

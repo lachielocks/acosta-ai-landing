@@ -46,7 +46,7 @@ export function getPlatformCtaLabels(user: PlatformUser | null) {
   const firstName = user.displayName.split(/\s+/)[0] ?? user.displayName;
 
   return {
-    nav: firstName,
+    nav: `Hi, ${firstName}`,
     primary: "Open Platform",
     primaryShort: "Open Platform",
     cta: "Open Platform",
