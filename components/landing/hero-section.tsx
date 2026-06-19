@@ -2,8 +2,13 @@
 
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { usePlatformUser } from "@/hooks/use-platform-user";
+import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
 export function HeroSection() {
+  const { user } = usePlatformUser();
+  const labels = getPlatformCtaLabels(user);
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#060b18] via-[#0b132a] to-black text-white pt-36 pb-24 lg:pt-44 lg:pb-32">
       <div className="pointer-events-none absolute inset-0">
@@ -14,7 +19,7 @@ export function HeroSection() {
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
         <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-white/75">
-            Student-first AI platform
+            Now with Acosta Classes
           </p>
         </Reveal>
 
@@ -29,52 +34,33 @@ export function HeroSection() {
 
         <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
-            Acosta AI is your private tutor, study partner, and classroom assistant built for students and teachers.
+            Acosta AI is your private tutor, study partner, and classroom assistant — with new class spaces where teachers assign tasks and students get personalised help.
           </p>
         </Reveal>
 
         <Reveal delay={0.22} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href="https://platform.acosta-ai.com"
+              href={PLATFORM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition hover:scale-[1.02]"
             >
-              Get started free
+              {labels.primary}
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="#pricing"
+              href="#classes"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10"
             >
-              View pricing
+              See Classes
             </a>
           </div>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-3">
           {[
-            { value: "100%", label: "Private by design" },
+            { value: "Classes", label: "Assign & track tasks" },
             { value: "Live", label: "Voice + multimodal help" },
             { value: "Exam-ready", label: "Practice and feedback" },
           ].map((stat, i) => (
-            <Reveal
-              key={stat.label}
-              delay={0.26 + i * 0.06}
-              direction="up"
-              distance={10}
-              blur={4}
-              triggerMargin="0px 0px -12% 0px"
-            >
-              <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-5">
-                <p className="font-display text-3xl">{stat.value}</p>
-                <p className="mt-1 text-sm text-white/65">{stat.label}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}

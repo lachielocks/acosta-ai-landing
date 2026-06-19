@@ -2,10 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { usePlatformUser } from "@/hooks/use-platform-user";
+import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
 export function CtaSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { user } = usePlatformUser();
+  const labels = getPlatformCtaLabels(user);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,12 +41,12 @@ export function CtaSection() {
             </h2>
 
             <a
-              href="https://platform.acosta-ai.com"
+              href={PLATFORM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-12 py-6 bg-background text-foreground rounded-3xl font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-2xl"
             >
-              Get Started Now
+              {labels.cta}
               <ArrowRight className="w-7 h-7" />
             </a>
           </div>

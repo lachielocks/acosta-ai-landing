@@ -2,13 +2,15 @@
 
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { ArrowUpRight } from "lucide-react";
+import { usePlatformUser } from "@/hooks/use-platform-user";
+import { getPlatformCtaLabels } from "@/lib/platform-user";
 
 const footerLinks = {
   Product: [
     { name: "Home", href: "#" },
+    { name: "Classes", href: "#classes" },
     { name: "Features", href: "#features" },
     { name: "Pricing", href: "#pricing" },
-    { name: "Get Started", href: "https://platform.acosta-ai.com" },
   ],
   Trust: [
     { name: "Privacy Policy", href: "/privacy" },
@@ -25,7 +27,13 @@ const footerLinks = {
 };
 
 export function FooterSection() {
+  const { user } = usePlatformUser();
+  const labels = getPlatformCtaLabels(user);
   const isExternalPageLink = (href: string) => href.startsWith("http");
+  const platformLink = {
+    name: labels.primaryShort,
+    href: "https://platform.acosta-ai.com",
+  };
 
   return (
     <footer className="border-t border-foreground/10 py-16 lg:py-20">
@@ -46,12 +54,16 @@ export function FooterSection() {
             </div>
           </StaggerItem>
 
-          {Object.entries(footerLinks).map(([title, links]) => (
+          {Object.entries(footerLinks).map(([title, links]) => {
+            const sectionLinks =
+              title === "Product" ? [...links, platformLink] : links;
+
+            return (
             <StaggerItem key={title}>
               <div>
                 <h3 className="text-sm font-medium mb-4">{title}</h3>
                 <ul className="space-y-3">
-                  {links.map((link) => (
+                  {sectionLinks.map((link) => (
                     <li key={link.name}>
                       {isExternalPageLink(link.href) ? (
                         <a
@@ -78,7 +90,8 @@ export function FooterSection() {
                 </ul>
               </div>
             </StaggerItem>
-          ))}
+            );
+          })}
         </Stagger>
 
         <Reveal delay={0.08} direction="up" distance={12} blur={4}>

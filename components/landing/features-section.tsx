@@ -1,9 +1,16 @@
 "use client";
 
-import { Brain, Mic, ScanEye, Search, Cpu, Activity } from "lucide-react";
+import { Brain, Mic, ScanEye, Search, Cpu, Activity, UsersRound } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
 const features = [
+  {
+    icon: UsersRound,
+    title: "Acosta Classes",
+    description:
+      "Teachers create classes, assign tasks, and students complete them in Acosta with guided support — homework that scales beyond the classroom.",
+    color: "text-sky-500",
+  },
   {
     icon: Brain,
     title: "Deep Thinking",
@@ -65,7 +72,7 @@ export function FeaturesSection() {
           </Reveal>
           <Reveal direction="up" delay={0.12}>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              A complete suite of tools for students and teachers, built with privacy and clarity in mind.
+              From class assignments to exam prep and wellbeing — a complete suite for students and teachers, built with privacy and clarity in mind.
             </p>
           </Reveal>
         </div>

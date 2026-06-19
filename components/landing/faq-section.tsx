@@ -8,6 +8,11 @@ import { Reveal } from "@/components/ui/reveal";
 
 const faqs = [
   {
+    question: "What are Acosta Classes?",
+    answer:
+      "Classes are structured spaces where teachers create a class, invite students, and assign tasks — revision prompts, practice sets, project briefs, and more. Students open assignments inside Acosta and get the same guided, integrity-first tutoring experience, scoped to what their teacher set.",
+  },
+  {
     question: "Is using Acosta AI considered cheating?",
     answer:
       "Acosta AI is a learning companion, not an answer machine. It's designed to help students understand and teachers teach - not to bypass effort. Features like step-by-step reasoning and exam simulation are built to develop your skills, not replace them.",
@@ -15,7 +20,7 @@ const faqs = [
   {
     question: "Is it for teachers too?",
     answer:
-      "Absolutely. Acosta AI is built for both students and teachers. Educators can use it for lesson planning, generating practice questions, and supporting student wellbeing - all in one platform.",
+      "Absolutely. Acosta AI is built for both students and teachers. With Acosta Classes, educators can assign tasks, run revision sprints, and support student wellbeing — all in one platform.",
   },
   {
     question: "Is my data private?",

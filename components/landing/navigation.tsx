@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { usePlatformUser } from "@/hooks/use-platform-user";
+import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
+
 const navLinks = [
+  { name: "Classes", href: "#classes" },
   { name: "Features", href: "#features" },
   { name: "Testimonials", href: "#testimonials" },
   { name: "Pricing", href: "#pricing" },
@@ -16,6 +20,8 @@ const navLinks = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user } = usePlatformUser();
+  const labels = getPlatformCtaLabels(user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,7 +94,9 @@ export function Navigation() {
               className={`rounded-full transition-all duration-500 ${isScrolled ? "bg-foreground hover:bg-foreground/90 text-background px-4 h-8 text-xs" : "bg-white hover:bg-white/90 text-black px-6"}`}
               asChild
             >
-              <a href="https://platform.acosta-ai.com">Try Acosta</a>
+              <a href={PLATFORM_URL} target="_blank" rel="noopener noreferrer">
+                {labels.nav}
+              </a>
             </Button>
           </div>
 
@@ -173,7 +181,9 @@ export function Navigation() {
               asChild
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <a href="https://platform.acosta-ai.com">Try Acosta</a>
+              <a href={PLATFORM_URL} target="_blank" rel="noopener noreferrer">
+                {labels.nav}
+              </a>
             </Button>
           </div>
         </div>
