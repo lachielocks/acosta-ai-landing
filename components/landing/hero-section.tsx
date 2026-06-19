@@ -64,3 +64,22 @@ export function HeroSection() {
             { value: "Live", label: "Voice + multimodal help" },
             { value: "Exam-ready", label: "Practice and feedback" },
           ].map((stat, i) => (
+            <Reveal
+              key={stat.label}
+              delay={0.26 + i * 0.06}
+              direction="up"
+              distance={10}
+              blur={4}
+              triggerMargin="0px 0px -12% 0px"
+            >
+              <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-5">
+                <p className="font-display text-3xl">{stat.value}</p>
+                <p className="mt-1 text-sm text-white/65">{stat.label}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
