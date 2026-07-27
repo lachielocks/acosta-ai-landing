@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain, Mic, ScanEye, Search, Cpu, Activity, UsersRound } from "lucide-react";
+import { Brain, Music, ScanEye, Search, Cpu, Activity, UsersRound } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
 const features = [
@@ -19,10 +19,10 @@ const features = [
     color: "text-pink-500",
   },
   {
-    icon: Mic,
-    title: "Live Voice",
+    icon: Music,
+    title: "Music Generation",
     description:
-      "Talk naturally with Acosta for language practice, revision, and quick explanations.",
+      "Create study playlists, revision hooks, and original tracks to make learning stick.",
     color: "text-red-500",
   },
   {

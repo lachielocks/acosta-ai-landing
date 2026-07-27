@@ -30,7 +30,7 @@ const faqs = [
   {
     question: "What about privacy after the Canvas / Instructure news?",
     answer:
-      "Fair question. Instructure, which runs Canvas LMS, publicly confirmed a large-scale security incident in 2026 — the kind of story that makes everyone audit their vendors. Acosta is architected the boring way: TLS and encryption at rest on Google Cloud, enterprise API terms that exclude training on your traffic, Stripe for card data so we never store it, and Guardian burnout signals from session metadata — not by reading your messages. If Canvas has you side-eyeing edtech, we wrote our Privacy Policy so you can see exactly what we collect and why. TL;DR: we'd rather be forgettable on BleepingComputer than unforgettable on your dean's emergency email.",
+      "Fair question. Instructure, which runs Canvas LMS, publicly confirmed a large-scale security incident in 2026 — the kind of story that makes everyone audit their vendors. Acosta is architected the boring way: TLS in transit, Firebase/Firestore for auth and data, Vercel + Cloudflare for hosting and edge security, enterprise API terms with OpenAI, Google, and Anthropic that exclude training on your traffic, Stripe for card data so we never store it, and Guardian burnout signals from session metadata — not by reading your messages. If Canvas has you side-eyeing edtech, we wrote our Privacy Policy so you can see exactly what we collect and why. TL;DR: we'd rather be forgettable on BleepingComputer than unforgettable on your dean's emergency email.",
   },
   {
     question: "What's included in the free plan?",

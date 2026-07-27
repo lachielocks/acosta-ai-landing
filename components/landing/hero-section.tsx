@@ -43,19 +43,19 @@ export function HeroSection() {
         </Reveal>
 
         <Reveal delay={0.22} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
             <a
               href={PLATFORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition hover:scale-[1.02]"
             >
               {labels.primary}
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href={secondaryCta.href}
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10"
             >
               {secondaryCta.label}
             </a>
@@ -65,7 +65,7 @@ export function HeroSection() {
         <div className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-3">
           {[
             { value: "Classes", label: "Assign & track tasks" },
-            { value: "Live", label: "Voice + multimodal help" },
+            { value: "Music", label: "Generate study tracks" },
             { value: "Exam-ready", label: "Practice and feedback" },
           ].map((stat, i) => (
             <Reveal

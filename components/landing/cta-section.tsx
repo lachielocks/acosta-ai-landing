@@ -33,8 +33,8 @@ export function CtaSection() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_70%)]" />
 
-          <div className="relative z-10 text-center space-y-10">
-            <h2 className="text-5xl md:text-7xl font-display font-black tracking-tight leading-[0.95]">
+          <div className="relative z-10 text-center space-y-8 sm:space-y-10">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-black tracking-tight leading-[0.95]">
               Ready to transform
               <br />
               your learning?
@@ -44,7 +44,7 @@ export function CtaSection() {
               href={PLATFORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 px-12 py-6 bg-background text-foreground rounded-3xl font-black text-2xl hover:scale-105 active:scale-95 transition-all shadow-2xl"
+              className="inline-flex w-full max-w-md items-center justify-center gap-3 rounded-3xl bg-background px-8 py-5 text-xl font-black text-foreground shadow-2xl transition-all hover:scale-105 active:scale-95 sm:w-auto sm:px-12 sm:py-6 sm:text-2xl"
             >
               {labels.cta}
               <ArrowRight className="w-7 h-7" />

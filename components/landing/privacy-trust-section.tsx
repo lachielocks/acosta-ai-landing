@@ -7,11 +7,11 @@ import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 const highlights = [
   {
     title: "No training on your chats",
-    body: "Our model providers process requests to reply — they do not use your Acosta traffic to train foundation models.",
+    body: "OpenAI, Google, and Anthropic process Acosta requests to reply — not to train foundation models. We don't sell your notes either.",
   },
   {
-    title: "Encrypted, then yours to delete",
-    body: "Google Cloud hosts Firestore with encryption in transit and at rest. Wipe individual threads or your entire account whenever you want.",
+    title: "Hosted on Vercel & Cloudflare",
+    body: "The app runs on Vercel with Cloudflare at the edge. Auth and your workspace live in Firebase/Firestore — wipe threads or your account whenever you want.",
   },
   {
     title: "Stripe handles the scary money bits",
@@ -46,8 +46,8 @@ export function PrivacyTrustSection() {
                 Reality check
               </div>
               <p className="m-0 text-xl font-semibold leading-snug md:text-2xl">
-                While Canvas&apos;s parent company, Instructure, was making headlines for a major confirmed data incident in 2026, we were busy doing the deeply unglamorous work: least privilege, encryption,
-                explicit &quot;no model training&quot; contracts, and deletion tools you can actually find in the UI.
+                While Canvas&apos;s parent company, Instructure, was making headlines for a major confirmed data incident in 2026, we were busy doing the deeply unglamorous work: Firebase auth and encrypted Firestore storage, Vercel + Cloudflare hosting,
+                explicit &quot;no model training&quot; API terms with OpenAI, Google, and Anthropic, and deletion tools you can actually find in the UI.
               </p>
               <p className="m-0 text-base leading-relaxed text-muted-foreground">
                 No shade to your syllabus — just a reminder that &quot;enterprise education&quot; and &quot;enterprise security&quot; are not always the same spreadsheet row. Acosta is built so your study life

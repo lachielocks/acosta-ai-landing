@@ -85,15 +85,21 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
 }
 
 @layer utilities {
+  .safe-area-pad {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
   /* Static hairline underline + blue left-to-right sweep on hover (matches nav motion) */
   .link-wipe {
     display: inline;

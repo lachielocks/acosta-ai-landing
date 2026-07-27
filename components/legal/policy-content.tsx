@@ -5,24 +5,21 @@ import {
   ArrowUpRight,
   CreditCard,
   Database,
-  Eye,
   GraduationCap,
   Heart,
   Image as ImageIcon,
   Lock,
-  Mic,
   Scale,
   Server,
-  Shield,
   Sparkles,
   Timer,
   Trash2,
   UserCheck,
 } from "lucide-react";
 
-export const POLICY_LAST_UPDATED = "February 2026";
+export const POLICY_LAST_UPDATED = "July 2026";
 export const PRIVACY_SUMMARY =
-  "Your thoughts and data are personal. This policy outlines exactly what we collect, how it's processed, and your absolute right to privacy.";
+  "Your thoughts and data are personal. This policy outlines exactly what we collect, how it's processed, who helps us process it, and your absolute right to privacy.";
 export const TERMS_SUMMARY =
   "The rules governing acceptable use, billing, intellectual property, and academic honesty expectations.";
 export const SAFETY_SUMMARY =
@@ -84,7 +81,7 @@ export function PrivacyPolicyContent() {
   return (
     <>
       <p className="mb-12 text-xl leading-relaxed text-muted-foreground">
-        At Acosta AI (a Transnology company), we believe your thoughts and data are personal. This policy outlines exactly what we collect, how it&apos;s processed, and your absolute right to privacy.
+        At Acosta AI (a Transnology company), we believe your thoughts and data are personal. This policy outlines exactly what we collect, how it&apos;s processed, which providers help us run the platform, and your absolute right to privacy.
       </p>
 
       <SectionHeader icon={Database} title="1. Information We Collect" />
@@ -99,17 +96,23 @@ export function PrivacyPolicyContent() {
           For Guest users, we assign a temporary anonymous ID. No personal contact information is collected unless you choose to upgrade to a full account.
         </PolicyCard>
         <PolicyCard title="Generated Content">
-          Chat logs, study plans, generated images, exam papers, flashcards, and mind dumps. These are stored in your private database until you delete them.
+          Chat logs, study plans, generated images, exam papers, flashcards, class assignments, and mind dumps. These are stored in your private Firebase/Firestore workspace until you delete them. Images uploaded for analysis are processed to answer your request and are not retained for training.
+        </PolicyCard>
+        <PolicyCard title="Classes Metadata">
+          If you use Acosta Classes, we store class membership, assigned tasks, and completion status so teachers and students can collaborate. Assignment content and student work are treated as private educational content — processed to deliver the feature, not to train models.
         </PolicyCard>
         <PolicyCard title="Guardian Metadata">
-          We monitor interaction frequency and session duration locally to detect burnout/fatigue. We do NOT read your messages for this purpose.
+          We monitor interaction frequency and session duration to detect burnout/fatigue. We do <strong>not</strong> read your message content for this purpose — only in-platform activity signals.
         </PolicyCard>
         <PolicyCard title="Billing Information">
           Processed securely by Stripe. Acosta AI never sees or stores your full credit card number or bank details.
         </PolicyCard>
+        <PolicyCard title="Technical Logs & Preferences">
+          Basic request metadata (timestamps, approximate region, error codes) may be collected by our hosting and security providers to keep the service reliable. If you are signed in, we may set a limited preference cookie (display name and plan) on our shared domain so the marketing site can personalise links. These are not used for advertising profiles or AI training.
+        </PolicyCard>
       </div>
 
-      <SectionHeader icon={Server} title="2. AI Processing & Third Parties" />
+      <SectionHeader icon={Server} title="2. Hosting, AI Processing & Third Parties" />
       <div className="mb-10 rounded-3xl border border-emerald-200 bg-emerald-50 p-8 shadow-sm dark:border-emerald-900/30 dark:bg-emerald-900/10">
         <div className="flex flex-col items-start gap-5 sm:flex-row">
           <div className="shrink-0 rounded-2xl bg-emerald-100 p-3 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400">
@@ -117,22 +120,44 @@ export function PrivacyPolicyContent() {
           </div>
           <div>
             <h4 className="mb-2 text-xl font-bold text-emerald-900 dark:text-emerald-100">
-              No Training on User Data
+              No Training on Your Data — Full Stop
             </h4>
-            <p className="m-0 text-base leading-relaxed text-emerald-800 dark:text-emerald-200">
-              Acosta branded models are powered by Google and Claude&apos;s enterprise grade API&apos;s. These providers do <strong>not</strong> use data sent via our API to train their foundational models. Your physics notes remain yours, not training data for the next GPT.
+            <p className="m-0 mb-4 text-base leading-relaxed text-emerald-800 dark:text-emerald-200">
+              Acosta AI is powered by paid, enterprise-grade APIs from{" "}
+              <strong>OpenAI</strong>, <strong>Google</strong> (Gemini), and{" "}
+              <strong>Anthropic</strong> (Claude). Under these commercial API terms, providers process your prompts and files{" "}
+              <strong>only to generate the immediate response</strong>. They do{" "}
+              <strong>not</strong> use Acosta traffic to train, fine-tune, or improve their foundation models.
             </p>
+            <ul className="m-0 list-disc space-y-2 pl-5 text-base leading-relaxed text-emerald-800 dark:text-emerald-200">
+              <li>We do not sell your chats, notes, or class content.</li>
+              <li>We do not license your data for model training — ours or anyone else&apos;s.</li>
+              <li>Your physics notes stay yours, not fuel for the next public model release.</li>
+            </ul>
           </div>
         </div>
       </div>
-      <PolicyPoint title="Google Cloud & Firebase">
-        We use Google&apos;s secure infrastructure for database hosting (Firestore), authentication, and serverless functions. Data is encrypted in transit (TLS) and at rest.
+
+      <PolicyPoint title="Firebase & Google Cloud (Auth & Database)">
+        We use Firebase Authentication and Cloud Firestore for secure sign-in and to store your account data, chats, classes, and study content. Data is encrypted in transit (TLS) and at rest on Google&apos;s infrastructure.
       </PolicyPoint>
-      <PolicyPoint title="Acosta Models">
-        Primary provider for text generation, image creation, and audio synthesis. Data is sent to the API solely for the purpose of generating the immediate response.
+      <PolicyPoint title="Vercel (Application Hosting)">
+        The Acosta AI web application is hosted on Vercel. Vercel runs our frontend and serverless backend so the product can scale securely. Traffic to our app is encrypted in transit (TLS). Vercel does not use your application content to train AI models.
+      </PolicyPoint>
+      <PolicyPoint title="Cloudflare (Edge, CDN & Security)">
+        We use Cloudflare for DNS, content delivery, and edge security (including DDoS mitigation and bot protection). Cloudflare may process connection metadata and cached assets to deliver and protect the site. Your chat content is not used by Cloudflare for AI training.
+      </PolicyPoint>
+      <PolicyPoint title="OpenAI">
+        OpenAI models may power text generation, reasoning, multimodal analysis, music generation, and related features depending on availability and routing. Requests are sent solely to produce your response. OpenAI&apos;s API terms for our usage exclude training on customer content.
+      </PolicyPoint>
+      <PolicyPoint title="Google (Gemini)">
+        Google Gemini models may be used for text, multimodal understanding, and image-related features. Data is sent to Google&apos;s API solely to generate the immediate response under enterprise/API terms that do not permit training on that traffic.
       </PolicyPoint>
       <PolicyPoint title="Anthropic (Claude)">
-        Secondary provider used as a fallback system to ensure reliability. If Google Gemini services are unavailable, your request may be processed by (at the moment) Claude 4.5 Haiku, or Claude 4.6 Sonnet. Claude models do not support image generation and voice mode. Anthropic does not train on API data.
+        Anthropic Claude models may be used as a primary or fallback provider for reliability and quality. If another provider is unavailable or unsuitable for a task, your request may be routed to Claude. Anthropic does not train on API customer data.
+      </PolicyPoint>
+      <PolicyPoint title="Model Routing">
+        To keep the platform reliable, Acosta may automatically select or switch between OpenAI, Google, and Anthropic models for a given request. Regardless of which provider answers, the no-training commitment above applies.
       </PolicyPoint>
       <PolicyPoint title="Stripe">
         We use Stripe to process all payments and subscriptions. Your credit card details are never stored on our servers. All sensitive financial data is processed directly by Stripe&apos;s PCI-DSS compliant infrastructure. For more information, see{" "}
@@ -148,33 +173,18 @@ export function PrivacyPolicyContent() {
         .
       </PolicyPoint>
 
-      <SectionHeader icon={Activity} title="3. Feature-Specific Privacy" />
-      <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-        <PolicyCard title="Live Audio">
-          <div className="mb-3 flex items-center gap-2 font-bold text-primary">
-            <Mic className="h-5 w-5" /> Ephemeral Streaming
-          </div>
-          <p className="m-0 text-base text-muted-foreground">
-            When using Live Conversation, audio is streamed directly to the model for low latency. We do not permanently store raw audio recordings of your voice. Transcripts are saved to your history for your reference.
-          </p>
-        </PolicyCard>
-        <PolicyCard title="Visual Intelligence">
-          <div className="mb-3 flex items-center gap-2 font-bold text-primary">
-            <Eye className="h-5 w-5" /> Image Analysis
-          </div>
-          <p className="m-0 text-base text-muted-foreground">
-            Images uploaded for analysis (e.g., &quot;Explain this diagram&quot;) are processed temporarily by the vision model. We do not retain uploaded images for training purposes.
-          </p>
-        </PolicyCard>
-      </div>
-
-      <SectionHeader icon={Trash2} title="4. Data Retention & Deletion" />
+      <SectionHeader icon={Trash2} title="3. Data Retention & Deletion" />
       <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-        You have complete control. You can delete individual chat sessions, study plans, or exam papers at any time via the interface. Deleting an item removes it permanently from our database. If you delete your account, all associated data is wiped immediately.
+        You have complete control. You can delete individual chat sessions, study plans, exam papers, or class-related items at any time via the interface. Deleting an item removes it permanently from our Firebase/Firestore systems. If you delete your account, associated personal data is wiped.
       </p>
       <div className="mb-8 rounded-2xl border border-foreground/15 bg-foreground/[0.03] p-6">
         <p className="m-0 text-sm text-muted-foreground">
           <strong className="text-foreground">Note for Guest Users:</strong> Data generated during a Guest session is linked to a temporary identifier. If you clear your browser cache, switch devices, or do not convert to a permanent account, this data will be lost and cannot be recovered.
+        </p>
+      </div>
+      <div className="mb-8 rounded-2xl border border-foreground/15 bg-foreground/[0.03] p-6">
+        <p className="m-0 text-sm text-muted-foreground">
+          <strong className="text-foreground">Provider retention:</strong> Model providers may briefly retain API request logs for abuse monitoring and reliability under their own policies. That retention is separate from Acosta&apos;s product storage and is not used to train foundation models on your Acosta content.
         </p>
       </div>
       <p className="text-base text-muted-foreground">
@@ -260,18 +270,18 @@ export function TermsPolicyContent() {
 
       <SectionHeader icon={Sparkles} title="4. AI Limitations & Liability" />
       <PolicyPoint title="Hallucinations & Models">
-        Generative AI models (Gemini 2.5/3.0/3.1 & Claude 3.5/3.7) can make mistakes, even in &quot;Thinking&quot; mode. The platform may automatically switch between models to ensure uptime. Always verify critical facts.
+        Generative AI models (including OpenAI, Google Gemini, and Anthropic Claude variants) can make mistakes, even in &quot;Thinking&quot; mode. The platform may automatically switch between providers and models to ensure uptime and quality. Always verify critical facts.
       </PolicyPoint>
       <PolicyPoint title="No Professional Advice">
         Acosta AI is an educational tool. It does not provide medical diagnoses, legal counsel, or financial advice.
       </PolicyPoint>
       <PolicyPoint title="Service Availability">
-        &quot;Live&quot; mode and &quot;Image Generation&quot; rely on high-demand GPU clusters. Occasional downtime or high latency may occur during peak global usage.
+        Features such as &quot;Image Generation&quot; and &quot;Music Generation&quot; rely on high-demand model infrastructure. Occasional downtime or high latency may occur during peak global usage. Availability of specific providers (OpenAI, Google Gemini, Anthropic Claude) may also vary as we route for reliability.
       </PolicyPoint>
 
       <SectionHeader icon={Scale} title="5. Intellectual Property" />
       <PolicyPoint title="Your Content">
-        You retain ownership of the prompts you input and the content generated by the AI in response to your prompts (Subject to Google&apos;s GenAI terms).
+        You retain ownership of the prompts you input and the content generated by the AI in response to your prompts (subject to the terms of the relevant model providers when their services are used).
       </PolicyPoint>
       <PolicyPoint title="Our Platform">
         The interface, code, &quot;Guardian&quot; system, and &quot;Liquid Ether&quot; design are the property of Transnology.
