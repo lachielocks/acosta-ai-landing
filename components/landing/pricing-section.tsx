@@ -6,6 +6,7 @@ import { usePlatformUser } from "@/hooks/use-platform-user";
 import {
   PLATFORM_URL,
   getPlatformCtaLabels,
+  getPlatformSubscriptionUrl,
   getPricingCardCta,
   isCurrentPlan,
   planToKey,
@@ -277,7 +278,7 @@ export function PricingSection() {
                   </ul>
 
                   <a
-                    href={PLATFORM_URL}
+                    href={getPlatformSubscriptionUrl(cardPlan)}
                     target="_blank"
                     rel="noreferrer"
                     className={`w-full py-4 flex items-center justify-center gap-2 text-sm font-medium transition-all group ${accent.cta}`}

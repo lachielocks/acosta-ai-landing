@@ -1,5 +1,10 @@
 export const PLATFORM_URL = "https://platform.acosta-ai.com";
 
+export function getPlatformSubscriptionUrl(plan: PlatformPlan): string {
+  if (plan === "free") return PLATFORM_URL;
+  return `${PLATFORM_URL}/?subscription=${plan}`;
+}
+
 /**
  * Set by platform.acosta-ai.com on `.acosta-ai.com`:
  * `{ "displayName": "Lachie", "plan": "go" }`
