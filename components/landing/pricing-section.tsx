@@ -65,8 +65,9 @@ const plans: Array<{
   cta: string;
   highlight: boolean;
   accent: PlanAccent;
-  carbonMonthly?: string;
-  carbonAnnual?: string;
+  climateContribution?: boolean;
+  climateMonthly?: string;
+  climateAnnual?: string;
 }> = [
   {
     name: "Free",
@@ -106,8 +107,9 @@ const plans: Array<{
     cta: "Start Go",
     highlight: true,
     accent: "blue",
-    carbonMonthly: "$0.50/mo",
-    carbonAnnual: "$5.25/yr",
+    climateContribution: true,
+    climateMonthly: "$5/mo",
+    climateAnnual: "$52.50/yr",
   },
   {
     name: "Max",
@@ -126,8 +128,9 @@ const plans: Array<{
     cta: "Choose Max",
     highlight: false,
     accent: "pink",
-    carbonMonthly: "$1.50/mo",
-    carbonAnnual: "$15.75/yr",
+    climateContribution: true,
+    climateMonthly: "$15/mo",
+    climateAnnual: "$157.50/yr",
   },
 ];
 
@@ -260,10 +263,10 @@ export function PricingSection() {
                       </span>
                       <span className="text-muted-foreground text-sm">{isAnnual ? "/yr" : "/mo"}</span>
                     </div>
-                    {plan.carbonMonthly && plan.carbonAnnual && (
+                    {plan.climateContribution && plan.climateMonthly && plan.climateAnnual && (
                       <p className="text-xs text-green-600 mt-2 font-mono inline-flex items-center gap-1">
                         <Leaf className="w-3 h-3" />
-                        Contributes {isAnnual ? plan.carbonAnnual : plan.carbonMonthly} to carbon removal
+                        50% of every purchase ({isAnnual ? plan.climateAnnual : plan.climateMonthly}) goes to climate
                       </p>
                     )}
                   </div>

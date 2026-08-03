@@ -34,7 +34,13 @@ function getCookieValue(name: string): string | null {
     .find((entry) => entry.startsWith(`${name}=`));
 
   if (!match) return null;
-  return decodeURIComponent(match.slice(name.length + 1));
+
+  const raw = match.slice(name.length + 1);
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
 }
 
 export function normalizePlatformPlan(raw?: string | null): PlatformPlan | undefined {
