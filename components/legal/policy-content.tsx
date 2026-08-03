@@ -90,10 +90,13 @@ export function PrivacyPolicyContent() {
           Email, display name, and Year Level/Role. We use this strictly for authentication and to tailor the AI&apos;s complexity (e.g., Year 7 vs University).
         </PolicyCard>
         <PolicyCard title="Third-Party Logins">
-          If you sign in via Google or GitHub, we store your email and public profile info provided by them for authentication. We do not access your repositories or private data on those platforms.
+          If you sign in via Google, GitHub, or Microsoft, we store your email and public profile info provided by them for authentication. We do not access your repositories, mailbox, or other private data on those platforms.
         </PolicyCard>
         <PolicyCard title="Guest Sessions">
           For Guest users, we assign a temporary anonymous ID. No personal contact information is collected unless you choose to upgrade to a full account.
+        </PolicyCard>
+        <PolicyCard title="Location (Optional)">
+          Location is completely optional and is never stored. If you choose to share it, we use it only in the moment for weather context, localised responses, and during onboarding to help set your curriculum location. You can skip it entirely.
         </PolicyCard>
         <PolicyCard title="Generated Content">
           Chat logs, study plans, generated images, exam papers, flashcards, class assignments, and mind dumps. These are stored in your private Firebase/Firestore workspace until you delete them. Images uploaded for analysis are processed to answer your request and are not retained for training.
@@ -226,7 +229,7 @@ export function TermsPolicyContent() {
         Guest access is provided for trial purposes with limited features (e.g., message limits, restricted modes). We accept no liability for data loss associated with anonymous guest sessions. To permanently save your history, you must upgrade to a full account.
       </PolicyPoint>
       <PolicyPoint title="Third-Party Authentication">
-        When using &quot;Sign in with Google&quot; or &quot;Sign in with GitHub&quot;, you are also subject to the terms of service of those respective platforms regarding your account authentication.
+        When using &quot;Sign in with Google&quot;, &quot;Sign in with GitHub&quot;, or &quot;Sign in with Microsoft&quot;, you are also subject to the terms of service of those respective platforms regarding your account authentication.
       </PolicyPoint>
 
       <SectionHeader icon={GraduationCap} title="2. Academic Integrity Code" />

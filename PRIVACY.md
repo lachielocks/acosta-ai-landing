@@ -19,11 +19,15 @@ Email, display name, and Year Level/Role. We use this strictly for authenticatio
 
 ### Third-Party Logins
 
-If you sign in via Google or GitHub, we store your email and public profile info provided by them for authentication. We do not access your repositories or private data on those platforms.
+If you sign in via Google, GitHub, or Microsoft, we store your email and public profile info provided by them for authentication. We do not access your repositories, mailbox, or other private data on those platforms.
 
 ### Guest Sessions
 
 For Guest users, we assign a temporary anonymous ID. No personal contact information is collected unless you choose to upgrade to a full account.
+
+### Location (Optional)
+
+Location is completely optional and is never stored. If you choose to share it, we use it only in the moment for weather context, localised responses, and during onboarding to help set your curriculum location. You can skip it entirely.
 
 ### Generated Content
 

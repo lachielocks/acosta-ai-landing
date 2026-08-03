@@ -31,7 +31,7 @@ Guest access is provided for trial purposes with limited features (e.g., message
 
 ### Third-Party Authentication
 
-When using "Sign in with Google" or "Sign in with GitHub", you are also subject to the terms of service of those respective platforms regarding your account authentication.
+When using "Sign in with Google", "Sign in with GitHub", or "Sign in with Microsoft", you are also subject to the terms of service of those respective platforms regarding your account authentication.
 
 ## 2. Academic Integrity Code
 
