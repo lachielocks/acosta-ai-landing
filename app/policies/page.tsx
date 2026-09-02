@@ -20,6 +20,12 @@ const cards = [
       "The rules around acceptable use, billing, content ownership, and platform responsibilities.",
     href: "/terms",
   },
+  {
+    title: "Enterprise Terms",
+    description:
+      "Terms for schools, districts, and institutions licensing Acosta AI through Transnology.",
+    href: "/enterprise-terms",
+  },
 ];
 
 export default function PoliciesPage() {
@@ -40,11 +46,11 @@ export default function PoliciesPage() {
             Trust Centre
           </h1>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Transparency is at the core of Acosta AI. Explore our commitments to privacy, safety guardrails, and terms of use.
+            Transparency is at the core of Acosta AI. Explore our commitments to privacy, safety guardrails, consumer terms, and enterprise agreements.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {cards.map((card) => (
             <Link
               key={card.title}

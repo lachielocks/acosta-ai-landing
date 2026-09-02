@@ -15,6 +15,7 @@ const footerLinks = {
   Trust: [
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
+    { name: "Enterprise Terms", href: "/enterprise-terms" },
     { name: "Safety Features", href: "/safety" },
     { name: "Status", href: "https://status.acosta-ai.com" },
   ],
