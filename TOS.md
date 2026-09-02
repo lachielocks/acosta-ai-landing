@@ -1,7 +1,10 @@
 # Terms of Service
 
-**Acosta AI** (a Transnology company)  
-**Last updated:** July 2026
+**Acosta AI** (a Transnology company)
+
+**Version:** 1.0  
+**Effective date:** 1 July 2026  
+**Applies to:** Individual users who create or use a consumer Acosta AI account at platform.acosta-ai.com
 
 > The rules governing acceptable use, billing, intellectual property, and academic honesty expectations.
 

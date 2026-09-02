@@ -1,7 +1,10 @@
 # Privacy Policy
 
-**Acosta AI** (a Transnology company)  
-**Last updated:** July 2026
+**Acosta AI** (a Transnology company)
+
+**Version:** 1.0  
+**Effective date:** 1 July 2026  
+**Applies to:** Individual users of Acosta AI, including students, teachers, and other account holders using the platform.
 
 > Your thoughts and data are personal. This policy outlines exactly what we collect, how it's processed, who helps us process it, and your absolute right to privacy.
 

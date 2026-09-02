@@ -2,17 +2,39 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
+export interface PolicyMeta {
+  version: string;
+  effectiveDate: string;
+  appliesTo: string;
+}
+
+export function PolicyMetaBlock({ meta }: { meta: PolicyMeta }) {
+  return (
+    <div className="space-y-1 text-sm text-muted-foreground">
+      <p>
+        <strong className="text-foreground">Version:</strong> {meta.version}
+      </p>
+      <p>
+        <strong className="text-foreground">Effective date:</strong> {meta.effectiveDate}
+      </p>
+      <p>
+        <strong className="text-foreground">Applies to:</strong> {meta.appliesTo}
+      </p>
+    </div>
+  );
+}
+
 interface PolicyPageShellProps {
   title: string;
-  lastUpdated: string;
   summary: string;
+  meta: PolicyMeta;
   children: ReactNode;
 }
 
 export function PolicyPageShell({
   title,
-  lastUpdated,
   summary,
+  meta,
   children,
 }: PolicyPageShellProps) {
   return (
@@ -24,9 +46,7 @@ export function PolicyPageShell({
         </Link>
 
         <header className="mt-6 mb-10 space-y-4">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            Last updated: {lastUpdated}
-          </p>
+          <PolicyMetaBlock meta={meta} />
           <h1 className="text-4xl md:text-6xl font-display tracking-tight">{title}</h1>
           <p className="max-w-3xl text-lg text-muted-foreground leading-relaxed italic">"{summary}"</p>
         </header>

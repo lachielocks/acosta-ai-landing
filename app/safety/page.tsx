@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { POLICY_LAST_UPDATED, SAFETY_SUMMARY, SafetyPolicyContent } from "@/components/legal/policy-content";
+import { SAFETY_META, SAFETY_SUMMARY, SafetyPolicyContent } from "@/components/legal/policy-content";
 import { PolicyPageShell } from "@/components/legal/policy-page-shell";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export default function SafetyPage() {
   return (
     <PolicyPageShell
       title="Safety Features"
-      lastUpdated={POLICY_LAST_UPDATED}
+      meta={SAFETY_META}
       summary={SAFETY_SUMMARY}
     >
       <SafetyPolicyContent />

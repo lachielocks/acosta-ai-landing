@@ -12,9 +12,15 @@ import {
   Users,
 } from "lucide-react";
 import { PolicyPoint, SectionHeader } from "@/components/legal/policy-content";
+import type { PolicyMeta } from "@/components/legal/policy-page-shell";
 
-export const ENTERPRISE_TERMS_LAST_UPDATED = "September 2026";
-export const ENTERPRISE_TERMS_VERSION = "1.0";
+export const ENTERPRISE_TERMS_META: PolicyMeta = {
+  version: "1.0",
+  effectiveDate: "2 September 2026",
+  appliesTo:
+    "Schools, TAFEs, universities, districts, and other institutions that license Acosta AI through Transnology.",
+};
+
 export const ENTERPRISE_TERMS_SUMMARY =
   "Terms governing Acosta AI for schools, districts, and institutional customers licensing through Transnology.";
 
@@ -95,19 +101,6 @@ function MailLink({ email }: { email: string }) {
 export function EnterpriseTermsContent() {
   return (
     <>
-      <div className="mb-8 space-y-2 text-sm text-muted-foreground">
-        <p>
-          <strong className="text-foreground">Version:</strong> {ENTERPRISE_TERMS_VERSION}
-        </p>
-        <p>
-          <strong className="text-foreground">Effective date:</strong> 2 September 2026
-        </p>
-        <p>
-          <strong className="text-foreground">Applies to:</strong> Schools, TAFEs, universities, districts, and other
-          institutions that license Acosta AI through Transnology
-        </p>
-      </div>
-
       <p className="mb-8 text-xl leading-relaxed text-muted-foreground">
         These Enterprise Terms of Service (<strong className="text-foreground">Enterprise Terms</strong>) govern the
         provision of Acosta AI to your organisation under a school, district, pilot, or enterprise agreement with{" "}

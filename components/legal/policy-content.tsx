@@ -17,7 +17,29 @@ import {
   UserCheck,
 } from "lucide-react";
 
-export const POLICY_LAST_UPDATED = "July 2026";
+import type { PolicyMeta } from "@/components/legal/policy-page-shell";
+
+export const PRIVACY_META: PolicyMeta = {
+  version: "1.0",
+  effectiveDate: "1 July 2026",
+  appliesTo:
+    "Individual users of Acosta AI, including students, teachers, and other account holders using the platform.",
+};
+
+export const TERMS_META: PolicyMeta = {
+  version: "1.0",
+  effectiveDate: "1 July 2026",
+  appliesTo:
+    "Individual users who create or use a consumer Acosta AI account at platform.acosta-ai.com.",
+};
+
+export const SAFETY_META: PolicyMeta = {
+  version: "1.0",
+  effectiveDate: "1 July 2026",
+  appliesTo:
+    "All users of Acosta AI, including consumer accounts and Authorised Users under enterprise arrangements.",
+};
+
 export const PRIVACY_SUMMARY =
   "Your thoughts and data are personal. This policy outlines exactly what we collect, how it's processed, who helps us process it, and your absolute right to privacy.";
 export const TERMS_SUMMARY =

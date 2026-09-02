@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import {
-  ENTERPRISE_TERMS_LAST_UPDATED,
+  ENTERPRISE_TERMS_META,
   ENTERPRISE_TERMS_SUMMARY,
   EnterpriseTermsContent,
 } from "@/components/legal/enterprise-terms-content";
@@ -16,7 +16,7 @@ export default function EnterpriseTermsPage() {
   return (
     <PolicyPageShell
       title="Enterprise Terms of Service"
-      lastUpdated={ENTERPRISE_TERMS_LAST_UPDATED}
+      meta={ENTERPRISE_TERMS_META}
       summary={ENTERPRISE_TERMS_SUMMARY}
     >
       <EnterpriseTermsContent />
