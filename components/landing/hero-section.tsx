@@ -62,6 +62,34 @@ export function HeroSection() {
           </div>
         </Reveal>
 
+        <Reveal delay={0.24} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
+          <form 
+            className="mt-8 mx-auto flex w-full max-w-lg items-center rounded-full border border-white/20 bg-white/5 p-1.5 backdrop-blur-md transition-all focus-within:border-white/40 focus-within:bg-white/10 hover:border-white/30"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              const prompt = formData.get('prompt') as string;
+              if (prompt.trim()) {
+                window.open(`${PLATFORM_URL}/?prompt=${encodeURIComponent(prompt)}&send=true`, '_blank');
+              }
+            }}
+          >
+            <input
+              name="prompt"
+              type="text"
+              placeholder="What do you want to learn today?"
+              className="w-full bg-transparent px-5 py-2.5 text-base text-white placeholder-white/50 outline-none"
+              required
+            />
+            <button
+              type="submit"
+              className="flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:scale-[1.02]"
+            >
+              Ask <ArrowRight className="h-4 w-4" />
+            </button>
+          </form>
+        </Reveal>
+
         <div className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-3">
           {[
             { value: "Classes", label: "Assign & track tasks" },
