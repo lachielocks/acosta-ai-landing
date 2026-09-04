@@ -21,21 +21,21 @@ import type { PolicyMeta } from "@/components/legal/policy-page-shell";
 
 export const PRIVACY_META: PolicyMeta = {
   version: "1.0",
-  effectiveDate: "1 July 2026",
+  effectiveDate: "4 September 2026",
   appliesTo:
     "Individual users of Acosta AI, including students, teachers, and other account holders using the platform.",
 };
 
 export const TERMS_META: PolicyMeta = {
   version: "1.0",
-  effectiveDate: "1 July 2026",
+  effectiveDate: "4 September 2026",
   appliesTo:
     "Individual users who create or use a consumer Acosta AI account at platform.acosta-ai.com.",
 };
 
 export const SAFETY_META: PolicyMeta = {
   version: "1.0",
-  effectiveDate: "1 July 2026",
+  effectiveDate: "4 September 2026",
   appliesTo:
     "All users of Acosta AI, including consumer accounts and Authorised Users under enterprise arrangements.",
 };
@@ -109,31 +109,38 @@ export function PrivacyPolicyContent() {
       <SectionHeader icon={Database} title="1. Information We Collect" />
       <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2">
         <PolicyCard title="Identity Data">
-          Email, display name, and Year Level/Role. We use this strictly for authentication and to tailor the AI&apos;s complexity (e.g., Year 7 vs University).
+          When you register for an account, we collect basic profile information, including your name and email address. We require your year level (e.g., Year 7-12, University) and your location (e.g., NSW, Australia) during onboarding to ensure curriculum and region-appropriate responses.
         </PolicyCard>
         <PolicyCard title="Third-Party Logins">
-          If you sign in via Google, GitHub, or Microsoft, we store your email and public profile info provided by them for authentication. We do not access your repositories, mailbox, or other private data on those platforms.
+          You may choose to sign in using third-party identity providers such as Google, GitHub, or Microsoft. When you do, we receive your authentication token and basic profile information from these providers.
         </PolicyCard>
         <PolicyCard title="Guest Sessions">
-          For Guest users, we assign a temporary anonymous ID. No personal contact information is collected unless you choose to upgrade to a full account.
+          You can use certain features (like Fast Chat and Live Quiz) without an account. Data generated during a Guest session is linked to a temporary identifier. If you clear your browser cache, switch devices, or do not convert to a permanent account, this data will be lost and cannot be recovered.
         </PolicyCard>
         <PolicyCard title="Location (Optional)">
-          Location is completely optional and is never stored. If you choose to share it, we use it only in the moment for weather context, localised responses, and during onboarding to help set your curriculum location. You can skip it entirely.
+          While we collect a general location (like State/Country) during onboarding for curriculum mapping, we may also request permission to access your local weather context to power the Home Dashboard&apos;s weather widget. This data is not permanently stored.
         </PolicyCard>
         <PolicyCard title="Generated Content">
-          Chat logs, study plans, generated images, exam papers, flashcards, class assignments, and mind dumps. These are stored in your private Firebase/Firestore workspace until you delete them. Images uploaded for analysis are processed to answer your request and are not retained for training.
+          We store the content you actively create and interact with on the platform. This includes:
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            <li>Chat transcripts and uploaded files/attachments</li>
+            <li>Flashcard decks</li>
+            <li>Mind Maps, Timelines, Documents, and Generated Code in the Canvas</li>
+            <li>Study plans and Exam Simulation responses</li>
+            <li>Images generated via our AI models</li>
+          </ul>
         </PolicyCard>
-        <PolicyCard title="Classes Metadata">
-          If you use Acosta Classes, we store class membership, assigned tasks, and completion status so teachers and students can collaborate. Assignment content and student work are treated as private educational content — processed to deliver the feature, not to train models.
+        <PolicyCard title="Classes & Subjects Metadata">
+          We store your selected subjects and curriculum preferences to tailor study tools and explanations directly to what you are currently learning.
         </PolicyCard>
-        <PolicyCard title="Guardian Metadata">
-          We monitor interaction frequency and session duration to detect burnout/fatigue. We do <strong>not</strong> read your message content for this purpose — only in-platform activity signals.
+        <PolicyCard title="Guardian & Memory Metadata">
+          We track session length and inactivity timeouts (defaulting to 30 minutes) to power the Acosta Guardian wellness system. If Memory is enabled, the AI extracts key facts about you to personalize future conversations, which you can review and delete at any time.
         </PolicyCard>
         <PolicyCard title="Billing Information">
-          Processed securely by Stripe. Acosta AI never sees or stores your full credit card number or bank details.
+          If you upgrade to Go or Max, your payment details (credit card, billing address) are collected and securely processed directly by Stripe. We do not store full credit card numbers on our servers.
         </PolicyCard>
         <PolicyCard title="Technical Logs & Preferences">
-          Basic request metadata (timestamps, approximate region, error codes) may be collected by our hosting and security providers to keep the service reliable. If you are signed in, we may set a limited preference cookie (display name and plan) on our shared domain so the marketing site can personalise links. These are not used for advertising profiles or AI training.
+          We store your application preferences (such as Dark/Light theme, LiquidEther background toggles, and Spotlight cursor preferences) and collect basic telemetry data for security and platform improvements.
         </PolicyCard>
       </div>
 
