@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MousePointerClick } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
@@ -83,9 +83,9 @@ export function HeroSection() {
             />
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:scale-[1.02]"
+              className="flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:scale-[1.02] cursor-pointer"
             >
-              Ask <ArrowRight className="h-4 w-4" />
+              Ask <MousePointerClick className="h-4 w-4" />
             </button>
           </form>
         </Reveal>
