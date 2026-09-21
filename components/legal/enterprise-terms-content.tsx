@@ -111,8 +111,8 @@ export function EnterpriseTermsContent() {
       <p className="mb-4 text-base leading-relaxed text-muted-foreground">
         Acosta AI is an education-first AI learning platform operated by Transnology. The consumer-facing service is
         available at{" "}
-        <a href="https://platform.acosta-ai.com" className="link-wipe font-medium text-primary">
-          platform.acosta-ai.com
+        <a href="https://app.acosta-ai.com" className="link-wipe font-medium text-primary">
+          app.acosta-ai.com
         </a>
         . Marketing and general policies are published at{" "}
         <a href="https://acosta-ai.com" className="link-wipe font-medium text-primary">

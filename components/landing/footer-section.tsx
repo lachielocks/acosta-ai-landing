@@ -3,7 +3,7 @@
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { ArrowUpRight } from "lucide-react";
 import { usePlatformUser } from "@/hooks/use-platform-user";
-import { getPlatformCtaLabels } from "@/lib/platform-user";
+import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
 const footerLinks = {
   Product: [
@@ -33,7 +33,7 @@ export function FooterSection() {
   const isExternalPageLink = (href: string) => href.startsWith("http");
   const platformLink = {
     name: labels.primaryShort,
-    href: "https://platform.acosta-ai.com",
+    href: PLATFORM_URL,
   };
 
   return (

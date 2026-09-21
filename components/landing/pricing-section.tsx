@@ -351,7 +351,7 @@ export function PricingSection() {
             </span>
           </div>
           <a href={PLATFORM_URL} target="_blank" rel="noreferrer" className="link-wipe text-sm hover:text-foreground transition-colors">
-            {user ? labels.primaryShort : "Open platform"}
+            {user ? labels.primaryShort : "Open app"}
           </a>
         </div>
       </div>

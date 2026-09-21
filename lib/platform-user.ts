@@ -1,4 +1,5 @@
-export const PLATFORM_URL = "https://platform.acosta-ai.com";
+export const APP_URL = "https://app.acosta-ai.com";
+export const PLATFORM_URL = APP_URL;
 
 export function getPlatformSubscriptionUrl(plan: PlatformPlan): string {
   if (plan === "free") return PLATFORM_URL;
@@ -6,7 +7,7 @@ export function getPlatformSubscriptionUrl(plan: PlatformPlan): string {
 }
 
 /**
- * Set by platform.acosta-ai.com on `.acosta-ai.com`:
+ * Set by app.acosta-ai.com on `.acosta-ai.com`:
  * `{ "displayName": "Lachie", "plan": "go" }`
  *
  * `plan` accepts: `free`, `go`, `max` (case-insensitive; `go_monthly` etc. also work).
@@ -100,9 +101,9 @@ export function getPlatformCtaLabels(user: PlatformUser | null) {
     return {
       nav: `Hi, ${firstName}`,
       planLabel: null,
-      primary: "Open Platform",
-      primaryShort: "Open Platform",
-      cta: "Open Platform",
+      primary: "Open App",
+      primaryShort: "Open App",
+      cta: "Open App",
       pricingIntro: null,
     };
   }
@@ -111,8 +112,8 @@ export function getPlatformCtaLabels(user: PlatformUser | null) {
     return {
       nav: `Hi, ${firstName}`,
       planLabel,
-      primary: "Open Platform",
-      primaryShort: "Open Platform",
+      primary: "Open App",
+      primaryShort: "Open App",
       cta: "Upgrade to Go",
       pricingIntro: "You're on Free — pick a plan when you're ready to unlock more.",
     };
@@ -122,9 +123,9 @@ export function getPlatformCtaLabels(user: PlatformUser | null) {
     return {
       nav: `Hi, ${firstName}`,
       planLabel,
-      primary: "Open Platform",
-      primaryShort: "Open Platform",
-      cta: "Open Platform",
+      primary: "Open App",
+      primaryShort: "Open App",
+      cta: "Open App",
       pricingIntro: "You're on Go — Max unlocks unlimited usage across every tool.",
     };
   }
@@ -132,9 +133,9 @@ export function getPlatformCtaLabels(user: PlatformUser | null) {
   return {
     nav: `Hi, ${firstName}`,
     planLabel,
-    primary: "Open Platform",
-    primaryShort: "Open Platform",
-    cta: "Open Platform",
+    primary: "Open App",
+    primaryShort: "Open App",
+    cta: "Open App",
     pricingIntro: "You're on Max — everything unlimited, already included.",
   };
 }
@@ -145,13 +146,13 @@ export function getPricingCardCta(
   defaultCta: string
 ): string {
   if (!user?.plan) return defaultCta;
-  if (user.plan === cardPlan) return "Open Platform";
+  if (user.plan === cardPlan) return "Open App";
 
   if (PLAN_ORDER[cardPlan] > PLAN_ORDER[user.plan]) {
     return cardPlan === "go" ? "Upgrade to Go" : "Upgrade to Max";
   }
 
-  return "Open Platform";
+  return "Open App";
 }
 
 export function isCurrentPlan(user: PlatformUser | null, cardPlan: PlatformPlan): boolean {

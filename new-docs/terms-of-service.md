@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Effective date:** 4 September 2026  
-**Applies to:** Individual users who create or use a consumer Acosta AI account at platform.acosta-ai.com.
+**Applies to:** Individual users who create or use a consumer Acosta AI account at app.acosta-ai.com.
 
 *“The rules governing acceptable use, billing, intellectual property, and academic honesty expectations.”*
 

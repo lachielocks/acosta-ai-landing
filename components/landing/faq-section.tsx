@@ -134,12 +134,12 @@ export function FaqSection() {
                       <p className="mt-3 text-muted-foreground leading-relaxed">
                         You can sign up and start using it right now at{" "}
                         <a
-                          href="https://platform.acosta-ai.com"
+                          href="https://app.acosta-ai.com"
                           target="_blank"
                           rel="noreferrer"
                           className="link-wipe hover:text-foreground"
                         >
-                          platform.acosta-ai.com
+                          app.acosta-ai.com
                         </a>
                         .
                       </p>

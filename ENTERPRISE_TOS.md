@@ -14,7 +14,7 @@
 
 These Enterprise Terms of Service (**Enterprise Terms**) govern the provision of Acosta AI to your organisation under a school, district, pilot, or enterprise agreement with **Transnology** (**we**, **us**, **our**).
 
-Acosta AI is an education-first AI learning platform operated by Transnology. The consumer-facing service is available at [platform.acosta-ai.com](https://platform.acosta-ai.com). Marketing and general policies are published at [acosta-ai.com](https://acosta-ai.com).
+Acosta AI is an education-first AI learning platform operated by Transnology. The consumer-facing service is available at [app.acosta-ai.com](https://app.acosta-ai.com). Marketing and general policies are published at [acosta-ai.com](https://acosta-ai.com).
 
 If your organisation has signed an order form, quote, purchase order, or other written agreement with us (**Commercial Agreement**), that document controls where it conflicts with these Enterprise Terms. Otherwise, these Enterprise Terms apply.
 

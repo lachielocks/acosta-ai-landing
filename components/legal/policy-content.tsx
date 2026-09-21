@@ -30,7 +30,7 @@ export const TERMS_META: PolicyMeta = {
   version: "1.0",
   effectiveDate: "4 September 2026",
   appliesTo:
-    "Individual users who create or use a consumer Acosta AI account at platform.acosta-ai.com.",
+    "Individual users who create or use a consumer Acosta AI account at app.acosta-ai.com.",
 };
 
 export const SAFETY_META: PolicyMeta = {

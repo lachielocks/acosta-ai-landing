@@ -7,9 +7,9 @@ import {
 } from "@/lib/platform-user";
 
 /**
- * Reads the shared `acosta_user` cookie set by platform.acosta-ai.com
+ * Reads the shared `acosta_user` cookie set by app.acosta-ai.com
  * (Domain=.acosta-ai.com). Re-reads on focus / visibility so returning from
- * the platform updates CTAs without a hard refresh.
+ * the app updates CTAs without a hard refresh.
  */
 export function usePlatformUser() {
   const [user, setUser] = useState<PlatformUser | null>(null);
