@@ -2,8 +2,11 @@
 
 import { ArrowRight, MousePointerClick } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import TechText from "@/components/ui/tech-text";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
+
+const HERO_TITLE = "Learn smarter.";
 
 export function HeroSection() {
   const { user } = usePlatformUser();
@@ -28,12 +31,28 @@ export function HeroSection() {
         </Reveal>
 
         <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
-          <h1 className="font-display text-5xl leading-[0.95] tracking-tight sm:text-6xl lg:text-8xl">
-            Learn{" "}
-            <span className="bg-gradient-to-r from-[#93c5fd] via-[#a78bfa] to-[#22d3ee] bg-clip-text text-transparent">
-              smarter.
-            </span>
-          </h1>
+          <h1 className="sr-only">{HERO_TITLE}</h1>
+          <div className="font-display mx-auto h-[120px] w-full max-w-4xl sm:h-[150px] lg:h-[180px]">
+            <TechText
+              text={HERO_TITLE}
+              fontFamily="var(--font-instrument-serif), 'Instrument Serif', Georgia, serif"
+              fontWeight={400}
+              fontSize={140}
+              letterSpacing={-0.04}
+              color="#f8fafc"
+              accentColor="#93c5fd"
+              reveal="letter"
+              dashLength={3}
+              dashGap={3}
+              strokeWidth={1.25}
+              specks={10}
+              selection
+              labels
+              draggable
+              sweep
+              speed={0.85}
+            />
+          </div>
         </Reveal>
 
         <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
