@@ -32,12 +32,11 @@ export function HeroSection() {
 
         <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <h1 className="sr-only">{HERO_TITLE}</h1>
-          <div className="font-display mx-auto h-[120px] w-full max-w-4xl sm:h-[150px] lg:h-[180px]">
+          <div className="font-display mx-auto h-[140px] w-full max-w-5xl sm:h-[180px] lg:h-[220px]">
             <TechText
               text={HERO_TITLE}
-              fontFamily="var(--font-instrument-serif), 'Instrument Serif', Georgia, serif"
               fontWeight={400}
-              fontSize={140}
+              fontSize={160}
               letterSpacing={-0.04}
               color="#f8fafc"
               accentColor="#93c5fd"
