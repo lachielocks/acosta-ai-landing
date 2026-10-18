@@ -50,17 +50,8 @@ export function Navigation() {
       rel="noopener noreferrer"
       className="group relative inline-flex h-[38px] sm:h-[44px] items-center gap-1.5 rounded-full border border-white/10 bg-[#26232e]/70 px-3.5 sm:px-4 text-xs sm:text-sm font-medium text-white shadow-md backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-[#34303f] hover:scale-[1.02] active:scale-[0.98]"
     >
-      <span className="flex flex-col items-start leading-none gap-0.5">
-        <span className="inline-flex items-center gap-1">
-          {labels.nav}
-          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </span>
-        {labels.planLabel && (
-          <span className="text-[9px] font-mono uppercase tracking-wider text-white/50">
-            {labels.planLabel}
-          </span>
-        )}
-      </span>
+      <span>{labels.nav}</span>
+      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
     </a>
   ) : (
     <a
