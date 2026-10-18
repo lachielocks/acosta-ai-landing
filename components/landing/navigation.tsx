@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import PillNav from "@/components/ui/PillNav";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePlatformUser } from "@/hooks/use-platform-user";
@@ -28,6 +29,7 @@ export function Navigation() {
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
   const isSignedIn = Boolean(user);
+  const [activeHref, setActiveHref] = useState("");
 
   const navItems = [
     { label: "Classes", href: "#classes" },
@@ -42,6 +44,83 @@ export function Navigation() {
       iconPosition: "end",
     },
   ];
+
+  useEffect(() => {
+    const sectionIds = ["classes", "features", "testimonials", "pricing", "faq"];
+
+    const handleScroll = () => {
+      // 1. Top of page check (Hero section)
+      const classesEl = document.getElementById("classes");
+      if (classesEl) {
+        const classesRect = classesEl.getBoundingClientRect();
+        if (classesRect.top > 260) {
+          setActiveHref("");
+          return;
+        }
+      } else if (window.scrollY < 200) {
+        setActiveHref("");
+        return;
+      }
+
+      // 2. Bottom of page check (past FAQ / Footer)
+      const isNearBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
+      const faqEl = document.getElementById("faq");
+      const pastFaq = faqEl ? faqEl.getBoundingClientRect().bottom < 80 : false;
+
+      if (isNearBottom || pastFaq) {
+        setActiveHref("");
+        return;
+      }
+
+      // 3. Find section currently centered in reading focal view
+      const focalPoint = Math.min(260, window.innerHeight * 0.35);
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= focalPoint && rect.bottom > focalPoint) {
+          setActiveHref(`#${id}`);
+          return;
+        }
+      }
+
+      // 4. Fallback for section transitions
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= focalPoint) {
+          setActiveHref(`#${id}`);
+          return;
+        }
+      }
+    };
+
+    let rafId = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const handleItemClick = (item: { href?: string }) => {
+    if (item.href?.startsWith("#")) {
+      setActiveHref(item.href);
+    }
+  };
 
   const ctaButton = isSignedIn ? (
     <a
@@ -73,6 +152,8 @@ export function Navigation() {
           logoAlt="Acosta AI"
           logoHref="#"
           items={navItems}
+          activeHref={activeHref}
+          onItemClick={handleItemClick}
           action={ctaButton}
           linkComponent={NavLink}
           itemStyle="pill"
