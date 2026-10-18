@@ -161,7 +161,8 @@ const PillNav = ({
   onMenuToggle,
   ariaLabel = 'Main',
   className = '',
-  style
+  style,
+  action
 }) => {
   const panelId = useId();
   const rootRef = useRef(null);
@@ -173,6 +174,7 @@ const PillNav = ({
   const logoRef = useRef(null);
   const markRef = useRef(null);
   const toggleRef = useRef(null);
+  const actionRef = useRef(null);
   const panelRef = useRef(null);
   const measureRef = useRef(null);
   const measureListRef = useRef(null);
@@ -538,13 +540,14 @@ const PillNav = ({
       const available =
         parent.clientWidth - (parseFloat(styles.paddingLeft) || 0) - (parseFloat(styles.paddingRight) || 0);
       const listWidth = measureListRef.current?.offsetWidth ?? 0;
+      const actionWidth = actionRef.current?.offsetWidth ?? 0;
       const height = readVar(root, '--pn-h');
       const pad = readVar(root, '--pn-pad');
       const gap = readVar(root, '--pn-gap');
       const inner = readVar(root, '--pn-inner');
       const need = joined
-        ? pad * 2 + (hasLogo ? inner + 2 : 0) + listWidth
-        : (hasLogo ? height + gap : 0) + listWidth + pad * 2;
+        ? pad * 2 + (hasLogo ? inner + 2 : 0) + listWidth + (action ? actionWidth + gap : 0)
+        : (hasLogo ? height + gap : 0) + listWidth + pad * 2 + (action ? actionWidth + gap : 0);
       const next = need > available + 0.5;
       if (introRef.current && next !== collapsed) pendingRef.current = next;
       setCollapsed(next);
@@ -554,7 +557,7 @@ const PillNav = ({
     if (root.parentElement) observer.observe(root.parentElement);
     observer.observe(measureEl);
     return () => observer.disconnect();
-  }, [collapse, collapsed, joined, hasLogo, size]);
+  }, [collapse, collapsed, joined, hasLogo, size, action]);
 
   useLayoutEffect(() => {
     const root = rootRef.current;
@@ -584,6 +587,7 @@ const PillNav = ({
       );
     };
     pop(logoRef.current, 0);
+    if (actionRef.current) pop(actionRef.current, 150);
     if (collapsed) {
       pop(toggleRef.current, 120);
       return;
@@ -716,8 +720,9 @@ const PillNav = ({
 
   const face = item => (
     <>
-      {item.icon}
-      {item.label}
+      {item.iconPosition !== 'end' && item.icon}
+      <span>{item.label}</span>
+      {item.iconPosition === 'end' && item.icon}
     </>
   );
 
@@ -798,22 +803,31 @@ const PillNav = ({
         </div>
       )}
 
+      {!collapsed && action && (
+        <div ref={actionRef} className="pill-nav__action">
+          {action}
+        </div>
+      )}
+
       {collapsed && (
-        <button
-          ref={toggleRef}
-          type="button"
-          className={[TOGGLE, joined ? TOGGLE_BARE : SURFACE].join(' ')}
-          aria-expanded={open}
-          aria-controls={panelId}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={toggle}
-        >
-          <span className={BURGER} aria-hidden="true">
-            <span className={LINE_TOP} />
-            <span className={LINE_BOTTOM} />
-          </span>
-          {!joined && <span className={RIM} />}
-        </button>
+        <div ref={actionRef} className="pill-nav__toggle-wrapper">
+          {action}
+          <button
+            ref={toggleRef}
+            type="button"
+            className={[TOGGLE, joined ? TOGGLE_BARE : SURFACE].join(' ')}
+            aria-expanded={open}
+            aria-controls={panelId}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={toggle}
+          >
+            <span className={BURGER} aria-hidden="true">
+              <span className={LINE_TOP} />
+              <span className={LINE_BOTTOM} />
+            </span>
+            {!joined && <span className={RIM} />}
+          </button>
+        </div>
       )}
 
       {collapsed && panelShown && (

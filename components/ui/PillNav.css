@@ -390,6 +390,23 @@
   padding-top: calc(var(--pn-h) + 4px);
 }
 
+.pill-nav__action {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+
+.pill-nav__toggle-wrapper {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pn-gap);
+  flex: none;
+}
+
 .pill-nav__menu {
   display: flex;
   flex-direction: column;
@@ -402,6 +419,7 @@
 .pill-nav__row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   width: 100%;
   height: calc(var(--pn-h) + 2px);
