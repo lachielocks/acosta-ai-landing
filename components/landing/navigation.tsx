@@ -32,7 +32,6 @@ export function Navigation() {
   const [activeHref, setActiveHref] = useState("");
 
   const navItems = [
-    { label: "Classes", href: "#classes" },
     { label: "Features", href: "#features" },
     { label: "Testimonials", href: "#testimonials" },
     { label: "Pricing", href: "#pricing" },
@@ -46,14 +45,14 @@ export function Navigation() {
   ];
 
   useEffect(() => {
-    const sectionIds = ["classes", "features", "testimonials", "pricing", "faq"];
+    const sectionIds = ["features", "testimonials", "pricing", "faq"];
 
     const handleScroll = () => {
       // 1. Top of page check (Hero section)
-      const classesEl = document.getElementById("classes");
-      if (classesEl) {
-        const classesRect = classesEl.getBoundingClientRect();
-        if (classesRect.top > 260) {
+      const firstEl = document.getElementById("features");
+      if (firstEl) {
+        const firstRect = firstEl.getBoundingClientRect();
+        if (firstRect.top > 260) {
           setActiveHref("");
           return;
         }

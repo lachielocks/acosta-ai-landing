@@ -1,6 +1,5 @@
 import { Navigation } from "@/components/landing/navigation";
 import { HeroSection } from "@/components/landing/hero-section";
-import { ClassesSection } from "@/components/landing/classes-section";
 import { FeaturesSection } from "@/components/landing/features-section";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { PricingSection } from "@/components/landing/pricing-section";
@@ -22,7 +21,6 @@ export default function Home() {
       </div>
       <HeroSection />
       <div data-intro-hide>
-      <ClassesSection />
       <FeaturesSection />
       <TestimonialsSection />
       <PricingSection />

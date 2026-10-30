@@ -8,7 +8,6 @@ import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 const footerLinks = {
   Product: [
     { name: "Home", href: "#" },
-    { name: "Classes", href: "#classes" },
     { name: "Features", href: "#features" },
     { name: "Pricing", href: "#pricing" },
   ],

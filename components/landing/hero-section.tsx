@@ -14,10 +14,10 @@ export function HeroSection() {
   const secondaryCta =
     user?.plan === "free"
       ? { href: "#pricing", label: "Compare plans" }
-      : { href: "#classes", label: "See Classes" };
+      : { href: "#features", label: "See features" };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#060b18] via-[#0b132a] to-black text-white pt-36 pb-24 lg:pt-44 lg:pb-32">
+    <section className="relative overflow-x-clip bg-gradient-to-b from-[#060b18] via-[#0b132a] to-black text-white pt-36 pb-24 lg:pt-44 lg:pb-32">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-[#3b82f6]/20 blur-[130px]" />
         <div className="absolute bottom-0 right-[10%] h-[360px] w-[360px] rounded-full bg-[#6366f1]/20 blur-[120px]" />
@@ -99,7 +99,7 @@ export function HeroSection() {
 
         <div className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-3">
           {[
-            { value: "Classes", label: "Assign & track tasks" },
+            { value: "Pause", label: "Daily puzzles for study breaks" },
             { value: "Study", label: "Flashcards, planner, quizzes" },
             { value: "Exam-ready", label: "Simulations and marking" },
           ].map((stat, i) => (
