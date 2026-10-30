@@ -20,15 +20,15 @@ import {
 import type { PolicyMeta } from "@/components/legal/policy-page-shell";
 
 export const PRIVACY_META: PolicyMeta = {
-  version: "1.0",
-  effectiveDate: "4 September 2026",
+  version: "1.1",
+  effectiveDate: "30 October 2026",
   appliesTo:
     "Individual users of Acosta AI, including students, teachers, and other account holders using the platform.",
 };
 
 export const TERMS_META: PolicyMeta = {
-  version: "1.0",
-  effectiveDate: "4 September 2026",
+  version: "1.1",
+  effectiveDate: "30 October 2026",
   appliesTo:
     "Individual users who create or use a consumer Acosta AI account at app.acosta-ai.com.",
 };
@@ -115,13 +115,13 @@ export function PrivacyPolicyContent() {
           When you register for an account, we collect basic profile information, including your name and email address. We require your year level (e.g., Year 7-12, University) and your location (e.g., NSW, Australia) during onboarding to ensure curriculum and region-appropriate responses.
         </PolicyCard>
         <PolicyCard title="Third-Party Logins">
-          You may choose to sign in using third-party identity providers such as Google, GitHub, or Microsoft. When you do, we receive your authentication token and basic profile information from these providers.
+          You can sign in with email and password, a magic link or emailed code, a phone number, a passkey, or Google, GitHub or Microsoft. If you use a third-party provider, we receive a sign-in token and basic profile details (like your name, email and profile picture) from them. If you add a phone number we store it for sign-in and two-factor authentication.
         </PolicyCard>
         <PolicyCard title="Guest Sessions">
-          You can use certain features (like Fast Chat and Live Quiz) without an account. Data generated during a Guest session is linked to a temporary identifier. If you clear your browser cache, switch devices, or do not convert to a permanent account, this data will be lost and cannot be recovered.
+          You can use Fast chat and join Live Quizzes without an account. Guests get a temporary anonymous identifier, and guest chats are saved in your browser on that device. Guest messages are still sent to our AI providers to generate replies. If you create an account, your guest chats and their files move into it. If you clear your browser data or switch devices first, they are lost and cannot be recovered.
         </PolicyCard>
         <PolicyCard title="Location (Optional)">
-          While we collect a general location (like State/Country) during onboarding for curriculum mapping, we may also request permission to access your local weather context to power the Home Dashboard&apos;s weather widget. This data is not permanently stored.
+          We ask for a general location (like state and country) during onboarding for curriculum mapping. If you tap the Home weather widget, your browser asks for permission to share your location. Your coordinates are then sent from your device to Open-Meteo (for the weather) and BigDataCloud (to show your town&apos;s name). We don&apos;t store the result. It is kept in memory only until you close the page.
         </PolicyCard>
         <PolicyCard title="Generated Content">
           We store the content you actively create and interact with on the platform. This includes:
@@ -130,7 +130,9 @@ export function PrivacyPolicyContent() {
             <li>Flashcard decks</li>
             <li>Mind Maps, Timelines, Documents, and Generated Code in the Canvas</li>
             <li>Study plans and Exam Simulation responses</li>
-            <li>Images generated via our AI models</li>
+            <li>Images and music generated via our AI models</li>
+            <li>Planner items, Mind Dump notes, Study Garden progress and study group content</li>
+            <li>Class tasks, submissions and Live Quiz answers</li>
           </ul>
         </PolicyCard>
         <PolicyCard title="Classes & Subjects Metadata">
@@ -139,11 +141,17 @@ export function PrivacyPolicyContent() {
         <PolicyCard title="Guardian & Memory Metadata">
           We track session length and inactivity timeouts (defaulting to 30 minutes) to power the Acosta Guardian wellness system. If Memory is enabled, the AI extracts key facts about you to personalize future conversations, which you can review and delete at any time.
         </PolicyCard>
+        <PolicyCard title="Connected Apps (Optional)">
+          If you connect Notion or another connected app (such as Craft or GitHub), we store the access token that app gives us so Acosta can read or write the pages you choose. If you share a YouTube link, we fetch that video&apos;s transcript. You can disconnect an app at any time in Settings.
+        </PolicyCard>
+        <PolicyCard title="Family Digest (Optional)">
+          If you turn on the weekly family digest, we store the email address you give us and send a weekly summary of your study activity to it. You can turn it off at any time in Settings.
+        </PolicyCard>
         <PolicyCard title="Billing Information">
-          If you upgrade to Go or Max, your payment details (credit card, billing address) are collected and securely processed directly by Stripe. We do not store full credit card numbers on our servers.
+          When you pay for Go, Max, a top-up pack, a gift, the Supporter badge or a donation, your payment details are collected and processed directly by Stripe. We keep a record of your plan and purchases, but we never store full card numbers.
         </PolicyCard>
         <PolicyCard title="Technical Logs & Preferences">
-          We store your application preferences (such as Dark/Light theme, LiquidEther background toggles, and Spotlight cursor preferences) and collect basic telemetry data for security and platform improvements.
+          We store your app preferences (such as theme, background and cursor settings) and usage counts for your plan limits. We use Vercel Web Analytics to understand page visits in aggregate, and collect basic technical logs for security and reliability.
         </PolicyCard>
       </div>
 
@@ -155,10 +163,10 @@ export function PrivacyPolicyContent() {
           </div>
           <div>
             <h4 className="mb-2 text-xl font-bold text-emerald-900 dark:text-emerald-100">
-              No Training on Your Data — Full Stop
+              No Training on Your Data
             </h4>
             <p className="m-0 mb-4 text-base leading-relaxed text-emerald-800 dark:text-emerald-200">
-              Acosta AI is powered by paid, enterprise-grade APIs from Google (Gemini), Anthropic (Claude), and OpenAI. Under these commercial API terms, providers process your prompts and files only to generate the immediate response. <strong>They do not use Acosta traffic to train, fine-tune, or improve their foundation models.</strong>
+              Acosta AI uses paid APIs from Google (Gemini), Anthropic (Claude) and OpenAI. Under their commercial API terms, these providers process your prompts and files to generate a response, and <strong>they do not use Acosta traffic to train their models.</strong>
             </p>
             <ul className="m-0 list-disc space-y-2 pl-5 text-base leading-relaxed text-emerald-800 dark:text-emerald-200">
               <li>We do not sell your chats, notes, or class content.</li>
@@ -175,28 +183,35 @@ export function PrivacyPolicyContent() {
       <PolicyPoint title="Vercel (Application Hosting)">
         The Acosta AI web application is hosted on Vercel&apos;s global edge network to ensure fast load times and reliable performance.
       </PolicyPoint>
-      <PolicyPoint title="Cloudflare (Edge, CDN & Security)">
-        We route traffic through Cloudflare to protect against DDoS attacks, enforce security rules, and cache static assets for speed.
-      </PolicyPoint>
       <PolicyPoint title="Google (Gemini)">
-        Gemini is our primary AI engine (powering Acosta 1 Flash, Core, Thinking, Voice, and Live). It processes chat interactions, structured outputs, and real-time audio.
+        Gemini is our main AI engine. It powers Fast, Core and Thinking chat, study tools, exam marking, image and music generation and read-aloud voice. Chats use Google Search grounding, so parts of your question may be used to search the web for up-to-date answers.
       </PolicyPoint>
       <PolicyPoint title="Anthropic (Claude) & OpenAI">
-        We use Claude and OpenAI (GPT-4o) as fallback models to ensure the platform remains highly available if our primary engine experiences downtime or rate limits.
+        We use Claude (Anthropic) and then OpenAI as backup models, so Acosta keeps working if Gemini is down or busy.
       </PolicyPoint>
-      <PolicyPoint title="Model Routing">
-        Depending on your request, our backend automatically routes prompts to the appropriate model (including Leonardo AI for image generation) to give you the best educational result.
+      <PolicyPoint title="Leonardo AI (Backup Image Generation)">
+        If our main image model can&apos;t complete a request, the image prompt is sent to Leonardo AI instead.
       </PolicyPoint>
       <PolicyPoint title="Stripe">
         All subscription payments, top-ups, and billing are managed by Stripe. You can review <a href="https://stripe.com/au/privacy" target="_blank" rel="noopener noreferrer" className="link-wipe link-wipe-flex font-medium text-primary">Stripe&apos;s Privacy Policy<ArrowUpRight className="h-3.5 w-3.5" /></a> for more details.
       </PolicyPoint>
 
+      <PolicyPoint title="Resend (Email)">
+        We use Resend to send emails such as sign-in codes, welcome and purchase emails, product updates youWe use Resend to send emails such as sign-in codes and the optional family digest.apos;ve opted into and the optional family digest. Resend stores your name, email address and email preferences for this.
+      </PolicyPoint>
+      <PolicyPoint title="Pusher (Live Quiz)">
+        Live Quiz uses Pusher to send questions and answers between players in real time. Quiz rooms are temporary and expire after about four hours.
+      </PolicyPoint>
+      <PolicyPoint title="Where your data is stored">
+        Our providers are based overseas, mainly in the United States, so your data may be stored and processed outside Australia. We choose providers with strong security practices and take reasonable steps under the Australian Privacy Principles to make sure your information is protected.
+      </PolicyPoint>
+
       <SectionHeader icon={Trash2} title="3. Data Retention & Deletion" />
       <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-        <strong>You have complete control.</strong> You can delete individual chat sessions, study plans, exam papers, or class-related items at any time via the interface. Deleting an item removes it permanently from our Firebase/Firestore systems.
+        <strong>You have complete control.</strong> You can delete chats, flashcard decks, study plans, exam sessions and other items yourself at any time. Deleting an item removes it from our Firebase databases. We keep the rest of your content for as long as your account is open.
       </p>
       <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-        If you delete your account, all associated personal data, including your generated content and profile, is wiped from our active databases.
+        To delete your whole account, email support@acosta-ai.com from the address on your account. We&apos;ll delete your profile and content from our active databases. Records we have to keep by law, such as payment records, may be kept for longer.
       </p>
       <div className="mb-8 rounded-2xl border border-foreground/15 bg-foreground/[0.03] p-6">
         <p className="m-0 text-sm text-muted-foreground">
@@ -204,9 +219,22 @@ export function PrivacyPolicyContent() {
         </p>
       </div>
 
-      <SectionHeader icon={UserCheck} title="4. Contact Us" />
+      <SectionHeader icon={GraduationCap} title="4. Students & Children" />
+      <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
+        Acosta AI is used by school students, including younger children. Users under 13 need a parent or guardian&apos;s consent to create an account. We only collect what we need to run the service, we never sell student data, and we don&apos;t use it for advertising. If you&apos;re a parent or guardian and want to see or delete your child&apos;s data, contact us below.
+      </p>
+      <p className="mb-12 text-lg leading-relaxed text-muted-foreground">
+        If you join a class, your teacher can see your name, the tasks you complete and your results for that class.
+      </p>
+
+      <SectionHeader icon={Scale} title="5. Your Rights" />
+      <p className="mb-12 text-lg leading-relaxed text-muted-foreground">
+        We handle personal information in line with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles. You can ask to access or correct the information we hold about you. If you have a complaint, contact us first and we&apos;ll aim to respond within 30 days. If you&apos;re not happy with our response, you can complain to the Office of the Australian Information Commissioner at oaic.gov.au.
+      </p>
+
+      <SectionHeader icon={UserCheck} title="6. Contact Us" />
       <p className="text-base text-muted-foreground">
-        For privacy inquiries, data export requests, or account deletion support, contact us at:{" "}
+        For privacy questions, access or correction requests, data exports or account deletion, contact Transnology at:{" "}
         <a href="mailto:support@acosta-ai.com" className="link-wipe font-medium text-primary">
           <strong>support@acosta-ai.com</strong>
         </a>
@@ -235,16 +263,16 @@ export function TermsPolicyContent() {
 
       <SectionHeader icon={UserCheck} title="1. Eligibility & Access" />
       <PolicyPoint title="Age Requirement">
-        Acosta AI is designed for high school (Years 7-12), university, K-6, and adult learners. Users under the age of 13 require parental or guardian consent to create a permanent account.
+        Acosta AI is for learners from primary school (K-6) through high school, university, TAFE and adult learning, and for teachers. Users under the age of 13 require parental or guardian consent to create an account. If you are under 18, please read these terms with a parent or guardian.
       </PolicyPoint>
       <PolicyPoint title="Account Security">
         You are responsible for safeguarding your login credentials. You must not share your account with others to bypass subscription limits. To protect your account on shared devices, we automatically log you out after inactivity (configurable in Settings, defaulting to 30 minutes).
       </PolicyPoint>
       <PolicyPoint title="Guest Accounts">
-        We provide limited Guest access for certain features (like Fast Chat and Live Quiz). Guest accounts are subject to strict usage limits (e.g., 10 messages per session) and do not retain data permanently.
+        You can use Fast chat and join Live Quizzes as a guest without an account. Core and Thinking modes and most study tools need an account. Guest chats are saved only in your browser until you sign up, at which point they move into your account.
       </PolicyPoint>
       <PolicyPoint title="Third-Party Authentication">
-        If you sign up using a third-party service (Google, Microsoft, GitHub, Notion OAuth), you agree to comply with their respective terms of service in addition to ours.
+        If you sign in with Google, Microsoft or GitHub, or connect Notion or another app, you also agree to that service&apos;s own terms.
       </PolicyPoint>
 
       <SectionHeader icon={GraduationCap} title="2. Academic Integrity Code" />
@@ -271,21 +299,21 @@ export function TermsPolicyContent() {
 
       <SectionHeader icon={CreditCard} title="3. Billing, Plans & Credits" />
       <PolicyPoint title="Subscriptions & Free Trials">
-        Acosta AI operates on a tiered system: Free, Go ($10/mo), and Max ($30/mo). Subscriptions are billed automatically on a recurring basis via Stripe. You may cancel at any time, but fees are generally non-refundable.
+        Acosta AI has three plans: Free, Go ($10/month or $105/year) and Max ($30/month or $315/year). All prices are in Australian dollars. Subscriptions renew automatically through Stripe until you cancel. You can cancel at any time and keep access until the end of your billing period. Fees are generally non-refundable, except where Australian Consumer Law says otherwise.
       </PolicyPoint>
       <PolicyPoint title="Support Us">
-        Acosta AI partners with Stripe Climate. A portion of revenue is directed to carbon removal technologies. We also offer voluntary donation options via the Transnology Foundation.
+        Acosta AI partners with Stripe Climate. A portion of revenue goes to carbon removal. You can also buy an optional Supporter badge (you choose the price), make a charity donation (minimum $2), or gift Go or Max to someone else for 1, 3 or 6 months. Gifts, Supporter payments and donations are one-off payments and are non-refundable.
       </PolicyPoint>
       <PolicyPoint title="Credit Top-Ups">
-        If you are on the Free or Go tier and exceed your monthly feature allowances (such as Exam Sim limits or Image Generation limits), you may purchase one-time Boosts (Top-Ups). These boosts are non-refundable and are consumed before monthly recurring quotas.
+        If you run out of a monthly allowance, you can buy a one-off $5 top-up pack (Exam, Image, Thinking, Study or Core). Packs are non-refundable, are used before your monthly allowance, and last as long as your account is open.
       </PolicyPoint>
       <PolicyPoint title="Usage Limits">
-        Usage limits reset monthly aligned to your billing cycle. Acosta AI tracks usage across categories including search, thinking models, image generation, and study tools.
+        Usage limits reset monthly in line with your billing cycle. We track usage for Core messages, Thinking messages, study tools, images and exam simulations. Some features, like music generation, are only on Max.
       </PolicyPoint>
       <p className="mt-6 text-base text-muted-foreground">
         For payment issues, contact{" "}
-        <a href="mailto:payments@acosta-ai.com" className="link-wipe font-medium text-primary">
-          payments@acosta-ai.com
+        <a href="mailto:billing@transnology.co" className="link-wipe font-medium text-primary">
+          billing@transnology.co
         </a>
         .
       </p>
@@ -298,7 +326,7 @@ export function TermsPolicyContent() {
         Acosta AI is an educational tool. It does not provide professional medical, legal, financial, or psychological advice.
       </PolicyPoint>
       <PolicyPoint title="Service Availability">
-        While we use robust edge networks and fallback model routing, we do not guarantee 100% uptime. Transnology is not liable for data loss, missed deadlines, or academic penalties resulting from platform unavailability.
+        While we use reliable hosting and backup AI models, we do not guarantee 100% uptime. Transnology is not liable for data loss, missed deadlines, or academic penalties resulting from platform unavailability.
       </PolicyPoint>
 
       <SectionHeader icon={Scale} title="5. Intellectual Property" />
@@ -307,6 +335,14 @@ export function TermsPolicyContent() {
       </PolicyPoint>
       <PolicyPoint title="Our Platform">
         Transnology retains all rights to the Acosta AI brand, UI, source code, prompt architecture, and proprietary algorithms (including the Guardian Service and Learning Mode protocols).
+      </PolicyPoint>
+
+      <SectionHeader icon={Scale} title="6. Governing Law & Contact" />
+      <PolicyPoint title="Governing Law">
+        These terms are governed by the laws of New South Wales, Australia. Nothing in these terms limits your rights under the Australian Consumer Law.
+      </PolicyPoint>
+      <PolicyPoint title="Contact">
+        Questions about these terms? Email support@acosta-ai.com.
       </PolicyPoint>
     </>
   );
