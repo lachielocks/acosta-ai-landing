@@ -58,7 +58,7 @@ export function HeroParticleTitle({ text }: { text: string }) {
           pointerRepel={30}
           repelRadius={150}
           idleDrift={1.3}
-          trigger="hover"
+          trigger="mount"
           fontSize="clamp(3rem, 12vw, 8rem)"
           fontWeight={800}
           fontFamily="inherit"
