@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "What are Acosta Classes?",
     answer:
-      "Classes are structured spaces where teachers create a class, invite students, and assign tasks — revision prompts, practice sets, project briefs, and more. Students open assignments inside Acosta and get the same guided, integrity-first tutoring experience, scoped to what their teacher set.",
+      "Classes are spaces where teachers create a class, invite students with a code, and assign tasks like flashcards, exams, lesson wrap-ups and class materials. Students open them inside Acosta and get the same guided help, scoped to what their teacher set.",
   },
   {
     question: "Is using Acosta AI considered cheating?",
@@ -20,22 +20,22 @@ const faqs = [
   {
     question: "Is it for teachers too?",
     answer:
-      "Absolutely. Acosta AI is built for both students and teachers. With Acosta Classes, educators can assign tasks, run revision sprints, and support student wellbeing — all in one platform.",
+      "Absolutely. Acosta AI is built for both students and teachers. Teachers get Classes for assigning work, Live Quizzes for the room, and Prep, Adapt and Wrap for planning and running lessons.",
   },
   {
     question: "Is my data private?",
     answer:
-      "Yes. We never sell your data. Your chats and generated study content stay in your private workspace on encrypted Google infrastructure, our AI providers do not train on what you send through Acosta, and you can delete individual sessions or your whole account when you want — same details we spell out in the Privacy Policy.",
+      "Yes. We never sell your data. Your chats and generated study content stay in your private workspace on encrypted Google infrastructure, our AI providers do not train on what you send through Acosta, you can delete chats and study items yourself, and support@acosta-ai.com will delete your whole account on request. The details are in the Privacy Policy.",
   },
   {
     question: "What about privacy after the Canvas / Instructure news?",
     answer:
-      "Fair question. Instructure, which runs Canvas LMS, publicly confirmed a large-scale security incident in 2026 — the kind of story that makes everyone audit their vendors. Acosta is architected the boring way: TLS in transit, Firebase/Firestore for auth and data, Vercel + Cloudflare for hosting and edge security, enterprise API terms with OpenAI, Google, and Anthropic that exclude training on your traffic, Stripe for card data so we never store it, and Guardian burnout signals from session metadata — not by reading your messages. If Canvas has you side-eyeing edtech, we wrote our Privacy Policy so you can see exactly what we collect and why. TL;DR: we'd rather be forgettable on BleepingComputer than unforgettable on your dean's emergency email.",
+      "Fair question. Instructure, which runs Canvas LMS, publicly confirmed a large-scale security incident in 2026 — the kind of story that makes everyone audit their vendors. Acosta is architected the boring way: TLS in transit, Firebase/Firestore for auth and data, Vercel for hosting, paid API terms with Google, Anthropic and OpenAI that don't use your requests to train their models, Stripe for card data so we never store it, and Guardian burnout signals from session metadata — not by reading your messages. If Canvas has you side-eyeing edtech, we wrote our Privacy Policy so you can see exactly what we collect and why. TL;DR: we'd rather be forgettable on BleepingComputer than unforgettable on your dean's emergency email.",
   },
   {
     question: "What's included in the free plan?",
     answer:
-      "The free plan gives you access to core study and teaching features with a monthly credit limit. You can also top up your account with credits by buying a top-up pack. These last as long as your account is active. No credit/debit card required to get started.",
+      "Unlimited Fast Mode, plus monthly allowances for Core and Thinking messages, study tools, images and exam simulations. Need more? Grab a $5 top-up pack, which lasts as long as your account is active. No card needed to start, and you can try Fast Mode as a guest without an account.",
   },
   {
     question: "What is beta, and how do I get access?",
@@ -45,12 +45,12 @@ const faqs = [
   {
     question: "What subjects and exams does it support?",
     answer:
-      "Acosta AI supports a wide range of subjects and curricula. Whether you're studying for IB, HSC, A-Levels, SATs, general coursework, or anything else, at any level, the platform adapts to your needs.",
+      "Acosta AI supports a wide range of subjects and curricula. It's built Australia-first, with NSW and the HSC front of mind, and works for any subject from primary school through uni, TAFE and beyond.",
   },
   {
     question: "How is Acosta AI different from ChatGPT?",
     answer:
-      "ChatGPT is a general-purpose tool. Acosta AI is purpose-built for education - with exam prep, teacher tools, student wellbeing monitoring, academic integrity features, and a privacy-first design that general AI tools simply don't offer.",
+      "ChatGPT is a general-purpose tool. Acosta AI is purpose-built for education - with exam practice and marking, study tools, classes for teachers, Guardian for wellbeing and Learning Mode for academic integrity.",
   },
 ];
 

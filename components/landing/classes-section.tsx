@@ -15,7 +15,7 @@ const teacherPoints = [
     icon: ClipboardList,
     title: "Assign tasks in seconds",
     description:
-      "Set revision prompts, practice questions, or project briefs and push them straight to your class — no extra logins, no clunky LMS handoffs.",
+      "Build a task, whether it's flashcards, an exam, a lesson wrap-up or class materials, and assign it straight to your class.",
   },
   {
     icon: Users,
@@ -27,13 +27,13 @@ const teacherPoints = [
     icon: MessageSquare,
     title: "Guided help, not answer dumps",
     description:
-      "Tasks open in Acosta with academic integrity guardrails on, so students get support that still expects their own thinking.",
+      "Students work through tasks inside Acosta, where Learning Mode guides them to the answer instead of handing it over.",
   },
   {
     icon: BookOpen,
     title: "Built for real classrooms",
     description:
-      "Whether it is homework check-ins, exam prep sprints, or extension work, Classes extends what you already do — into the hours after the bell.",
+      "Run a Live Quiz in class, then use Prep, Adapt and Wrap to plan lessons, pitch them at the right level and tie them off.",
   },
 ];
 
@@ -60,7 +60,7 @@ export function ClassesSection() {
             </Reveal>
             <Reveal delay={0.12}>
               <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-xl">
-                Our biggest launch yet: structured class spaces where teachers assign tasks, students pick them up in Acosta, and learning continues with the same private tutor experience — scoped to your classroom.
+                Class spaces where teachers assign tasks, students pick them up in Acosta, and the same private tutor helps them through it, scoped to your classroom.
               </p>
             </Reveal>
             <Reveal delay={0.18}>

@@ -45,7 +45,7 @@ export function HeroSection() {
         <div data-intro-hide>
         <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
-            Acosta AI is your private tutor, study partner, and classroom assistant — with new class spaces where teachers assign tasks and students get personalised help.
+            Acosta AI is your private tutor, study partner, and classroom assistant — with classes where teachers set the work and students get help that fits them.
           </p>
         </Reveal>
 
@@ -100,8 +100,8 @@ export function HeroSection() {
         <div className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-3">
           {[
             { value: "Classes", label: "Assign & track tasks" },
-            { value: "Music", label: "Generate study tracks" },
-            { value: "Exam-ready", label: "Practice and feedback" },
+            { value: "Study", label: "Flashcards, planner, quizzes" },
+            { value: "Exam-ready", label: "Simulations and marking" },
           ].map((stat, i) => (
             <Reveal
               key={stat.label}

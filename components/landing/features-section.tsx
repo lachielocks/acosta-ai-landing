@@ -1,57 +1,71 @@
 "use client";
 
-import { Brain, Music, ScanEye, Search, Cpu, Activity, UsersRound } from "lucide-react";
+import { Activity, Cpu, Layers, MessageSquare, Puzzle, ScanEye, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
 const features = [
   {
-    icon: UsersRound,
-    title: "Acosta Classes",
+    icon: MessageSquare,
+    title: "Chat that teaches",
     description:
-      "Teachers create classes, assign tasks, and students complete them in Acosta with guided support — homework that scales beyond the classroom.",
-    color: "text-sky-500",
-  },
-  {
-    icon: Brain,
-    title: "Deep Thinking",
-    description:
-      "Get step-by-step reasoning that helps you learn the why, not just the final answer.",
+      "Fast, Core and Thinking modes, all with live web search. Thinking shows its reasoning so you learn the why, not just the answer.",
     color: "text-pink-500",
   },
   {
-    icon: Music,
-    title: "Music Generation",
-    description:
-      "Create study playlists, revision hooks, and original tracks to make learning stick.",
-    color: "text-red-500",
-  },
-  {
     icon: ScanEye,
-    title: "Content Intelligence",
+    title: "Reads your stuff",
     description:
-      "Analyze PDFs, images, and handwritten notes to extract key ideas and summaries.",
+      "Drop in PDFs, photos of handwritten notes or a YouTube link and get the key ideas, summaries and questions back.",
     color: "text-emerald-500",
   },
   {
-    icon: Search,
-    title: "Web Search",
+    icon: Cpu,
+    title: "Exam practice",
     description:
-      "Use real-time web results with clear sources when accuracy and citations matter.",
+      "Run timed exam simulations, or snap photos of a finished paper and get it marked with feedback.",
+    color: "text-purple-500",
+  },
+  {
+    icon: Layers,
+    title: "Study tools",
+    description:
+      "Planner, flashcards, Mind Dump, study groups and Study Garden, a focus timer where your plants grow as you study.",
     color: "text-blue-500",
   },
   {
-    icon: Cpu,
-    title: "Exam Simulation",
+    icon: UsersRound,
+    title: "Classes & Teach",
     description:
-      "Practice timed exam-style questions with instant grading and gap analysis.",
-    color: "text-purple-500",
+      "Teachers run classes, assign tasks and Live Quizzes, and prep, adapt and wrap up lessons with AI help.",
+    color: "text-sky-500",
+  },
+  {
+    icon: Puzzle,
+    title: "Pause",
+    description:
+      "Five daily puzzles for a proper break: Sudoku, a mini crossword, Shift, Orbit and Echo, plus AI challenges.",
+    color: "text-amber-500",
   },
   {
     icon: Activity,
     title: "Acosta Guardian",
     description:
-      "Track workload and wellbeing to prevent burnout and keep study sustainable.",
+      "Notices long sessions and late nights and nudges you to take a break before study turns into burnout.",
     color: "text-indigo-500",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Learning Mode",
+    description:
+      "Turn it on and Acosta guides you to the answer instead of handing it over, so the work stays yours.",
+    color: "text-teal-500",
+  },
+  {
+    icon: Sparkles,
+    title: "Ignite",
+    description:
+      "Community study resources, checked by a human before they go live. Available in selected regions.",
+    color: "text-red-500",
   },
 ];
 
@@ -72,7 +86,7 @@ export function FeaturesSection() {
           </Reveal>
           <Reveal direction="up" delay={0.12}>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              From class assignments to exam prep and wellbeing — a complete suite for students and teachers, built with privacy and clarity in mind.
+              Chat, exam prep, study tools, classes and proper breaks. One place for students and teachers, built with privacy in mind.
             </p>
           </Reveal>
         </div>
