@@ -2,7 +2,7 @@
 
 import { ArrowRight, MousePointerClick } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import TechText from "@/components/ui/tech-text";
+import { HeroParticleTitle } from "@/components/landing/hero-particle-title";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
@@ -30,29 +30,14 @@ export function HeroSection() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
-          <h1 className="sr-only">{HERO_TITLE}</h1>
-          <div className="font-display mx-auto h-[140px] w-full max-w-5xl sm:h-[180px] lg:h-[220px]">
-            <TechText
-              text={HERO_TITLE}
-              fontWeight={400}
-              fontSize={160}
-              letterSpacing={-0.04}
-              color="#f8fafc"
-              accentColor="#93c5fd"
-              reveal="letter"
-              dashLength={3}
-              dashGap={3}
-              strokeWidth={1.25}
-              specks={10}
-              selection
-              labels
-              draggable
-              sweep
-              speed={0.85}
-            />
-          </div>
-        </Reveal>
+        <div className="relative z-30">
+          <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
+            <h1 className="sr-only">{HERO_TITLE}</h1>
+            <div className="font-display">
+              <HeroParticleTitle text={HERO_TITLE} />
+            </div>
+          </Reveal>
+        </div>
 
         <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
