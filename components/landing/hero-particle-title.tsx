@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useRef, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import ParticleText from "@/components/ui/ParticleText";
 
 /**
  * Hero headline drawn by React Bits ParticleText.
  *
- * The 360px box keeps the layout. The particle canvas is an oversized overlay
+ * The title box keeps the layout. The particle canvas is a 100vw x 100vh overlay
  * centred on that box (so scatter, the spiral intro, bursts and glow aren't clipped),
  * stacked above the other hero elements, with pointer-events: none so it never blocks
- * the CTAs or nav. A transparent hit area over the 360px box forwards pointer
+ * the CTAs or nav. A transparent hit area over the title box forwards pointer
  * events to the canvas, so hover, repel and clickBurst still work on the text.
  */
 // Intro length = stagger + gatherDuration (ParticleText has no completion callback).
@@ -18,10 +18,18 @@ const STAGGER_MS = 850;
 /** Start fading the rest of the page in at ~78% of the gather (fade itself is 800ms in CSS). */
 const REVEAL_AT_MS = Math.round((GATHER_MS + STAGGER_MS) * 0.78);
 
-const BLEED_Y = 260; // ≥ scatter (240) so the spiral/scatter never hits the canvas edge
+/** Title box height: grows with the font so the settled text doesn't crowd the subtitle. */
+const BOX_HEIGHT = "clamp(240px, 30vw, 440px)";
+
+/** Spiral spread, from the viewport, so the intro vortex fills most of the screen. */
+function viewportScatter() {
+  if (typeof window === "undefined") return 240;
+  return Math.round(Math.min(window.innerWidth, window.innerHeight) * 0.9);
+}
 
 export function HeroParticleTitle({ text }: { text: string }) {
   const layerRef = useRef<HTMLDivElement>(null);
+  const [scatter] = useState(viewportScatter);
 
   // Reveal the rest of the homepage near the end of the vortex. CSS hides it from first paint
   // and has its own 5s fallback, so this only ever brings the reveal forward.
@@ -59,12 +67,12 @@ export function HeroParticleTitle({ text }: { text: string }) {
   };
 
   return (
-    <div className="relative mx-auto" style={{ width: "100%", height: 360 }}>
+    <div className="relative mx-auto" style={{ width: "100%", height: BOX_HEIGHT }}>
       <div
         ref={layerRef}
         aria-hidden="true"
         className="pointer-events-none absolute z-30 text-white"
-        style={{ left: "50%", top: -BLEED_Y, width: "100vw", height: 360 + BLEED_Y * 2, transform: "translateX(-50%)" }}
+        style={{ left: "50%", top: "50%", width: "100vw", height: "100vh", transform: "translate(-50%, -50%)" }}
       >
         <ParticleText
           text={text}
@@ -75,7 +83,7 @@ export function HeroParticleTitle({ text }: { text: string }) {
           highlightMode="gradient"
           shape="line"
           intro="spiral"
-          scatter={240}
+          scatter={scatter}
           gatherDuration={3400}
           stagger={850}
           clickBurst
@@ -84,7 +92,7 @@ export function HeroParticleTitle({ text }: { text: string }) {
           repelRadius={150}
           idleDrift={1.3}
           trigger="mount"
-          fontSize="clamp(3rem, 12vw, 8rem)"
+          fontSize="clamp(3rem, 14.5vw, 11rem)"
           fontWeight={800}
           fontFamily="inherit"
           glow

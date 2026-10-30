@@ -556,7 +556,7 @@ const ParticleText = ({
       if (!offCtx) return;
 
       const content = String(s.text || ' ');
-      const maxTextWidth = nextWidth * 0.92;
+      const maxTextWidth = Math.min(nextWidth * 0.92, nextWidth - 48); // ≥16px visible side margins (line strokes + glow overhang the glyph box)
       offCtx.font = font;
       let metrics = offCtx.measureText(content);
       const measuredWidth = Math.max(1, metrics.width);
