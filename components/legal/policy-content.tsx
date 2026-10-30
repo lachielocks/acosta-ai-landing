@@ -163,10 +163,10 @@ export function PrivacyPolicyContent() {
           </div>
           <div>
             <h4 className="mb-2 text-xl font-bold text-emerald-900 dark:text-emerald-100">
-              No Training on Your Data
+              AI Providers Never Train on Your Data
             </h4>
             <p className="m-0 mb-4 text-base leading-relaxed text-emerald-800 dark:text-emerald-200">
-              Acosta AI uses paid APIs from Google (Gemini), Anthropic (Claude) and OpenAI. Under their commercial API terms, these providers process your prompts and files to generate a response, and <strong>they do not use Acosta traffic to train their models.</strong>
+              Acosta AI uses paid APIs from Google (Gemini), Anthropic (Claude) and OpenAI. Under their commercial API terms, these providers process your prompts and files to generate a response, and <strong>they never train their models on your data.</strong>
             </p>
             <ul className="m-0 list-disc space-y-2 pl-5 text-base leading-relaxed text-emerald-800 dark:text-emerald-200">
               <li>We do not sell your chats, notes, or class content.</li>
@@ -182,6 +182,9 @@ export function PrivacyPolicyContent() {
       </PolicyPoint>
       <PolicyPoint title="Vercel (Application Hosting)">
         The Acosta AI web application is hosted on Vercel&apos;s global edge network to ensure fast load times and reliable performance.
+      </PolicyPoint>
+      <PolicyPoint title="Cloudflare (DNS, CDN & Security)">
+        Cloudflare manages our domains and DNS, and sits in front of the site to protect it from attacks and serve it quickly.
       </PolicyPoint>
       <PolicyPoint title="Google (Gemini)">
         Gemini is our main AI engine. It powers Fast, Core and Thinking chat, study tools, exam marking, image and music generation and read-aloud voice. Chats use Google Search grounding, so parts of your question may be used to search the web for up-to-date answers.
@@ -203,7 +206,7 @@ export function PrivacyPolicyContent() {
         Live Quiz uses Pusher to send questions and answers between players in real time. Quiz rooms are temporary and expire after about four hours.
       </PolicyPoint>
       <PolicyPoint title="Where your data is stored">
-        Our providers are based overseas, mainly in the United States, so your data may be stored and processed outside Australia. We choose providers with strong security practices and take reasonable steps under the Australian Privacy Principles to make sure your information is protected.
+        We store your data in Australia wherever possible, including our main Firestore database. Some processing by our AI and service providers may happen overseas. We choose providers with strong security practices and take reasonable steps under the Australian Privacy Principles to make sure your information is protected.
       </PolicyPoint>
 
       <SectionHeader icon={Trash2} title="3. Data Retention & Deletion" />
@@ -221,7 +224,7 @@ export function PrivacyPolicyContent() {
 
       <SectionHeader icon={GraduationCap} title="4. Students & Children" />
       <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-        Acosta AI is used by school students, including younger children. Users under 13 need a parent or guardian&apos;s consent to create an account. We only collect what we need to run the service, we never sell student data, and we don&apos;t use it for advertising. If you&apos;re a parent or guardian and want to see or delete your child&apos;s data, contact us below.
+        Acosta AI is used by school students, including younger children. If you&apos;re under 13, you need a parent or guardian&apos;s consent, or access provided by your school, to create an account. We only collect what we need to run the service, we never sell student data, and we don&apos;t use it for advertising. If you&apos;re a parent or guardian and want to see or delete your child&apos;s data, contact us below.
       </p>
       <p className="mb-12 text-lg leading-relaxed text-muted-foreground">
         If you join a class, your teacher can see your name, the tasks you complete and your results for that class.
@@ -263,7 +266,7 @@ export function TermsPolicyContent() {
 
       <SectionHeader icon={UserCheck} title="1. Eligibility & Access" />
       <PolicyPoint title="Age Requirement">
-        Acosta AI is for learners from primary school (K-6) through high school, university, TAFE and adult learning, and for teachers. Users under the age of 13 require parental or guardian consent to create an account. If you are under 18, please read these terms with a parent or guardian.
+        Acosta AI is for learners from primary school (K-6) through high school, university, TAFE and adult learning, and for teachers. If you are under 13, you need a parent or guardian&apos;s consent, or access provided by your school, to create an account. If you are under 18, please read these terms with a parent or guardian.
       </PolicyPoint>
       <PolicyPoint title="Account Security">
         You are responsible for safeguarding your login credentials. You must not share your account with others to bypass subscription limits. To protect your account on shared devices, we automatically log you out after inactivity (configurable in Settings, defaulting to 30 minutes).

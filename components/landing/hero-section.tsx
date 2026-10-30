@@ -27,7 +27,7 @@ export function HeroSection() {
         <div data-intro-hide>
         <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-white/75">
-            Now with Acosta Classes
+            Now with Acosta Pause
           </p>
         </Reveal>
 
@@ -45,7 +45,7 @@ export function HeroSection() {
         <div data-intro-hide>
         <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
-            Acosta AI is your private tutor, study partner, and classroom assistant — with classes where teachers set the work and students get help that fits them.
+            Acosta AI is your private tutor, study partner and classroom assistant. Now with Pause: daily puzzles for a real study break.
           </p>
         </Reveal>
 

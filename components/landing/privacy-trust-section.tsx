@@ -6,12 +6,12 @@ import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
 const highlights = [
   {
-    title: "Not used to train AI models",
-    body: "Google, Anthropic and OpenAI process your requests to answer them, under API terms that don't use them for training. We don't sell your notes either.",
+    title: "AI providers never train on your data",
+    body: "Google, Anthropic and OpenAI process your requests only to answer them, on paid API terms. We don't sell your notes either.",
   },
   {
-    title: "Hosted on Vercel and Firebase",
-    body: "The app runs on Vercel. Sign-in and your workspace live in Google Firebase. Delete chats yourself any time, or ask support to delete your account.",
+    title: "Vercel, Cloudflare & Firebase",
+    body: "The app runs on Vercel, with Cloudflare handling DNS, CDN and security. Sign-in and your workspace live in Google Firebase, stored in Australia. Delete chats yourself any time, or ask support to delete your account.",
   },
   {
     title: "Stripe handles the scary money bits",
@@ -46,7 +46,7 @@ export function PrivacyTrustSection() {
                 Reality check
               </div>
               <p className="m-0 text-xl font-semibold leading-snug md:text-2xl">
-                While Canvas&apos;s parent company, Instructure, was making headlines for a major confirmed data incident in 2026, we were busy doing the deeply unglamorous work: Firebase auth and encrypted Firestore storage, Vercel hosting,
+                While Canvas&apos;s parent company, Instructure, was making headlines for a major confirmed data incident in 2026, we were busy doing the deeply unglamorous work: Firebase auth and encrypted Firestore storage in Australia, Vercel hosting, Cloudflare security,
                 &quot;no model training&quot; API terms with Google, Anthropic and OpenAI, and delete buttons you can actually find.
               </p>
               <p className="m-0 text-base leading-relaxed text-muted-foreground">

@@ -25,12 +25,12 @@ const faqs = [
   {
     question: "Is my data private?",
     answer:
-      "Yes. We never sell your data. Your chats and generated study content stay in your private workspace on encrypted Google infrastructure, our AI providers do not train on what you send through Acosta, you can delete chats and study items yourself, and support@acosta-ai.com will delete your whole account on request. The details are in the Privacy Policy.",
+      "Yes. We never sell your data. Your chats and generated study content stay in your private workspace on encrypted Google infrastructure, our AI providers never train on your data, you can delete chats and study items yourself, and support@acosta-ai.com will delete your whole account on request. The details are in the Privacy Policy.",
   },
   {
     question: "What about privacy after the Canvas / Instructure news?",
     answer:
-      "Fair question. Instructure, which runs Canvas LMS, publicly confirmed a large-scale security incident in 2026 — the kind of story that makes everyone audit their vendors. Acosta is architected the boring way: TLS in transit, Firebase/Firestore for auth and data, Vercel for hosting, paid API terms with Google, Anthropic and OpenAI that don't use your requests to train their models, Stripe for card data so we never store it, and Guardian burnout signals from session metadata — not by reading your messages. If Canvas has you side-eyeing edtech, we wrote our Privacy Policy so you can see exactly what we collect and why. TL;DR: we'd rather be forgettable on BleepingComputer than unforgettable on your dean's emergency email.",
+      "Fair question. Instructure, which runs Canvas LMS, publicly confirmed a large-scale security incident in 2026 — the kind of story that makes everyone audit their vendors. Acosta is architected the boring way: TLS in transit, Firebase/Firestore for auth and data, Vercel for hosting, Cloudflare for DNS, CDN and security, paid API terms with Google, Anthropic and OpenAI so AI providers never train on your data, Stripe for card data so we never store it, and Guardian burnout signals from session metadata — not by reading your messages. If Canvas has you side-eyeing edtech, we wrote our Privacy Policy so you can see exactly what we collect and why. TL;DR: we'd rather be forgettable on BleepingComputer than unforgettable on your dean's emergency email.",
   },
   {
     question: "What's included in the free plan?",
