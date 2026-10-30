@@ -6,8 +6,8 @@ import ParticleText from "@/components/ui/ParticleText";
 /**
  * Hero headline drawn by React Bits ParticleText.
  *
- * The title box keeps the layout. The particle canvas is a 100vw x 100vh overlay
- * centred on that box (so scatter, the spiral intro, bursts and glow aren't clipped),
+ * The title box keeps the layout. The particle canvas is a 100vw-wide overlay centred on that
+ * box, tall enough to cover the whole viewport plus a margin (so scatter, the spiral intro, bursts and glow aren't clipped),
  * stacked above the other hero elements, with pointer-events: none so it never blocks
  * the CTAs or nav. A transparent hit area over the title box forwards pointer
  * events to the canvas, so hover, repel and clickBurst still work on the text.
@@ -25,6 +25,9 @@ const REVEAL_AT_MS = Math.round((GATHER_MS + STAGGER_MS) * 0.78);
  */
 const BOX_HEIGHT = "calc(min(10vw, 8.25rem) + 56px)";
 
+/** Extra canvas beyond the viewport edges so the spiral runs off-screen rather than stopping at a line. */
+const OVERLAY_MARGIN = 120;
+
 /** Spiral spread, from the viewport, so the intro vortex fills most of the screen. */
 function viewportScatter() {
   if (typeof window === "undefined") return 240;
@@ -34,6 +37,26 @@ function viewportScatter() {
 export function HeroParticleTitle({ text }: { text: string }) {
   const layerRef = useRef<HTMLDivElement>(null);
   const [scatter] = useState(viewportScatter);
+  const boxRef = useRef<HTMLDivElement>(null);
+  // Overlay height: centred on the title (the text is drawn at the canvas centre) and tall enough
+  // to reach past both the top and bottom of the viewport, wherever the title sits. A plain 100vh
+  // overlay ended above the viewport bottom because the title sits above the viewport middle.
+  const [overlayH, setOverlayH] = useState<number | null>(null);
+  useEffect(() => {
+    const measure = () => {
+      const box = boxRef.current;
+      if (!box) return;
+      const r = box.getBoundingClientRect();
+      const cy = r.top + window.scrollY + r.height / 2; // page-relative, so scroll doesn't change it
+      const reach = Math.max(cy, window.innerHeight - cy) + OVERLAY_MARGIN;
+      setOverlayH((prev) => (prev === null || Math.abs(prev - 2 * reach) > 40 ? Math.round(2 * reach) : prev));
+    };
+    measure();
+    let lastW = window.innerWidth;
+    const onResize = () => { if (window.innerWidth !== lastW) { lastW = window.innerWidth; measure(); } };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   // Reveal the rest of the homepage near the end of the vortex. CSS hides it from first paint
   // and has its own 5s fallback, so this only ever brings the reveal forward.
@@ -71,15 +94,16 @@ export function HeroParticleTitle({ text }: { text: string }) {
   };
 
   return (
-    <div className="relative mx-auto" style={{ width: "100%", height: BOX_HEIGHT }}>
+    <div ref={boxRef} className="relative mx-auto" style={{ width: "100%", height: BOX_HEIGHT }}>
       <div
         ref={layerRef}
         aria-hidden="true"
         className="pointer-events-none absolute z-30 text-white"
-        style={{ left: "50%", top: "50%", width: "100vw", height: "100vh", transform: "translate(-50%, -50%)" }}
+        style={{ left: "50%", top: "50%", width: "100vw", height: overlayH ?? "100vh", transform: "translate(-50%, -50%)" }}
       >
-        <ParticleText
+        {overlayH !== null && <ParticleText
           text={text}
+          maxDpr={1.5}
           particleSize={1.5}
           density={2}
           color="currentColor"
@@ -100,7 +124,7 @@ export function HeroParticleTitle({ text }: { text: string }) {
           fontWeight={800}
           fontFamily="inherit"
           glow
-        />
+        />}
       </div>
       <div
         aria-hidden="true"

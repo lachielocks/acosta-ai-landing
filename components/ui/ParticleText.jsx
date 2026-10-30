@@ -59,6 +59,7 @@ const ParticleText = ({
   shape = 'circle',
   intro = 'gather',
   scatter = 180,
+  maxDpr = 2,
   gatherDuration = 1600,
   stagger = 420,
   clickBurst = true,
@@ -82,6 +83,7 @@ const ParticleText = ({
   useEffect(() => {
     settingsRef.current = {
       text,
+      maxDpr,
       particleSize,
       density,
       color,
@@ -155,7 +157,7 @@ const ParticleText = ({
     const layoutKey = s => [s.text, s.fontSize, s.fontWeight, family(s), s.density].join('|');
     const sizeKey = () => {
       const rect = container.getBoundingClientRect();
-      return `${Math.floor(rect.width)}x${Math.floor(rect.height)}@${Math.min(window.devicePixelRatio || 1, 2)}`;
+      return `${Math.floor(rect.width)}x${Math.floor(rect.height)}@${Math.min(window.devicePixelRatio || 1, settingsRef.current?.maxDpr ?? 2)}`;
     };
 
     const toRgb = value => {
@@ -543,7 +545,7 @@ const ParticleText = ({
 
       if (nextWidth <= 0 || nextHeight <= 0) return;
 
-      const nextDpr = Math.min(window.devicePixelRatio || 1, 2);
+      const nextDpr = Math.min(window.devicePixelRatio || 1, settingsRef.current?.maxDpr ?? 2);
       const resolvedFamily = family(s);
       let resolvedSize = resolveFontSize(s.fontSize, container, s.fontWeight, resolvedFamily);
       let font = `${s.fontWeight} ${resolvedSize}px ${resolvedFamily}`;
