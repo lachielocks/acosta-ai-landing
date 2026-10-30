@@ -20,10 +20,10 @@ const REVEAL_AT_MS = Math.round((GATHER_MS + STAGGER_MS) * 0.78);
 
 /**
  * Title box height: just the rendered glyph height plus a little room for strokes/glow, so the
- * settled text sits snugly between the pill and subtitle. The text renders at ~10vw tall
+ * settled text sits ~48–64px from the pill and subtitle. The text renders at ~10vw tall
  * (auto-fit to width) and caps at ~8.25rem once the 11rem font-size max kicks in.
  */
-const BOX_HEIGHT = "calc(min(10vw, 8.25rem) + 16px)";
+const BOX_HEIGHT = "calc(min(10vw, 8.25rem) + 56px)";
 
 /** Spiral spread, from the viewport, so the intro vortex fills most of the screen. */
 function viewportScatter() {
@@ -104,8 +104,9 @@ export function HeroParticleTitle({ text }: { text: string }) {
       </div>
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-30"
-        style={{ touchAction: "pan-y" }}
+        className="absolute inset-y-0 z-30"
+        // Full viewport width so the hit area covers the whole rendered text, which can be wider than the box.
+        style={{ left: "50%", width: "100vw", transform: "translateX(-50%)", touchAction: "pan-y" }}
         onPointerEnter={forward}
         onPointerMove={forward}
         onPointerLeave={forward}
