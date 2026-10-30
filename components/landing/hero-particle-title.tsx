@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import ParticleText from "@/components/ui/ParticleText";
 
 /**
@@ -12,10 +12,35 @@ import ParticleText from "@/components/ui/ParticleText";
  * the CTAs or nav. A transparent hit area over the 360px box forwards pointer
  * events to the canvas, so hover, repel and clickBurst still work on the text.
  */
+// Intro length = stagger + gatherDuration (ParticleText has no completion callback).
+const GATHER_MS = 3400;
+const STAGGER_MS = 850;
+/** Start fading the rest of the page in at ~78% of the gather (fade itself is 800ms in CSS). */
+const REVEAL_AT_MS = Math.round((GATHER_MS + STAGGER_MS) * 0.78);
+
 const BLEED_Y = 260; // ≥ scatter (240) so the spiral/scatter never hits the canvas edge
 
 export function HeroParticleTitle({ text }: { text: string }) {
   const layerRef = useRef<HTMLDivElement>(null);
+
+  // Reveal the rest of the homepage near the end of the vortex. CSS hides it from first paint
+  // and has its own 5s fallback, so this only ever brings the reveal forward.
+  useEffect(() => {
+    const root = document.documentElement;
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      root.dataset.intro = "done";
+      return;
+    }
+    let timer = 0;
+    let cancelled = false;
+    // The intro starts once fonts are ready (ParticleText waits for them before sampling).
+    const fontsReady = document.fonts?.ready ?? Promise.resolve();
+    fontsReady.then(() => {
+      if (!cancelled) timer = window.setTimeout(() => { root.dataset.intro = "done"; }, REVEAL_AT_MS);
+    });
+    return () => { cancelled = true; window.clearTimeout(timer); };
+  }, []);
 
   // Re-dispatch the hit area's pointer events on the canvas (same clientX/Y, so the
   // component's own handlers compute positions exactly as if the canvas were hit).
@@ -51,8 +76,8 @@ export function HeroParticleTitle({ text }: { text: string }) {
           shape="line"
           intro="spiral"
           scatter={240}
-          gatherDuration={2600}
-          stagger={650}
+          gatherDuration={3400}
+          stagger={850}
           clickBurst
           burstStrength={1.7}
           pointerRepel={30}

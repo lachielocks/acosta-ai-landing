@@ -264,3 +264,20 @@
     100% { background-position: 0% 50%; }
   }
 }
+
+/* Homepage first-load intro: hidden from first paint, only the particle vortex shows.
+   JS sets html[data-intro="done"] near the end of the gather. The delayed animation is the
+   5s safety net (also covers JS failing); <noscript> and reduced motion skip it entirely. */
+@keyframes landing-intro-fallback {
+  from { opacity: 0; transform: translateY(10px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes landing-intro-in {
+  from { opacity: 0; transform: translateY(10px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+[data-intro-hide] { animation: landing-intro-fallback 0.8s cubic-bezier(0.22, 1, 0.36, 1) 5s backwards; }
+html[data-intro="done"] [data-intro-hide] { animation: landing-intro-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+@media (prefers-reduced-motion: reduce) {
+  [data-intro-hide], html[data-intro="done"] [data-intro-hide] { animation: none; }
+}

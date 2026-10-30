@@ -24,11 +24,14 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
+        <div data-intro-hide>
         <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-white/75">
             Now with Acosta Classes
           </p>
         </Reveal>
+
+        </div>
 
         <div className="relative z-30">
           <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
@@ -39,6 +42,7 @@ export function HeroSection() {
           </Reveal>
         </div>
 
+        <div data-intro-hide>
         <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
             Acosta AI is your private tutor, study partner, and classroom assistant — with new class spaces where teachers assign tasks and students get personalised help.
@@ -113,6 +117,7 @@ export function HeroSection() {
               </div>
             </Reveal>
           ))}
+        </div>
         </div>
       </div>
     </section>
