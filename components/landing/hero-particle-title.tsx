@@ -18,8 +18,12 @@ const STAGGER_MS = 850;
 /** Start fading the rest of the page in at ~78% of the gather (fade itself is 800ms in CSS). */
 const REVEAL_AT_MS = Math.round((GATHER_MS + STAGGER_MS) * 0.78);
 
-/** Title box height: grows with the font so the settled text doesn't crowd the subtitle. */
-const BOX_HEIGHT = "clamp(240px, 30vw, 440px)";
+/**
+ * Title box height: just the rendered glyph height plus a little room for strokes/glow, so the
+ * settled text sits snugly between the pill and subtitle. The text renders at ~10vw tall
+ * (auto-fit to width) and caps at ~8.25rem once the 11rem font-size max kicks in.
+ */
+const BOX_HEIGHT = "calc(min(10vw, 8.25rem) + 16px)";
 
 /** Spiral spread, from the viewport, so the intro vortex fills most of the screen. */
 function viewportScatter() {
