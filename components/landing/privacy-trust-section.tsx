@@ -11,7 +11,7 @@ const highlights = [
   },
   {
     title: "Vercel, Cloudflare & Firebase",
-    body: "The app runs on Vercel, with Cloudflare handling DNS, CDN and security. Sign-in and your workspace live in Google Firebase, stored in Australia. Delete chats yourself any time, or ask support to delete your account.",
+    body: "The app runs on Vercel, with Cloudflare handling DNS, CDN and security. Sign-in and your workspace live in Google Firebase, stored in Australia. Clear your chats or delete your whole account yourself, any time, in Settings.",
   },
   {
     title: "Stripe handles the scary money bits",

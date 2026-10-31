@@ -20,8 +20,8 @@ import {
 import type { PolicyMeta } from "@/components/legal/policy-page-shell";
 
 export const PRIVACY_META: PolicyMeta = {
-  version: "1.1",
-  effectiveDate: "30 October 2026",
+  version: "1.2",
+  effectiveDate: "31 October 2026",
   appliesTo:
     "Individual users of Acosta AI, including students, teachers, and other account holders using the platform.",
 };
@@ -214,7 +214,7 @@ export function PrivacyPolicyContent() {
         <strong>You have complete control.</strong> You can delete chats, flashcard decks, study plans, exam sessions and other items yourself at any time. Deleting an item removes it from our Firebase databases. We keep the rest of your content for as long as your account is open.
       </p>
       <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-        To delete your whole account, email support@acosta-ai.com from the address on your account. We&apos;ll delete your profile and content from our active databases. Records we have to keep by law, such as payment records, may be kept for longer.
+        You can also clear things in bulk in Settings → Security → Your data. <strong>Clear chat history</strong> deletes your conversations and chat files, and keeps your account, memories, settings and study work. <strong>Delete account</strong> deletes your account, sign-in and everything in it from our active databases, and cancels any personal subscription. Both are permanent. If you can&apos;t sign in, email support@acosta-ai.com from the address on your account and we&apos;ll do it for you. Records we have to keep by law, such as payment records, may be kept for longer.
       </p>
       <div className="mb-8 rounded-2xl border border-foreground/15 bg-foreground/[0.03] p-6">
         <p className="m-0 text-sm text-muted-foreground">
@@ -237,7 +237,7 @@ export function PrivacyPolicyContent() {
 
       <SectionHeader icon={UserCheck} title="6. Contact Us" />
       <p className="text-base text-muted-foreground">
-        For privacy questions, access or correction requests, data exports or account deletion, contact Transnology at:{" "}
+        For privacy questions, access or correction requests, data exports, or help deleting your account, contact Transnology at:{" "}
         <a href="mailto:support@acosta-ai.com" className="link-wipe font-medium text-primary">
           <strong>support@acosta-ai.com</strong>
         </a>

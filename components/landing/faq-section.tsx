@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "Is my data private?",
     answer:
-      "Yes. We never sell your data. Your chats and generated study content stay in your private workspace on encrypted Google infrastructure, our AI providers never train on your data, you can delete chats and study items yourself, and support@acosta-ai.com will delete your whole account on request. The details are in the Privacy Policy.",
+      "Yes. We never sell your data. Your chats and generated study content stay in your private workspace on encrypted Google infrastructure, our AI providers never train on your data, and you can clear your chat history or delete your whole account yourself in Settings. The details are in the Privacy Policy.",
   },
   {
     question: "What about privacy after the Canvas / Instructure news?",
