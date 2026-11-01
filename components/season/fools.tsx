@@ -122,6 +122,17 @@ export function FoolsChaos() {
       window.clearInterval(flip); window.clearTimeout(timer); delete root.dataset.foolsCursor;
     };
   }, [fools]);
-  if (!fools || !toast) return null;
-  return <div className="fools-toast" role="status">{toast}</div>;
+  if (!fools) return null;
+  return (
+    <>
+      <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute" }}>
+        <filter id="fools-wavy">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.06" numOctaves="1" seed="3" />
+          <feDisplacementMap in="SourceGraphic" scale="6" />
+        </filter>
+      </svg>
+      <div className="fools-crt" aria-hidden="true" />
+      {toast && <div className="fools-toast" role="status">{toast}</div>}
+    </>
+  );
 }
