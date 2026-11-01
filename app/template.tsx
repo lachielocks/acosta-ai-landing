@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
+import { recordPath } from "@/lib/nav-history";
 
 interface AppTemplateProps {
   children: ReactNode;
@@ -10,6 +11,7 @@ interface AppTemplateProps {
 
 export default function AppTemplate({ children }: AppTemplateProps) {
   const pathname = usePathname();
+  useEffect(() => { recordPath(pathname); }, [pathname]);
 
   return (
     <motion.div

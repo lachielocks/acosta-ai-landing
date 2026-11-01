@@ -1,5 +1,6 @@
 "use client";
 
+import { cameFromTrustCentre } from "@/lib/nav-history";
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import ParticleText from "@/components/ui/ParticleText";
 
@@ -37,6 +38,8 @@ function viewportScatter() {
 export function HeroParticleTitle({ text, highlightColor = "#2f2fba" }: { text: string; highlightColor?: string }) {
   const layerRef = useRef<HTMLDivElement>(null);
   const [scatter] = useState(viewportScatter);
+  // Back from the Trust Centre: a quick scan-in instead of the full vortex.
+  const [intro] = useState<"spiral" | "scan">(() => (typeof window !== "undefined" && cameFromTrustCentre() ? "scan" : "spiral"));
   const boxRef = useRef<HTMLDivElement>(null);
   // Overlay height: centred on the title (the text is drawn at the canvas centre) and tall enough
   // to reach past both the top and bottom of the viewport, wherever the title sits. A plain 100vh
@@ -110,7 +113,7 @@ export function HeroParticleTitle({ text, highlightColor = "#2f2fba" }: { text: 
           highlightColor={highlightColor}
           highlightMode="gradient"
           shape="line"
-          intro="spiral"
+          intro={intro}
           scatter={scatter}
           gatherDuration={3400}
           stagger={850}
