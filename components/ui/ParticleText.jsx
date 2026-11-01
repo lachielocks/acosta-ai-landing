@@ -72,6 +72,7 @@ const ParticleText = ({
   fontWeight = 800,
   fontFamily = 'inherit',
   glow = true,
+  onIntroEnd,
   className = '',
   style
 }) => {
@@ -103,7 +104,8 @@ const ParticleText = ({
       fontSize,
       fontWeight,
       fontFamily,
-      glow
+      glow,
+      onIntroEnd
     };
     wakeRef.current();
   });
@@ -131,6 +133,12 @@ const ParticleText = ({
     let sampledText = '';
     let requestedSize = '';
     let gathering = false;
+    let introNotified = false;
+    const notifyIntroEnd = () => {
+      if (introNotified) return;
+      introNotified = true;
+      settingsRef.current?.onIntroEnd?.();
+    };
     let gatherStart = 0;
     let introMode = 'gather';
     let bursting = false;
@@ -261,6 +269,7 @@ const ParticleText = ({
 
       gatherStart = performance.now();
       gathering = true;
+      introNotified = false;
       wake();
     };
 
@@ -450,7 +459,10 @@ const ParticleText = ({
         buckets[fade * TONES + tone].push(particle);
       }
 
-      if (gathering && complete) gathering = false;
+      if (gathering && complete) {
+        gathering = false;
+        notifyIntroEnd();
+      }
       if (bursting && !settling) bursting = false;
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -675,6 +687,7 @@ const ParticleText = ({
         startIntro(true);
       } else {
         gathering = false;
+        notifyIntroEnd();
       }
 
       step(performance.now());
@@ -731,6 +744,7 @@ const ParticleText = ({
       reducedMotion = event.matches;
       if (reducedMotion) {
         gathering = false;
+        notifyIntroEnd();
         bursting = false;
         particles.forEach(particle => {
           particle.x = particle.targetX;

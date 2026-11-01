@@ -35,11 +35,14 @@ function viewportScatter() {
   return Math.round(Math.min(window.innerWidth, window.innerHeight) * 0.9);
 }
 
-export function HeroParticleTitle({ text, highlightColor = "#2f2fba" }: { text: string; highlightColor?: string }) {
+export function HeroParticleTitle({ text, highlightColor = "#2f2fba", onIntroEnd }: { text: string; highlightColor?: string; onIntroEnd?: () => void }) {
   const layerRef = useRef<HTMLDivElement>(null);
   const [scatter] = useState(viewportScatter);
   // Back from the Trust Centre: a quick scan-in instead of the full vortex.
   const [intro] = useState<"spiral" | "scan">(() => (typeof window !== "undefined" && cameFromTrustCentre() ? "scan" : "spiral"));
+  useEffect(() => {
+    document.documentElement.dataset.heroIntro = intro;
+  }, [intro]);
   const boxRef = useRef<HTMLDivElement>(null);
   // Overlay height: centred on the title (the text is drawn at the canvas centre) and tall enough
   // to reach past both the top and bottom of the viewport, wherever the title sits. A plain 100vh
@@ -114,6 +117,7 @@ export function HeroParticleTitle({ text, highlightColor = "#2f2fba" }: { text: 
           highlightMode="gradient"
           shape="line"
           intro={intro}
+          onIntroEnd={onIntroEnd}
           scatter={scatter}
           gatherDuration={3400}
           stagger={850}

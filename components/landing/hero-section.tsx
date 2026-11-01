@@ -15,6 +15,8 @@ export function HeroSection() {
   // Resolved on the client (date, app preview cookie or ?season=), so the static build stays neutral.
   const { theme, ready } = useSeason();
   const season = ready ? theme : null;
+  // The seasonal subheading waits for the title intro to finish.
+  const [introDone, setIntroDone] = useState(false);
   const secondaryCta =
     user?.plan === "free"
       ? { href: "#pricing", label: "Compare plans" }
@@ -43,11 +45,13 @@ export function HeroSection() {
           <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
             <h1 className="sr-only">{theme.title}</h1>
             <div className="font-display" style={{ minHeight: season ? undefined : "1px" }}>
-              {season && <HeroParticleTitle key={season.title} text={season.title} highlightColor={season.id ? season.accent : "#2f2fba"} />}
+              {season && <HeroParticleTitle key={season.title} text={season.title} highlightColor={season.id ? season.accent : "#2f2fba"} onIntroEnd={() => setIntroDone(true)} />}
             </div>
             {theme.subtitle && (
               <p
-                className="season-subtitle relative z-40 mt-2 font-display text-2xl italic sm:text-3xl"
+                aria-hidden={!introDone}
+                data-shown={introDone ? "true" : "false"}
+                className={`season-subtitle relative z-40 mt-2 font-display text-2xl italic transition-[opacity,transform,filter] duration-700 ease-out motion-reduce:transition-none sm:text-3xl ${introDone ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-1 blur-sm"}`}
                 style={{ backgroundImage: `linear-gradient(90deg, ${theme.accent}, ${theme.accent2})`, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}
               >
                 {theme.subtitle}
