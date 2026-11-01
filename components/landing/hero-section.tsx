@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUp } from "lucide-react";
 import { useSeason } from "@/components/season/season-provider";
 import { useFools, FoolsDodge } from "@/components/season/fools";
-import { FoolsTicker } from "@/components/season/fools";
+import { FoolsChaos, FoolsTicker } from "@/components/season/fools";
 import { Reveal } from "@/components/ui/reveal";
 import { HeroParticleTitle } from "@/components/landing/hero-particle-title";
 import { usePlatformUser } from "@/hooks/use-platform-user";
@@ -29,7 +29,7 @@ export function HeroSection() {
     <section
       style={{ backgroundImage: `linear-gradient(to bottom, ${theme.gradient.join(", ")})`, ["--hero-accent" as string]: theme.accent }}
       className="relative overflow-x-clip text-white transition-[background-image] duration-700 pt-36 pb-24 lg:pt-44 lg:pb-32">
-      <FoolsTicker />
+      <FoolsTicker /><FoolsChaos />
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full blur-[130px] transition-colors duration-700" style={{ backgroundColor: theme.glows[0] }} />
         <div className="absolute bottom-0 right-[10%] h-[360px] w-[360px] rounded-full blur-[120px] transition-colors duration-700" style={{ backgroundColor: theme.glows[1] }} />
