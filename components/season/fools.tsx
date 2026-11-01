@@ -90,8 +90,14 @@ export function FoolsChaos() {
       if (!rolled && window.innerHeight + y >= document.documentElement.scrollHeight - 4) {
         rolled = true;
         root.dataset.foolsRolled = "1";
-        document.body.classList.add("fools-roll");
-        window.setTimeout(() => document.body.classList.remove("fools-roll"), 1100);
+        const b = document.body;
+        b.style.transformOrigin = `50% ${window.scrollY + window.innerHeight / 2}px`;
+        root.style.overflow = "hidden"; b.style.overflow = "hidden";
+        b.classList.add("fools-roll");
+        window.setTimeout(() => {
+          b.classList.remove("fools-roll");
+          b.style.transformOrigin = ""; root.style.overflow = ""; b.style.overflow = "";
+        }, 1050);
       }
     };
     const flip = window.setInterval(() => {

@@ -409,7 +409,7 @@ html[data-season="april_fools"] body :is(button, input, textarea, select, a, p, 
 
 /* April Fools chaos */
 html[data-fools-cursor], html[data-fools-cursor] body { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='26' font-size='26'>🤡</text></svg>") 4 4, auto; }
-body.fools-roll { animation: fools-roll 1s ease-in-out; transform-origin: 50% 50vh; }
+body.fools-roll { animation: fools-roll 1s ease-in-out; }
 @keyframes fools-roll { to { transform: rotate(360deg); } }
 .fools-flip { transform: rotate(180deg); transition: transform .3s; display: block; }
 .fools-toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) rotate(-2deg); z-index: 100; padding: 10px 16px; border-radius: 12px; background: #fde047; color: #111; font-weight: 700; pointer-events: none; box-shadow: 0 6px 20px rgba(0,0,0,.4); }
