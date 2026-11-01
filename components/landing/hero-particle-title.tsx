@@ -34,7 +34,7 @@ function viewportScatter() {
   return Math.round(Math.min(window.innerWidth, window.innerHeight) * 0.9);
 }
 
-export function HeroParticleTitle({ text }: { text: string }) {
+export function HeroParticleTitle({ text, highlightColor = "#2f2fba" }: { text: string; highlightColor?: string }) {
   const layerRef = useRef<HTMLDivElement>(null);
   const [scatter] = useState(viewportScatter);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -107,7 +107,7 @@ export function HeroParticleTitle({ text }: { text: string }) {
           particleSize={1.5}
           density={2}
           color="currentColor"
-          highlightColor="#2f2fba"
+          highlightColor={highlightColor}
           highlightMode="gradient"
           shape="line"
           intro="spiral"

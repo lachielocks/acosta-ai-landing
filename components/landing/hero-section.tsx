@@ -1,26 +1,33 @@
 "use client";
 
-import { ArrowRight, MousePointerClick } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, ArrowUp } from "lucide-react";
+import { DEFAULT_LANDING, getSeasonalLanding, type SeasonalLanding } from "@/lib/seasonal";
 import { Reveal } from "@/components/ui/reveal";
 import { HeroParticleTitle } from "@/components/landing/hero-particle-title";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
-const HERO_TITLE = "Learn smarter.";
 
 export function HeroSection() {
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
+  // Resolved on the client so the season follows the visitor's local date (static build).
+  const [season, setSeason] = useState<SeasonalLanding | null>(null);
+  useEffect(() => setSeason(getSeasonalLanding()), []);
+  const theme = season ?? DEFAULT_LANDING;
   const secondaryCta =
     user?.plan === "free"
       ? { href: "#pricing", label: "Compare plans" }
       : { href: "#features", label: "See features" };
 
   return (
-    <section className="relative overflow-x-clip bg-gradient-to-b from-[#060b18] via-[#0b132a] to-black text-white pt-36 pb-24 lg:pt-44 lg:pb-32">
+    <section
+      style={{ backgroundImage: `linear-gradient(to bottom, ${theme.gradient.join(", ")})`, ["--hero-accent" as string]: theme.accent }}
+      className="relative overflow-x-clip text-white transition-[background-image] duration-700 pt-36 pb-24 lg:pt-44 lg:pb-32">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-[#3b82f6]/20 blur-[130px]" />
-        <div className="absolute bottom-0 right-[10%] h-[360px] w-[360px] rounded-full bg-[#6366f1]/20 blur-[120px]" />
+        <div className="absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full blur-[130px] transition-colors duration-700" style={{ backgroundColor: theme.glows[0] }} />
+        <div className="absolute bottom-0 right-[10%] h-[360px] w-[360px] rounded-full blur-[120px] transition-colors duration-700" style={{ backgroundColor: theme.glows[1] }} />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
@@ -35,9 +42,9 @@ export function HeroSection() {
 
         <div className="relative z-30">
           <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
-            <h1 className="sr-only">{HERO_TITLE}</h1>
-            <div className="font-display">
-              <HeroParticleTitle text={HERO_TITLE} />
+            <h1 className="sr-only">{theme.title}</h1>
+            <div className="font-display" style={{ minHeight: season ? undefined : "1px" }}>
+              {season && <HeroParticleTitle key={season.title} text={season.title} highlightColor={season.accent} />}
             </div>
           </Reveal>
         </div>
@@ -70,31 +77,7 @@ export function HeroSection() {
         </Reveal>
 
         <Reveal delay={0.24} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
-          <form 
-            className="mt-8 mx-auto flex w-full max-w-lg items-center rounded-full border border-white/20 bg-white/5 p-1.5 backdrop-blur-md transition-all focus-within:border-white/40 focus-within:bg-white/10 hover:border-white/30"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const formData = new FormData(e.currentTarget);
-              const prompt = formData.get('prompt') as string;
-              if (prompt.trim()) {
-                window.open(`${PLATFORM_URL}/?prompt=${encodeURIComponent(prompt)}&send=true`, '_blank');
-              }
-            }}
-          >
-            <input
-              name="prompt"
-              type="text"
-              placeholder="What do you want to learn today?"
-              className="w-full bg-transparent px-5 py-2.5 text-base text-white placeholder-white/50 outline-none"
-              required
-            />
-            <button
-              type="submit"
-              className="flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:scale-[1.02] cursor-pointer"
-            >
-              Ask <MousePointerClick className="h-4 w-4" />
-            </button>
-          </form>
+          <HeroPrompt placeholder={theme.placeholder} />
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-3">
@@ -121,5 +104,61 @@ export function HeroSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+const MAX_PROMPT = 2000;
+
+function HeroPrompt({ placeholder }: { placeholder: string }) {
+  const [value, setValue] = useState("");
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const canSend = value.trim().length > 0;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
+  }, [value]);
+
+  const send = () => {
+    const prompt = value.trim();
+    if (!prompt) return;
+    window.open(`${PLATFORM_URL}/?prompt=${encodeURIComponent(prompt)}&send=true`, "_blank");
+  };
+
+  return (
+    <form
+      className="group mx-auto mt-8 flex w-full max-w-xl items-end gap-2 rounded-[28px] border border-white/15 bg-white/[0.06] p-2 pl-5 text-left shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all hover:border-white/25 focus-within:border-[color:var(--hero-accent)] focus-within:bg-white/[0.09] focus-within:shadow-[0_0_0_4px_color-mix(in_srgb,var(--hero-accent)_22%,transparent)]"
+      onSubmit={(e) => { e.preventDefault(); send(); }}
+    >
+      <label htmlFor="hero-prompt" className="sr-only">Ask Acosta</label>
+      <textarea
+        id="hero-prompt"
+        ref={ref}
+        name="prompt"
+        rows={1}
+        maxLength={MAX_PROMPT}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
+            e.preventDefault();
+            send();
+          }
+        }}
+        placeholder={placeholder}
+        className="max-h-40 min-h-[44px] w-full resize-none bg-transparent py-2.5 text-base leading-6 text-white placeholder:text-white/45 outline-none"
+      />
+      <button
+        type="submit"
+        disabled={!canSend}
+        aria-label="Ask Acosta"
+        className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-black transition-all hover:scale-105 active:scale-95 disabled:cursor-default disabled:bg-white/15 disabled:text-white/40 disabled:hover:scale-100"
+        style={canSend ? { backgroundColor: "var(--hero-accent)", color: "#fff" } : undefined}
+      >
+        <ArrowUp className="h-5 w-5" strokeWidth={2.5} />
+      </button>
+    </form>
   );
 }
