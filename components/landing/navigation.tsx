@@ -6,6 +6,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 import { ArrowUpRight } from "lucide-react";
+import { useFools } from "@/components/season/fools";
 
 function NavLink({
   href,
@@ -30,14 +31,15 @@ export function Navigation() {
   const labels = getPlatformCtaLabels(user);
   const isSignedIn = Boolean(user);
   const [activeHref, setActiveHref] = useState("");
+  const fools = useFools();
 
   const navItems = [
-    { label: "Features", href: "#features" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
+    { label: fools?.nav.features ?? "Features", href: "#features" },
+    { label: fools?.nav.testimonials ?? "Testimonials", href: "#testimonials" },
+    { label: fools?.nav.pricing ?? "Pricing", href: "#pricing" },
+    { label: fools?.nav.faq ?? "FAQ", href: "#faq" },
     {
-      label: "Trust Centre",
+      label: fools?.nav.trust ?? "Trust Centre",
       href: "/policies",
       icon: <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />,
       iconPosition: "end",
@@ -138,7 +140,7 @@ export function Navigation() {
       rel="noopener noreferrer"
       className="group relative inline-flex h-[38px] sm:h-[44px] items-center gap-1.5 rounded-full bg-white px-3.5 sm:px-4.5 text-xs sm:text-sm font-medium text-zinc-950 shadow-md transition-all duration-300 hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98]"
     >
-      <span>Get started</span>
+      <span>{fools?.nav.cta ?? "Get started"}</span>
       <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
     </a>
   );

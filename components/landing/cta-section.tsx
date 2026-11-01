@@ -3,6 +3,7 @@
 import { useSeason } from "@/components/season/season-provider";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useFools } from "@/components/season/fools";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
@@ -12,6 +13,7 @@ export function CtaSection() {
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
   const { theme } = useSeason();
+  const fools = useFools();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,7 +50,7 @@ export function CtaSection() {
               rel="noopener noreferrer"
               className="inline-flex w-full max-w-md items-center justify-center gap-3 rounded-3xl bg-background px-8 py-5 text-xl font-black text-foreground shadow-2xl transition-all hover:scale-105 active:scale-95 sm:w-auto sm:px-12 sm:py-6 sm:text-2xl"
             >
-              {labels.cta}
+              {fools && !user ? fools.ctaButton : labels.cta}
               <ArrowRight className="w-7 h-7" />
             </a>
           </div>

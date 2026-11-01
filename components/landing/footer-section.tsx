@@ -3,6 +3,7 @@
 import { useSeason } from "@/components/season/season-provider";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { ArrowUpRight } from "lucide-react";
+import { useFools, FoolsDodge } from "@/components/season/fools";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
@@ -29,6 +30,7 @@ const footerLinks = {
 
 export function FooterSection() {
   const { theme } = useSeason();
+  const fools = useFools();
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
   const isExternalPageLink = (href: string) => href.startsWith("http");
@@ -47,11 +49,13 @@ export function FooterSection() {
         >
           <StaggerItem>
             <div className="md:col-span-2">
+              <FoolsDodge width={180} height={64} className="fools-dodge--start">
               <a href="#" className="link-wipe text-2xl font-display tracking-tight">
                 Acosta AI
               </a>
+              </FoolsDodge>
               <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
-                Private, student-first AI for deeper learning, smarter study, and better outcomes.
+                {fools?.footerBlurb ?? "Private, student-first AI for deeper learning, smarter study, and better outcomes."}
               </p>
             </div>
           </StaggerItem>
@@ -98,7 +102,7 @@ export function FooterSection() {
 
         <Reveal delay={0.08} direction="up" distance={12} blur={4}>
           <div className="mt-12 pt-8 border-t border-foreground/10 flex flex-col gap-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-            <p>&copy; 2026 Acosta AI. All rights reserved.</p>
+            <p>&copy; 2026 Acosta AI. {fools ? <span className="fools-mirror" title="it’s backwards on purpose">{fools.footerMirror}</span> : "All rights reserved."}</p>
             <p>{theme.footerNote ? <span style={{ color: "var(--season-accent)" }}>{theme.footerNote} </span> : null}Built for students and teachers.</p>
           </div>
         </Reveal>

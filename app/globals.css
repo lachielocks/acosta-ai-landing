@@ -337,3 +337,66 @@ html[data-season] ::selection {
   .season-decor { display: none; }
 }
 html[data-season] #features article:hover { border-color: color-mix(in srgb, var(--season-accent) 45%, transparent); }
+
+/* ---------- April Fools: tasteful chaos (homepage only; html[data-season] is removed on leaving /) ---------- */
+html[data-season="april_fools"] main :is(h2, h3, .font-display):not([data-fools-calm] *) {
+  font-family: "Comic Sans MS", "Comic Sans", var(--font-fools), "Chalkboard SE", cursive;
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+/* Wonky cards: each one is slightly off, hover tilts the other way. */
+html[data-season="april_fools"] main :is(#features article, #faq article, #founder [class*="rounded-[28px]"]) {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s;
+}
+html[data-season="april_fools"] #features [class*="grid"] > :nth-child(3n + 1) article { transform: rotate(-1.4deg); }
+html[data-season="april_fools"] #features [class*="grid"] > :nth-child(3n + 2) article { transform: rotate(0.9deg) translateY(6px); }
+html[data-season="april_fools"] #features [class*="grid"] > :nth-child(3n) article { transform: rotate(-0.4deg) translateY(-4px); }
+html[data-season="april_fools"] #features [class*="grid"] > :nth-child(odd) article:hover { transform: rotate(2.5deg) scale(1.02); }
+html[data-season="april_fools"] #features [class*="grid"] > :nth-child(even) article:hover { transform: rotate(-2.5deg) scale(1.02); }
+html[data-season="april_fools"] #faq article:nth-child(odd) { transform: rotate(-0.5deg); }
+html[data-season="april_fools"] #faq article:nth-child(even) { transform: rotate(0.5deg); }
+html[data-season="april_fools"] #faq article:first-child { border-style: dashed; border-color: color-mix(in srgb, var(--season-accent) 60%, transparent); }
+html[data-season="april_fools"] #pricing h2 { transform: rotate(-1.5deg); transform-origin: left center; }
+/* Ticker under the nav. */
+.fools-ticker {
+  position: absolute;
+  top: 84px;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  overflow: hidden;
+  border-block: 1px dashed color-mix(in srgb, var(--season-accent) 55%, transparent);
+  background: color-mix(in srgb, var(--season-accent-2) 14%, transparent);
+  transform: rotate(-1deg) scale(1.02);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 0;
+  white-space: nowrap;
+}
+.fools-ticker__track { display: inline-flex; gap: 2rem; padding-left: 2rem; animation: fools-ticker 60s linear infinite; }
+.fools-ticker b { color: var(--season-accent-2); font-weight: 400; }
+@keyframes fools-ticker { to { transform: translateX(-50%); } }
+/* Title wobbles once the intro is done. */
+.fools-wobble { animation: fools-wobble 3.2s ease-in-out infinite; transform-origin: 50% 60%; }
+@keyframes fools-wobble {
+  0%, 100% { transform: rotate(-1.2deg) skewX(-1deg); }
+  50% { transform: rotate(1.2deg) skewX(1.5deg) translateY(-2px); }
+}
+/* Footer small print is mirrored (still selectable, still read normally by screen readers). */
+.fools-mirror { display: inline-block; transform: scaleX(-1); }
+/* DodgeField wrappers: shrink to the control, no React Bits pill styles. */
+.dodge-field.fools-dodge { display: inline-grid; height: var(--df-height); }
+.dodge-field.fools-dodge--start { place-items: center start; }
+@media (max-width: 640px) {
+  .fools-dodge { height: auto; width: 100% !important; }
+  .fools-dodge .dodge-field__mover, .fools-dodge .dodge-field__mover > * { width: 100%; }
+  .fools-dodge--start .dodge-field__mover, .fools-dodge--start .dodge-field__mover > * { width: auto; }
+  .fools-ticker { top: 76px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fools-ticker__track, .fools-wobble { animation: none; }
+  html[data-season="april_fools"] main :is(#features article, #faq article) { transition: none; }
+}

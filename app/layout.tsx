@@ -1,6 +1,9 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
+import { Comic_Neue, Instrument_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
+
+// April Fools only (see globals.css html[data-season="april_fools"]); not preloaded, so other days never download it.
+const comicNeue = Comic_Neue({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-fools', preload: false, display: 'swap' })
 import { Analytics } from '@vercel/analytics/next'
 import { PageTransitionProvider } from '@/components/page-transition-provider'
 import './globals.css'
@@ -59,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${comicNeue.variable} font-sans antialiased`}>
         <PageTransitionProvider>{children}</PageTransitionProvider>
         <Analytics />
       </body>

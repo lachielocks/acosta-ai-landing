@@ -11,6 +11,7 @@ import {
   isCurrentPlan,
   planToKey,
 } from "@/lib/platform-user";
+import { useFools, FoolsDodge } from "@/components/season/fools";
 
 type PlanAccent = "neutral" | "blue" | "pink";
 
@@ -138,6 +139,7 @@ export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const fools = useFools();
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
 
@@ -160,14 +162,14 @@ export function PricingSection() {
           <div className="lg:col-span-8">
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-8">
               <span className="w-12 h-px bg-foreground/30" />
-              Pricing
+              {fools?.pricingEyebrow ?? "Pricing"}
             </span>
             <h2 className={`text-4xl sm:text-5xl md:text-7xl lg:text-[112px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
             }`}>
-              Learn with
+              {fools?.pricingHeading[0] ?? "Learn with"}
               <br />
-              <span className="text-muted-foreground">confidence.</span>
+              <span className="text-muted-foreground">{fools?.pricingHeading[1] ?? "confidence."}</span>
             </h2>
             {labels.pricingIntro && (
               <p className="mt-6 max-w-xl text-base text-muted-foreground leading-relaxed">
@@ -206,7 +208,8 @@ export function PricingSection() {
               const accent = planAccentClasses[plan.accent];
               const cardPlan = planToKey(plan.name);
               const isYourPlan = isCurrentPlan(user, cardPlan);
-              const cardCta = getPricingCardCta(user, cardPlan, plan.cta);
+              const foolsPlan = fools?.plans[plan.name];
+              const cardCta = getPricingCardCta(user, cardPlan, foolsPlan?.cta ?? plan.cta);
               return (
               <div
                 key={plan.name}
@@ -253,7 +256,7 @@ export function PricingSection() {
                     </span>
                     <h3 className={`text-2xl lg:text-3xl font-display mt-2 ${accent.planName}`}>{plan.name}</h3>
                     <p className="text-sm text-muted-foreground mt-1">{plan.description}</p>
-                    <p className="text-sm text-muted-foreground mt-2">{plan.tagline}</p>
+                    <p className="text-sm text-muted-foreground mt-2">{foolsPlan?.tagline ?? plan.tagline}</p>
                   </div>
 
                   <div className="mb-8">
@@ -350,9 +353,11 @@ export function PricingSection() {
               Student-first design
             </span>
           </div>
+          <FoolsDodge width={200} height={72}>
           <a href={PLATFORM_URL} target="_blank" rel="noreferrer" className="link-wipe text-sm hover:text-foreground transition-colors">
             {user ? labels.primaryShort : "Open app"}
           </a>
+          </FoolsDodge>
         </div>
       </div>
     </section>

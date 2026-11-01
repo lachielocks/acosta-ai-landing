@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useFools, FoolsDodge } from "@/components/season/fools";
 
 const testimonials = [
   {
@@ -27,6 +28,7 @@ const testimonials = [
 
 export function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const fools = useFools();
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -82,7 +84,7 @@ export function TestimonialsSection() {
         <div className="mb-10">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground">
             <span className="w-10 h-px bg-foreground/25" />
-            Students & teachers
+            {fools?.testimonialsEyebrow ?? "Students & teachers"}
           </span>
         </div>
 
@@ -142,6 +144,7 @@ export function TestimonialsSection() {
                 }`}
               />
             ))}
+            <FoolsDodge width={96} height={72}>
             <button
               type="button"
               aria-label="Next testimonial"
@@ -150,6 +153,7 @@ export function TestimonialsSection() {
             >
               <ChevronRight className="h-4 w-4" />
             </button>
+            </FoolsDodge>
           </div>
         </motion.div>
       </motion.div>

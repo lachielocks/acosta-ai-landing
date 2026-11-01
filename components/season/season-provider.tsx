@@ -25,6 +25,11 @@ export function SeasonProvider({ children }: { children: ReactNode }) {
       root.style.setProperty("--background", theme.page);
     }
     setState({ theme, ready: true });
+    // Leaving the homepage (e.g. client nav to the Trust Centre) puts <html> back to normal.
+    return () => {
+      delete root.dataset.season;
+      for (const v of ["--season-accent", "--season-accent-2", "--season-page", "--background"]) root.style.removeProperty(v);
+    };
   }, []);
 
   return <SeasonContext.Provider value={state}>{children}</SeasonContext.Provider>;

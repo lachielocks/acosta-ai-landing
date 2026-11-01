@@ -2,6 +2,7 @@
 
 import { useSeason } from "@/components/season/season-provider";
 import { Activity, Cpu, Layers, MessageSquare, Puzzle, ScanEye, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import { useFools } from "@/components/season/fools";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
 const features = [
@@ -72,6 +73,7 @@ const features = [
 
 export function FeaturesSection() {
   const { theme } = useSeason();
+  const fools = useFools();
   return (
     <section id="features" className="relative py-24 lg:py-32">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -88,7 +90,7 @@ export function FeaturesSection() {
           </Reveal>
           <Reveal direction="up" delay={0.12}>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Chat, exam prep, study tools, classes and proper breaks. One place for students and teachers, built with privacy in mind.
+              {fools?.featuresIntro ?? "Chat, exam prep, study tools, classes and proper breaks. One place for students and teachers, built with privacy in mind."}
             </p>
           </Reveal>
         </div>
@@ -96,6 +98,7 @@ export function FeaturesSection() {
         <Stagger className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((feature, i) => {
             const Icon = feature.icon;
+            const copy = fools?.features[feature.title] ?? feature;
             return (
               <StaggerItem key={feature.title}>
                 <article className="rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-7 transition-all hover:border-foreground/30 hover:-translate-y-1">
@@ -105,8 +108,8 @@ export function FeaturesSection() {
                   >
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="mt-5 text-2xl font-semibold">{feature.title}</h3>
-                  <p className="mt-3 text-muted-foreground leading-relaxed">{feature.description}</p>
+                  <h3 className="mt-5 text-2xl font-semibold">{copy.title}</h3>
+                  <p className="mt-3 text-muted-foreground leading-relaxed">{copy.description}</p>
                 </article>
               </StaggerItem>
             );

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUp } from "lucide-react";
 import { useSeason } from "@/components/season/season-provider";
+import { useFools, FoolsDodge } from "@/components/season/fools";
+import { FoolsTicker } from "@/components/season/fools";
 import { Reveal } from "@/components/ui/reveal";
 import { HeroParticleTitle } from "@/components/landing/hero-particle-title";
 import { usePlatformUser } from "@/hooks/use-platform-user";
@@ -17,6 +19,7 @@ export function HeroSection() {
   const season = ready ? theme : null;
   // The seasonal subheading waits for the title intro to finish.
   const [introDone, setIntroDone] = useState(false);
+  const fools = useFools();
   const secondaryCta =
     user?.plan === "free"
       ? { href: "#pricing", label: "Compare plans" }
@@ -26,6 +29,7 @@ export function HeroSection() {
     <section
       style={{ backgroundImage: `linear-gradient(to bottom, ${theme.gradient.join(", ")})`, ["--hero-accent" as string]: theme.accent }}
       className="relative overflow-x-clip text-white transition-[background-image] duration-700 pt-36 pb-24 lg:pt-44 lg:pb-32">
+      <FoolsTicker />
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full blur-[130px] transition-colors duration-700" style={{ backgroundColor: theme.glows[0] }} />
         <div className="absolute bottom-0 right-[10%] h-[360px] w-[360px] rounded-full blur-[120px] transition-colors duration-700" style={{ backgroundColor: theme.glows[1] }} />
@@ -44,7 +48,7 @@ export function HeroSection() {
         <div className="relative z-30">
           <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
             <h1 className="sr-only">{theme.title}</h1>
-            <div className="font-display" style={{ minHeight: season ? undefined : "1px" }}>
+            <div className={`font-display ${fools && introDone ? "fools-wobble" : ""}`} style={{ minHeight: season ? undefined : "1px" }}>
               {season && <HeroParticleTitle key={season.title} text={season.title} highlightColor={season.id ? season.accent : "#2f2fba"} onIntroEnd={() => setIntroDone(true)} />}
             </div>
             {theme.subtitle && (
@@ -75,15 +79,17 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition hover:scale-[1.02]"
             >
-              {labels.primary}
+              {fools && !user ? fools.heroPrimary : labels.primary}
               <ArrowRight className="h-4 w-4" />
             </a>
+            <FoolsDodge width={260} height={88}>
             <a
               href={secondaryCta.href}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-8 py-4 text-base font-semibold text-white transition hover:bg-white/10"
             >
               {secondaryCta.label}
             </a>
+            </FoolsDodge>
           </div>
         </Reveal>
 
@@ -92,11 +98,11 @@ export function HeroSection() {
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-3">
-          {[
+          {(fools?.heroStats ?? [
             { value: "Pause", label: "Daily puzzles for study breaks" },
             { value: "Study", label: "Flashcards, planner, quizzes" },
             { value: "Exam-ready", label: "Simulations and marking" },
-          ].map((stat, i) => (
+          ]).map((stat, i) => (
             <Reveal
               key={stat.label}
               delay={0.26 + i * 0.06}

@@ -6,6 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { useFools } from "@/components/season/fools";
 
 const faqs = [
   {
@@ -57,6 +58,8 @@ const faqs = [
 
 export function FaqSection() {
   const { theme } = useSeason();
+  const fools = useFools();
+  const list = fools ? [fools.jokeFaq, ...faqs] : faqs;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -64,7 +67,7 @@ export function FaqSection() {
       <div className="max-w-[1000px] mx-auto px-6">
         <div className="text-center mb-14">
           <Reveal delay={0.02} direction="up" distance={10} blur={4}>
-            <p className="text-sm font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4">FAQ</p>
+            <p className="text-sm font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4">{fools?.faqEyebrow ?? "FAQ"}</p>
           </Reveal>
           <Reveal delay={0.08} direction="up" distance={10} blur={4}>
             <h2 className="text-4xl md:text-6xl font-display tracking-tight">{theme.faqHeading}</h2>
@@ -72,7 +75,7 @@ export function FaqSection() {
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => {
+          {list.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (

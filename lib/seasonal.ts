@@ -58,6 +58,35 @@ export type SeasonalLanding = {
   /** Page background (dark). */
   page: string;
   decor: "embers" | "snow" | "confetti" | "stars" | "digits" | null;
+  /** Whole-page copy rewrite + chaos mode (April Fools only). Prices, plan names and limits never change. */
+  fools?: FoolsCopy;
+};
+
+export type FoolsCopy = {
+  nav: Record<"features" | "testimonials" | "pricing" | "faq" | "trust" | "cta", string>;
+  ticker: string[];
+  heroPrimary: string;
+  heroSecondary: string;
+  heroSecondaryCaught: string;
+  heroStats: { value: string; label: string }[];
+  featuresIntro: string;
+  /** Keyed by the normal feature title. */
+  features: Record<string, { title: string; description: string }>;
+  testimonialsEyebrow: string;
+  pricingEyebrow: string;
+  pricingHeading: [string, string];
+  /** Keyed by plan name. */
+  plans: Record<string, { tagline: string; cta: string }>;
+  founderHeading: [string, string];
+  founderSub: string;
+  founderMission: string;
+  founderSignoff: string;
+  trustEyebrow: string;
+  faqEyebrow: string;
+  jokeFaq: { question: string; answer: string };
+  ctaButton: string;
+  footerBlurb: string;
+  footerMirror: string;
 };
 
 export const DEFAULT_LANDING: SeasonalLanding = {
@@ -174,16 +203,69 @@ export const SEASONAL_LANDING: Record<SeasonalEventId, SeasonEntry> = {
     decor: "stars",
   },
   april_fools: {
-    title: "Overthink less.",
+    title: "Lowkey smart.",
     subtitle: "Happy April Fools’!",
-    heroBlurb: "Your private tutor and study partner. Today it may overthink things a little. Answers stay accurate; no joke.",
-    badge: "Overthinking edition",
-    placeholder: "Ask anything (I’ll think about it way too much)…",
-    featuresEyebrow: "Seriously, features",
-    featuresHeading: "Everything you need to excel. Really.",
-    faqHeading: "Questions, answered (eventually).",
-    ctaHeading: ["No tricks.", "Just better study."],
-    footerNote: null,
+    heroBlurb: "Your private tutor, study partner and classroom assistant. The website is having a day. The app is completely fine, we checked twice.",
+    badge: "Now with 0% new features",
+    placeholder: "ask anything (it’s a bit)",
+    featuresEyebrow: "Stuff it does",
+    featuresHeading: "Everything you need to excel, explained badly.",
+    faqHeading: "Questions you were too scared to ask.",
+    ctaHeading: ["Stop scrolling.", "Start studying. (after this)"],
+    footerNote: "Happy April Fools’.",
+    fools: {
+      nav: { features: "Stuff it does", testimonials: "Vibe checks", pricing: "The damage", faq: "Questions (real)", trust: "Trust Centre (no jokes)", cta: "Get started fr" },
+      ticker: [
+        "BREAKING: local website discovers Comic Sans",
+        "prices on this page are real, the vibes are not",
+        "please drink some water",
+        "the app is normal today, only the website is unwell",
+        "one (1) button will run away from you. once.",
+        "back to normal in a couple of days",
+        "this ticker has no purpose and we respect that",
+      ],
+      heroPrimary: "Get started free (actually free)",
+      heroSecondary: "See features",
+      heroSecondaryCaught: "ok fine, click me",
+      heroStats: [
+        { value: "Pause", label: "Daily puzzles, for when this website is too much" },
+        { value: "Study", label: "Flashcards, planner, quizzes. The normal kind." },
+        { value: "Exam-ready", label: "Simulations and marking. No pranks in there." },
+      ],
+      featuresIntro: "Chat, exam prep, study tools, classes and proper breaks. Same features as yesterday, worse fonts.",
+      features: {
+        "Chat that teaches": { title: "Yap machine (educational)", description: "Fast, Core and Thinking modes, all with live web search. Thinking shows its working, which is more than your group chat does." },
+        "Reads your stuff": { title: "Reads your stuff", description: "Drop in PDFs, photos of your chaotic handwritten notes or a YouTube link and get the key ideas, summaries and questions back." },
+        "Exam practice": { title: "Exam jumpscares (practice)", description: "Timed exam simulations, or snap a finished paper and get it marked with feedback. Better to panic here than in the real one." },
+        "Study tools": { title: "Study tools & a garden", description: "Planner, flashcards, Mind Dump, study groups and Study Garden, where plants grow while you focus. Touching grass, digitally." },
+        "Classes & Teach": { title: "Teacher mode (no detentions)", description: "Teachers run classes, assign tasks and Live Quizzes, and prep, adapt and wrap up lessons with AI help." },
+        Pause: { title: "Approved procrastination", description: "Five daily puzzles: Sudoku, a mini crossword, Shift, Orbit and Echo, plus AI challenges. Guilt sold separately." },
+        "Acosta Guardian": { title: "The ‘go to bed’ feature", description: "Guardian notices long sessions and late nights and nudges you to take a break. Like a parent, but it doesn’t sigh." },
+        "Learning Mode": { title: "No-spoilers mode", description: "Learning Mode guides you to the answer instead of handing it over, so the work stays yours. Annoying? Slightly. Good for you? Yes." },
+        Ignite: { title: "Ignite (human-checked)", description: "Community study resources, checked by an actual human before they go live. Available in selected regions." },
+      },
+      testimonialsEyebrow: "Vibe checks (real quotes, unedited, we didn’t prank these)",
+      pricingEyebrow: "The damage",
+      pricingHeading: ["Learn with", "questionable fonts."],
+      plans: {
+        Free: { tagline: "Costs $0. Not a bit. Genuinely zero.", cta: "Get started (free fr)" },
+        Go: { tagline: "For people who own a planner and open it.", cta: "Go go go" },
+        Max: { tagline: "For people who say ‘unlimited’ a lot.", cta: "Choose Max (main character)" },
+      },
+      founderHeading: ["Built by a student,", "instead of doing homework. (jk… mostly)"],
+      founderSub: "One person. One mission. Too many browser tabs.",
+      founderMission: "Our mission (no jokes in this box)",
+      founderSignoff: "Made with purpose, not profit. And Comic Sans, today only.",
+      trustEyebrow: "Trust (the one section we didn’t mess with)",
+      faqEyebrow: "FAQ (mostly real)",
+      jokeFaq: {
+        question: "Is the website broken? [April Fools’ question]",
+        answer: "No. It’s April Fools’. The fonts, the wonky cards and the button that runs away are on purpose and go back to normal in a couple of days. The app, the prices and everything below this question are completely real.",
+      },
+      ctaButton: "Get started (no tricks)",
+      footerBlurb: "Private, student-first AI. The website is joking today; the Privacy Policy isn’t.",
+      footerMirror: "All rights reserved. (it’s backwards. you’re welcome.)",
+    },
     accent: "#a855f7",
     accent2: "#22c55e",
     glows: ["rgba(168,85,247,0.2)", "rgba(34,197,94,0.16)"],
@@ -216,7 +298,9 @@ const isId = (v: unknown): v is SeasonalEventId => typeof v === "string" && v in
  */
 export function resolveSeasonalEventId(now = new Date()): SeasonalEventId | null {
   if (typeof window !== "undefined") {
-    const q = new URLSearchParams(window.location.search).get("season");
+    const raw = new URLSearchParams(window.location.search).get("season");
+    // Accept loose spellings too: aprilfools, april-fools, starwars, pi-day…
+    const q = raw && (isId(raw) ? raw : (Object.keys(SEASONAL_ANCHORS) as SeasonalEventId[]).find((id) => id.replace(/_/g, "") === raw.toLowerCase().replace(/[-_\s]/g, "")) ?? raw);
     if (q === "none") return null;
     if (isId(q)) return q;
   }

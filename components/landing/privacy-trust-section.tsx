@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Lock, Shield } from "lucide-react";
+import { useFools } from "@/components/season/fools";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
 const highlights = [
@@ -20,12 +21,13 @@ const highlights = [
 ];
 
 export function PrivacyTrustSection() {
+  const fools = useFools();
   return (
-    <section id="trust" className="relative border-t border-foreground/10 py-24 lg:py-32">
+    <section id="trust" data-fools-calm className="relative border-t border-foreground/10 py-24 lg:py-32">
       <div className="mx-auto max-w-[1200px] px-6">
         <div className="mb-14 text-center">
           <Reveal>
-            <p className="mb-4 font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">Trust</p>
+            <p className="mb-4 font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">{fools?.trustEyebrow ?? "Trust"}</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="font-display text-4xl tracking-tight md:text-6xl">Privacy isn&apos;t a footnote.</h2>

@@ -1,23 +1,25 @@
 "use client";
 
 import { GraduationCap, Heart, Quote } from "lucide-react";
+import { useFools } from "@/components/season/fools";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
 export function FounderSection() {
+  const fools = useFools();
   return (
     <section id="founder" className="py-24 lg:py-32">
       <div className="max-w-[1200px] mx-auto px-6 space-y-8">
         <div className="text-center space-y-4">
           <Reveal>
             <h2 className="text-4xl md:text-6xl font-display font-black tracking-tight">
-              Built by a student,
+              {fools?.founderHeading[0] ?? "Built by a student,"}
               <br />
-              for students. (and teachers!)
+              {fools?.founderHeading[1] ?? "for students. (and teachers!)"}
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              One person. One mission. A tool that students actually deserve.
+              {fools?.founderSub ?? "One person. One mission. A tool that students actually deserve."}
             </p>
           </Reveal>
         </div>
@@ -66,7 +68,7 @@ export function FounderSection() {
             <div className="rounded-[28px] p-8 space-y-6 relative overflow-hidden bg-gradient-to-br from-[var(--season-accent)] to-[var(--season-accent-2)] text-white">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18)_0%,transparent_60%)]" />
               <div className="relative z-10 inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 rounded-full text-xs font-bold uppercase tracking-widest">
-                Our Mission
+                {fools?.founderMission ?? "Our Mission"}
               </div>
               <p className="relative z-10 text-2xl font-black leading-tight">
                 Give every student access to a world-class learning companion.
@@ -76,7 +78,7 @@ export function FounderSection() {
               </p>
               <div className="relative z-10 flex items-center gap-3 pt-2">
                 <Heart className="w-5 h-5 text-white/70" />
-                <span className="text-white/70 text-sm font-medium">Made with purpose, not profit.</span>
+                <span className="text-white/70 text-sm font-medium">{fools?.founderSignoff ?? "Made with purpose, not profit."}</span>
               </div>
             </div>
           </StaggerItem>
