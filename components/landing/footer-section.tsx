@@ -1,5 +1,6 @@
 "use client";
 
+import { useSeason } from "@/components/season/season-provider";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { ArrowUpRight } from "lucide-react";
 import { usePlatformUser } from "@/hooks/use-platform-user";
@@ -27,6 +28,7 @@ const footerLinks = {
 };
 
 export function FooterSection() {
+  const { theme } = useSeason();
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
   const isExternalPageLink = (href: string) => href.startsWith("http");
@@ -68,7 +70,7 @@ export function FooterSection() {
                       {isExternalPageLink(link.href) ? (
                         <a
                           href={link.href}
-                          className="link-wipe text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          className="link-wipe text-sm text-muted-foreground hover:text-[color:var(--season-accent)] transition-colors"
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -80,7 +82,7 @@ export function FooterSection() {
                       ) : (
                       <a
                         href={link.href}
-                        className="link-wipe text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        className="link-wipe text-sm text-muted-foreground hover:text-[color:var(--season-accent)] transition-colors"
                       >
                         {link.name}
                       </a>
@@ -97,7 +99,7 @@ export function FooterSection() {
         <Reveal delay={0.08} direction="up" distance={12} blur={4}>
           <div className="mt-12 pt-8 border-t border-foreground/10 flex flex-col gap-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
             <p>&copy; 2026 Acosta AI. All rights reserved.</p>
-            <p>Built for students and teachers.</p>
+            <p>{theme.footerNote ? <span style={{ color: "var(--season-accent)" }}>{theme.footerNote} </span> : null}Built for students and teachers.</p>
           </div>
         </Reveal>
       </div>

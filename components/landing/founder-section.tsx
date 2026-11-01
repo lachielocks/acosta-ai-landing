@@ -63,7 +63,7 @@ export function FounderSection() {
           </StaggerItem>
 
           <StaggerItem>
-            <div className="rounded-[28px] p-8 space-y-6 relative overflow-hidden bg-gradient-to-br from-[#2563eb] to-[#4f46e5] text-white">
+            <div className="rounded-[28px] p-8 space-y-6 relative overflow-hidden bg-gradient-to-br from-[var(--season-accent)] to-[var(--season-accent-2)] text-white">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18)_0%,transparent_60%)]" />
               <div className="relative z-10 inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 rounded-full text-xs font-bold uppercase tracking-widest">
                 Our Mission

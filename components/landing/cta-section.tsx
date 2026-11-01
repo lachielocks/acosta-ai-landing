@@ -1,5 +1,6 @@
 "use client";
 
+import { useSeason } from "@/components/season/season-provider";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { usePlatformUser } from "@/hooks/use-platform-user";
@@ -10,6 +11,7 @@ export function CtaSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
+  const { theme } = useSeason();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,7 +29,7 @@ export function CtaSection() {
     <section id="get-started" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
-          className={`relative rounded-[40px] bg-gradient-to-br from-[#2563eb] to-[#4f46e5] text-white px-8 lg:px-16 py-16 lg:py-24 transition-all duration-1000 ${
+          className={`relative rounded-[40px] bg-gradient-to-br from-[var(--season-accent)] to-[var(--season-accent-2)] text-white px-8 lg:px-16 py-16 lg:py-24 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0 blur-0 scale-100" : "opacity-0 translate-y-8 blur-md scale-[0.98]"
           }`}
         >
@@ -35,9 +37,9 @@ export function CtaSection() {
 
           <div className="relative z-10 text-center space-y-8 sm:space-y-10">
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-black tracking-tight leading-[0.95]">
-              Ready to transform
+              {theme.ctaHeading[0]}
               <br />
-              your learning?
+              {theme.ctaHeading[1]}
             </h2>
 
             <a

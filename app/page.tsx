@@ -8,10 +8,14 @@ import { PrivacyTrustSection } from "@/components/landing/privacy-trust-section"
 import { FaqSection } from "@/components/landing/faq-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
+import { SeasonProvider } from "@/components/season/season-provider";
+import { SeasonDecor } from "@/components/season/season-decor";
 
 export default function Home() {
   return (
+    <SeasonProvider>
     <main className="relative min-h-screen overflow-x-hidden">
+      <SeasonDecor />
       {/* First-load intro: only the particle vortex shows; [data-intro-hide] fades in near its end (see globals.css). */}
       <noscript>
         <style>{"[data-intro-hide]{animation:none!important}"}</style>
@@ -31,5 +35,6 @@ export default function Home() {
       <FooterSection />
       </div>
     </main>
+    </SeasonProvider>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUp } from "lucide-react";
-import { DEFAULT_LANDING, getSeasonalLanding, type SeasonalLanding } from "@/lib/seasonal";
+import { useSeason } from "@/components/season/season-provider";
 import { Reveal } from "@/components/ui/reveal";
 import { HeroParticleTitle } from "@/components/landing/hero-particle-title";
 import { usePlatformUser } from "@/hooks/use-platform-user";
@@ -12,10 +12,9 @@ import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 export function HeroSection() {
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
-  // Resolved on the client so the season follows the visitor's local date (static build).
-  const [season, setSeason] = useState<SeasonalLanding | null>(null);
-  useEffect(() => setSeason(getSeasonalLanding()), []);
-  const theme = season ?? DEFAULT_LANDING;
+  // Resolved on the client (date, app preview cookie or ?season=), so the static build stays neutral.
+  const { theme, ready } = useSeason();
+  const season = ready ? theme : null;
   const secondaryCta =
     user?.plan === "free"
       ? { href: "#pricing", label: "Compare plans" }
@@ -33,8 +32,8 @@ export function HeroSection() {
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
         <div data-intro-hide>
         <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
-          <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-white/75">
-            Now with Acosta Pause
+          <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-white/75" style={theme.id ? { borderColor: `color-mix(in srgb, ${theme.accent} 45%, transparent)`, color: theme.accent } : undefined}>
+            {theme.badge}
           </p>
         </Reveal>
 
@@ -44,15 +43,23 @@ export function HeroSection() {
           <Reveal delay={0.1} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
             <h1 className="sr-only">{theme.title}</h1>
             <div className="font-display" style={{ minHeight: season ? undefined : "1px" }}>
-              {season && <HeroParticleTitle key={season.title} text={season.title} highlightColor={season.accent} />}
+              {season && <HeroParticleTitle key={season.title} text={season.title} highlightColor={season.id ? season.accent : "#2f2fba"} />}
             </div>
+            {theme.subtitle && (
+              <p
+                className="season-subtitle relative z-40 mt-2 font-display text-2xl italic sm:text-3xl"
+                style={{ backgroundImage: `linear-gradient(90deg, ${theme.accent}, ${theme.accent2})`, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}
+              >
+                {theme.subtitle}
+              </p>
+            )}
           </Reveal>
         </div>
 
         <div data-intro-hide>
         <Reveal delay={0.16} distance={12} blur={6} triggerMargin="0px 0px -12% 0px">
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
-            Acosta AI is your private tutor, study partner and classroom assistant. Now with Pause: daily puzzles for a real study break.
+            {theme.heroBlurb}
           </p>
         </Reveal>
 

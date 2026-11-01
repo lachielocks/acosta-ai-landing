@@ -36,13 +36,13 @@ const planAccentClasses: Record<
     indexLabel: "text-muted-foreground",
   },
   blue: {
-    check: "text-blue-600",
-    cardBorder: "border-blue-500/25",
-    cardBorderHighlight: "border-blue-500/50 lg:ring-2 lg:ring-blue-500/20",
-    trialBadge: "bg-blue-600 text-white",
-    cta: "bg-blue-600 text-white hover:bg-blue-700",
-    planName: "text-blue-700 dark:text-blue-400",
-    indexLabel: "text-blue-600/90 dark:text-blue-400/90",
+    check: "text-[color:var(--season-accent)]",
+    cardBorder: "border-[color:var(--season-accent)]/25",
+    cardBorderHighlight: "border-[color:var(--season-accent)]/50 lg:ring-2 lg:ring-[color:var(--season-accent)]/20",
+    trialBadge: "bg-[var(--season-accent)] text-white",
+    cta: "bg-[var(--season-accent)] text-white hover:brightness-110",
+    planName: "text-[color:var(--season-accent)]",
+    indexLabel: "text-[color:var(--season-accent)]/90",
   },
   pink: {
     check: "text-pink-600 dark:text-pink-400",
@@ -303,7 +303,7 @@ export function PricingSection() {
         >
           <div className="rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-8 lg:p-10">
             <div className="mb-4 flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-foreground/10 bg-background text-blue-600 dark:text-blue-400">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-foreground/10 bg-background text-[color:var(--season-accent)]">
                 <PackageOpen className="h-5 w-5" aria-hidden />
               </span>
               <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">Credit top-ups</h3>
@@ -338,7 +338,7 @@ export function PricingSection() {
         }`}>
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
-              <Check className="w-4 h-4 shrink-0 text-blue-600 dark:text-blue-400" />
+              <Check className="w-4 h-4 shrink-0 text-[color:var(--season-accent)]" />
               Encrypted execution
             </span>
             <span className="flex items-center gap-2">

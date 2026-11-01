@@ -1,5 +1,6 @@
 "use client";
 
+import { useSeason } from "@/components/season/season-provider";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
@@ -55,6 +56,7 @@ const faqs = [
 ];
 
 export function FaqSection() {
+  const { theme } = useSeason();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -65,7 +67,7 @@ export function FaqSection() {
             <p className="text-sm font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4">FAQ</p>
           </Reveal>
           <Reveal delay={0.08} direction="up" distance={10} blur={4}>
-            <h2 className="text-4xl md:text-6xl font-display tracking-tight">Common questions, clear answers.</h2>
+            <h2 className="text-4xl md:text-6xl font-display tracking-tight">{theme.faqHeading}</h2>
           </Reveal>
         </div>
 

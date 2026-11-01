@@ -1,5 +1,6 @@
 "use client";
 
+import { useSeason } from "@/components/season/season-provider";
 import { Activity, Cpu, Layers, MessageSquare, Puzzle, ScanEye, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
@@ -70,18 +71,19 @@ const features = [
 ];
 
 export function FeaturesSection() {
+  const { theme } = useSeason();
   return (
     <section id="features" className="relative py-24 lg:py-32">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-14">
           <Reveal direction="up">
             <p className="text-sm font-mono text-muted-foreground uppercase tracking-[0.2em] mb-4">
-              Features
+              {theme.featuresEyebrow}
             </p>
           </Reveal>
           <Reveal direction="up" delay={0.06}>
             <h2 className="text-4xl md:text-6xl font-display tracking-tight">
-              Everything you need to excel.
+              {theme.featuresHeading}
             </h2>
           </Reveal>
           <Reveal direction="up" delay={0.12}>
@@ -92,13 +94,14 @@ export function FeaturesSection() {
         </div>
 
         <Stagger className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((feature) => {
+          {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
               <StaggerItem key={feature.title}>
                 <article className="rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-7 transition-all hover:border-foreground/30 hover:-translate-y-1">
                   <div
-                    className={`w-11 h-11 rounded-2xl border border-foreground/10 flex items-center justify-center ${feature.color}`}
+                    className={`w-11 h-11 rounded-2xl border border-foreground/10 flex items-center justify-center ${theme.id ? "" : feature.color}`}
+                    style={theme.id ? { color: i % 2 ? theme.accent2 : theme.accent, borderColor: `color-mix(in srgb, ${i % 2 ? theme.accent2 : theme.accent} 30%, transparent)` } : undefined}
                   >
                     <Icon className="w-5 h-5" />
                   </div>
