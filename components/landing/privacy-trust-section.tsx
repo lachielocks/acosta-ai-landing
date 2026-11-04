@@ -12,7 +12,7 @@ const highlights = [
   },
   {
     title: "Vercel, Cloudflare & Firebase",
-    body: "The app runs on Vercel, with Cloudflare handling DNS, CDN and security. Sign-in and your workspace live in Google Firebase, stored in Australia. Clear your chats or delete your whole account yourself, any time, in Settings.",
+    body: "Your data is stored in Australia and our servers run in Sydney, on Vercel and Google Firebase, with Cloudflare handling DNS, CDN and security. AI requests are handled by enterprise AI providers under paid business terms, and some processing may happen overseas. Clear your chats or delete your whole account yourself, any time, in Settings.",
   },
   {
     title: "Stripe handles the scary money bits",
@@ -48,8 +48,8 @@ export function PrivacyTrustSection() {
                 Reality check
               </div>
               <p className="m-0 text-xl font-semibold leading-snug md:text-2xl">
-                While Canvas&apos;s parent company, Instructure, was making headlines for a major confirmed data incident in 2026, we were busy doing the deeply unglamorous work: Firebase auth and encrypted Firestore storage in Australia, Vercel hosting, Cloudflare security,
-                &quot;no model training&quot; API terms with Google, Anthropic and OpenAI, and delete buttons you can actually find.
+                We do the unglamorous work so you don&apos;t have to think about it: your data stored in Australia, servers in Sydney, Cloudflare security,
+                &quot;no model training&quot; paid API terms with Google, Anthropic and OpenAI, and delete buttons you can actually find.
               </p>
               <p className="m-0 text-base leading-relaxed text-muted-foreground">
                 No shade to your syllabus — just a reminder that &quot;enterprise education&quot; and &quot;enterprise security&quot; are not always the same spreadsheet row. Acosta is built so your study life

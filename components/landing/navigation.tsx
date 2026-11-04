@@ -37,6 +37,7 @@ export function Navigation() {
     { label: fools?.nav.features ?? "Features", href: "#features" },
     { label: fools?.nav.testimonials ?? "Testimonials", href: "#testimonials" },
     { label: fools?.nav.pricing ?? "Pricing", href: "#pricing" },
+    { label: "Privacy", href: "#privacy" },
     { label: fools?.nav.faq ?? "FAQ", href: "#faq" },
     {
       label: fools?.nav.trust ?? "Trust Centre",
@@ -47,7 +48,7 @@ export function Navigation() {
   ];
 
   useEffect(() => {
-    const sectionIds = ["features", "testimonials", "pricing", "faq"];
+    const sectionIds = ["features", "testimonials", "pricing", "privacy", "faq"];
 
     const handleScroll = () => {
       // 1. Top of page check (Hero section)
