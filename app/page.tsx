@@ -5,6 +5,7 @@ import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { FounderSection } from "@/components/landing/founder-section";
 import { PrivacyTrustSection } from "@/components/landing/privacy-trust-section";
+import { PrivacyCompareSection } from "@/components/landing/privacy-compare-section";
 import { FaqSection } from "@/components/landing/faq-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
@@ -30,6 +31,7 @@ export default function Home() {
       <PricingSection />
       <FounderSection />
       <PrivacyTrustSection />
+      <PrivacyCompareSection />
       <FaqSection />
       <CtaSection />
       <FooterSection />
