@@ -21,12 +21,15 @@ const sources = {
   khanFlag: { label: "Khan Academy: what happens if a Khanmigo chat is flagged", href: "https://support.khanacademy.org/hc/en-us/articles/14394569357069-What-happens-if-my-child-or-student-s-Khanmigo-conversation-gets-flagged" },
   openaiAds: { label: "OpenAI: Ads in ChatGPT", href: "https://help.openai.com/en/articles/20001047-ads-in-chatgpt" },
   claudeAds: { label: "Anthropic: Claude is a space to think", href: "https://www.anthropic.com/news/claude-is-a-space-to-think" },
+  msEdp: { label: "Microsoft Learn: enterprise data protection in Copilot Chat", href: "https://learn.microsoft.com/en-us/copilot/microsoft-365/enterprise-data-protection" },
+  msPrivacy: { label: "Microsoft Learn: data, privacy and security for Microsoft 365 Copilot", href: "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy" },
+  msEdu: { label: "Microsoft Learn: enable Copilot Chat for learners (M365 Education)", href: "https://learn.microsoft.com/en-us/microsoft-365/education/guide/1-reference/enable-copilot-chat-for-learners" },
 } as const;
 
 const sourceOrder = Object.keys(sources) as SourceKey[];
 const num = (k: SourceKey) => sourceOrder.indexOf(k) + 1;
 
-const columns = ["Acosta AI", "Thea", "ChatGPT", "Claude", "StudyFetch", "Quizlet", "Khanmigo"];
+const columns = ["Acosta AI", "Thea", "ChatGPT", "Claude", "StudyFetch", "Quizlet", "Khanmigo", "Microsoft Copilot"];
 
 const rows: { label: string; cells: Cell[] }[] = [
   {
@@ -39,6 +42,7 @@ const rows: { label: string; cells: Cell[] }[] = [
       { text: "Yes for personal accounts. Not for enterprise or school data.", src: ["sf"] },
       { text: "Not stated in its privacy policy.", src: ["quizlet"] },
       { text: "No. Khan Academy doesn't let AI providers train on student data.", src: ["khanPrivacy"] },
+      { text: "No. On school accounts, prompts and responses aren't used to train foundation models.", src: ["msEdp", "msPrivacy"] },
     ],
   },
   {
@@ -51,6 +55,7 @@ const rows: { label: string; cells: Cell[] }[] = [
       { text: "Hosted in the US (per its school terms). May be processed in other countries.", src: ["sfSchool", "sf"] },
       { text: "Not stated in the pages we checked." },
       { text: "Not stated in the pages we checked." },
+      { text: "Stored under the school's Microsoft 365 data commitments. AI calls may use other regions when busy.", src: ["msPrivacy"] },
     ],
   },
   {
@@ -63,6 +68,7 @@ const rows: { label: string; cells: Cell[] }[] = [
       { text: "Not stated in the pages we checked." },
       { text: "Teachers see class progress: scores, completions and most-missed terms.", src: ["quizletTeacher"] },
       { text: "Yes. Parents can see chat history, and on school accounts teachers get alerts for flagged chats.", src: ["khanFlag", "khanPrivacy"] },
+      { text: "School IT admins can search and retain Copilot chats with Microsoft Purview. Teacher access not stated.", src: ["msPrivacy"] },
     ],
   },
   {
@@ -75,6 +81,7 @@ const rows: { label: string; cells: Cell[] }[] = [
       { text: "No third-party ads shown. Shares some data with ad networks and uses ad cookies.", src: ["sf"] },
       { text: "Shows third-party ads and uses ad cookies and pixels.", src: ["quizlet"] },
       { text: "No third-party advertising.", src: ["khanPrivacy"] },
+      { text: "Prompts and responses aren't shared with advertisers, says Microsoft.", src: ["msEdp"] },
     ],
   },
 ];
@@ -128,7 +135,7 @@ export function PrivacyCompareSection() {
 
         <Reveal delay={0.06}>
           <div className="relative overflow-x-auto rounded-[32px] border border-foreground/10 bg-foreground/[0.02] [scrollbar-width:thin]">
-            <table className="w-full min-w-[980px] border-separate border-spacing-0 text-left text-sm">
+            <table className="w-full min-w-[1120px] border-separate border-spacing-0 text-left text-sm">
               <caption className="sr-only">Privacy comparison of Acosta AI and other study tools, checked November 2026</caption>
               <thead>
                 <tr>
@@ -193,7 +200,7 @@ export function PrivacyCompareSection() {
           <div className="mt-12 border-t border-foreground/10 pt-6 text-xs leading-relaxed text-muted-foreground">
             <p className="m-0">
               <span className="font-semibold text-foreground">Last checked November 2026.</span> Based on each company&apos;s public policies as of
-              November 2026. Policies change, so check their sites for the latest. Plans and settings differ; this covers personal accounts unless noted.
+              November 2026. Policies change, so check their sites for the latest. Plans and settings differ; this covers personal accounts unless noted. Microsoft Copilot means Copilot Chat signed in with a school (Microsoft 365 Education) account with enterprise data protection, not a personal Microsoft account. In K-12 school setups it&apos;s off for students under 13.{" "}<Refs src={["msEdu"]} />
             </p>
             <ol className="mt-4 grid list-decimal gap-x-8 gap-y-1 pl-5 sm:grid-cols-2">
               {sourceOrder.map((k) => (
