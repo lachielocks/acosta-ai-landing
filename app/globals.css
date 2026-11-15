@@ -428,3 +428,17 @@ html[data-season="april_fools"] main h2:not([data-fools-calm] *) { text-shadow: 
 html[data-season="april_fools"] main h2:not([data-fools-calm] *):hover { animation: fools-jitter .25s steps(2) 2; }
 @keyframes fools-jitter { 50% { transform: translate(2px,-1px) skewX(-4deg); } }
 @media (prefers-reduced-motion: reduce) { .fools-crt { animation: none; } html[data-season="april_fools"] main section h2 { filter: none !important; animation: none !important; } }
+
+/* ---------- Acosta 2 launch fire theme (temporary; gated in lib/acosta2.ts) ---------- */
+html[data-season="acosta2"] body {
+  background-image:
+    radial-gradient(60rem 40rem at 50% -10%, rgba(249, 115, 22, 0.10), transparent 70%),
+    radial-gradient(50rem 40rem at 100% 100%, rgba(220, 38, 38, 0.08), transparent 70%);
+  background-attachment: fixed;
+}
+html[data-season="acosta2"] .season-decor--embers span {
+  box-shadow: 0 0 8px 1px var(--season-accent);
+}
+html[data-season="acosta2"] :is(#features, #pricing, #faq, #acosta-2) article:hover {
+  border-color: color-mix(in srgb, var(--season-accent) 45%, transparent);
+}

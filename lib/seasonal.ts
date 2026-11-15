@@ -36,7 +36,8 @@ export function getSeasonalEventId(now = new Date()): SeasonalEventId | null {
 }
 
 export type SeasonalLanding = {
-  id: SeasonalEventId | null;
+  /** "acosta2" is the temporary Acosta 2 launch fire theme (see lib/acosta2.ts), not a yearly event. */
+  id: SeasonalEventId | "acosta2" | null;
   title: string;
   /** Line under the hero title (null = the usual blurb only). */
   subtitle: string | null;
@@ -107,6 +108,27 @@ export const DEFAULT_LANDING: SeasonalLanding = {
   gradient: ["#060b18", "#0b132a", "#000000"],
   page: "oklch(0.06 0.008 260)",
   decor: null,
+};
+
+/**
+ * Temporary Acosta 2 launch theme: the whole page goes ember orange. Switched on by the
+ * release gate in lib/acosta2.ts and switched off at ACOSTA_2_FIRE_THEME_END_ISO.
+ * A real seasonal event (or ?season=) always wins over it.
+ */
+export const ACOSTA_2_FIRE_LANDING: SeasonalLanding = {
+  ...DEFAULT_LANDING,
+  id: "acosta2",
+  subtitle: "Acosta 2 is here.",
+  heroBlurb: "Acosta AI is your private tutor, study partner and classroom assistant. Now with Acosta 2: meet Spark, Ember and Blaze.",
+  badge: "Acosta 2 is here",
+  faqHeading: "Burning questions, clear answers.",
+  ctaHeading: ["Your next chapter", "starts here."],
+  accent: "#f97316",
+  accent2: "#dc2626",
+  glows: ["rgba(249,115,22,0.24)", "rgba(220,38,38,0.22)"],
+  gradient: ["#1a0805", "#220a05", "#0a0302"],
+  page: "#0b0403",
+  decor: "embers",
 };
 
 type SeasonEntry = Omit<SeasonalLanding, "id">;

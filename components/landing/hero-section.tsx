@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ArrowUp } from "lucide-react";
-import { useSeason } from "@/components/season/season-provider";
+import { ArrowRight, ArrowUp, Flame } from "lucide-react";
+import { useAcosta2, useSeason } from "@/components/season/season-provider";
 import { useFools, FoolsDodge } from "@/components/season/fools";
 import { FoolsChaos, FoolsTicker } from "@/components/season/fools";
 import { Reveal } from "@/components/ui/reveal";
@@ -20,6 +20,9 @@ export function HeroSection() {
   // The seasonal subheading waits for the title intro to finish.
   const [introDone, setIntroDone] = useState(false);
   const fools = useFools();
+  // After the Acosta 2 release the badge links to its section, always in fire colours (seasonal editions keep their own badge).
+  const acosta2 = useAcosta2();
+  const showAcosta2Badge = acosta2.released && (!theme.id || theme.id === "acosta2");
   const secondaryCta =
     user?.plan === "free"
       ? { href: "#pricing", label: "Compare plans" }
@@ -38,9 +41,17 @@ export function HeroSection() {
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
         <div data-intro-hide>
         <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
+          {showAcosta2Badge ? (
+            <a href="#acosta-2" className="group mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/45 bg-orange-500/10 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-orange-400 shadow-[0_0_24px_-6px_#f97316] transition hover:bg-orange-500/15">
+              <Flame className="h-3.5 w-3.5" aria-hidden="true" />
+              Acosta 2 is here
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            </a>
+          ) : (
           <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-white/75" style={theme.id ? { borderColor: `color-mix(in srgb, ${theme.accent} 45%, transparent)`, color: theme.accent } : undefined}>
             {theme.badge}
           </p>
+          )}
         </Reveal>
 
         </div>
