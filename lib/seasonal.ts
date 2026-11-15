@@ -118,17 +118,16 @@ export const DEFAULT_LANDING: SeasonalLanding = {
 export const ACOSTA_2_FIRE_LANDING: SeasonalLanding = {
   ...DEFAULT_LANDING,
   id: "acosta2",
-  subtitle: "Acosta 2 is here.",
   heroBlurb: "Acosta AI is your private tutor, study partner and classroom assistant. Now with Acosta 2: meet Spark, Ember and Blaze.",
   badge: "Acosta 2 is here",
   faqHeading: "Burning questions, clear answers.",
   ctaHeading: ["Your next chapter", "starts here."],
   accent: "#f97316",
-  accent2: "#dc2626",
-  glows: ["rgba(249,115,22,0.24)", "rgba(220,38,38,0.22)"],
-  gradient: ["#1a0805", "#220a05", "#0a0302"],
-  page: "#0b0403",
-  decor: "embers",
+  accent2: "#ea580c",
+  glows: ["rgba(249,115,22,0.16)", "rgba(234,88,12,0.12)"],
+  gradient: ["#0f0a08", "#140c09", "#050403"],
+  page: "#0b0908",
+  decor: null,
 };
 
 type SeasonEntry = Omit<SeasonalLanding, "id">;

@@ -6,6 +6,7 @@ import { useAcosta2, useSeason } from "@/components/season/season-provider";
 import { useFools, FoolsDodge } from "@/components/season/fools";
 import { FoolsChaos, FoolsTicker } from "@/components/season/fools";
 import { Reveal } from "@/components/ui/reveal";
+import { ACOSTA_2_FIRE_LANDING, DEFAULT_LANDING } from "@/lib/seasonal";
 import { HeroParticleTitle } from "@/components/landing/hero-particle-title";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
@@ -22,6 +23,7 @@ export function HeroSection() {
   const fools = useFools();
   // After the Acosta 2 release the badge links to its section, always in fire colours (seasonal editions keep their own badge).
   const acosta2 = useAcosta2();
+  const fire = theme.id === "acosta2";
   const showAcosta2Badge = acosta2.released && (!theme.id || theme.id === "acosta2");
   const secondaryCta =
     user?.plan === "free"
@@ -30,8 +32,10 @@ export function HeroSection() {
 
   return (
     <section
-      style={{ backgroundImage: `linear-gradient(to bottom, ${theme.gradient.join(", ")})`, ["--hero-accent" as string]: theme.accent }}
+      style={{ backgroundImage: `linear-gradient(to bottom, ${(fire ? DEFAULT_LANDING : theme).gradient.join(", ")})`, ["--hero-accent" as string]: theme.accent }}
       className="relative overflow-x-clip text-white transition-[background-image] duration-700 pt-36 pb-24 lg:pt-44 lg:pb-32">
+      {/* Acosta 2 fire gradient crossfades in over the normal one (gradients can't transition directly). */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 transition-opacity duration-[1200ms] ease-out motion-reduce:transition-none" style={{ opacity: fire ? 1 : 0, backgroundImage: `linear-gradient(to bottom, ${ACOSTA_2_FIRE_LANDING.gradient.join(", ")})` }} />
       <FoolsTicker /><FoolsChaos />
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 rounded-full blur-[130px] transition-colors duration-700" style={{ backgroundColor: theme.glows[0] }} />
@@ -42,7 +46,7 @@ export function HeroSection() {
         <div data-intro-hide>
         <Reveal delay={0.04} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
           {showAcosta2Badge ? (
-            <a href="#acosta-2" className="group mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/45 bg-orange-500/10 px-4 py-2 text-xs font-mono uppercase tracking-[0.18em] text-orange-400 shadow-[0_0_24px_-6px_#f97316] transition hover:bg-orange-500/15">
+            <a href="#acosta-2" className="group mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-orange-400/40 bg-orange-500/10 px-4 py-2 text-[13px] font-medium leading-4 text-orange-200 transition-colors duration-300 hover:bg-orange-500/15">
               <Flame className="h-3.5 w-3.5" aria-hidden="true" />
               Acosta 2 is here
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />

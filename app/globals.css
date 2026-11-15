@@ -430,15 +430,42 @@ html[data-season="april_fools"] main h2:not([data-fools-calm] *):hover { animati
 @media (prefers-reduced-motion: reduce) { .fools-crt { animation: none; } html[data-season="april_fools"] main section h2 { filter: none !important; animation: none !important; } }
 
 /* ---------- Acosta 2 launch fire theme (temporary; gated in lib/acosta2.ts) ---------- */
-html[data-season="acosta2"] body {
-  background-image:
-    radial-gradient(60rem 40rem at 50% -10%, rgba(249, 115, 22, 0.10), transparent 70%),
-    radial-gradient(50rem 40rem at 100% 100%, rgba(220, 38, 38, 0.08), transparent 70%);
-  background-attachment: fixed;
+/* A warm glow behind the page that fades in (and out) instead of snapping when the theme flips. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(60rem 36rem at 50% -8%, rgba(249, 115, 22, 0.09), transparent 70%),
+    radial-gradient(48rem 36rem at 100% 100%, rgba(234, 88, 12, 0.06), transparent 70%);
+  transition: opacity 1.2s ease;
 }
-html[data-season="acosta2"] .season-decor--embers span {
-  box-shadow: 0 0 8px 1px var(--season-accent);
-}
-html[data-season="acosta2"] :is(#features, #pricing, #faq, #acosta-2) article:hover {
+html[data-season="acosta2"] body::before { opacity: 1; }
+html[data-season="acosta2"] body { transition: background-color 1.2s ease; }
+html[data-season="acosta2"] :is(#features, #pricing, #faq) article:hover {
   border-color: color-mix(in srgb, var(--season-accent) 45%, transparent);
 }
+@media (prefers-reduced-motion: reduce) {
+  body::before, html[data-season="acosta2"] body { transition: none; }
+}
+
+/* Acosta 2 Forma demo slider: thin track, warm fill, round thumb (like the app's Forma slider). */
+.acosta2-range { -webkit-appearance: none; appearance: none; height: 20px; background: transparent; cursor: pointer; }
+.acosta2-range:focus-visible { outline: none; }
+.acosta2-range::-webkit-slider-runnable-track {
+  height: 6px; border-radius: 999px;
+  background: linear-gradient(to right, #f97316 var(--fill), color-mix(in srgb, var(--foreground) 12%, transparent) var(--fill));
+}
+.acosta2-range::-moz-range-track { height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--foreground) 12%, transparent); }
+.acosta2-range::-moz-range-progress { height: 6px; border-radius: 999px; background: #f97316; }
+.acosta2-range::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 18px; height: 18px; margin-top: -6px; border-radius: 999px;
+  background: #fff; border: 0; box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45); transition: transform 0.2s ease;
+}
+.acosta2-range::-moz-range-thumb { width: 18px; height: 18px; border-radius: 999px; background: #fff; border: 0; box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45); }
+.acosta2-range:hover::-webkit-slider-thumb, .acosta2-range:active::-webkit-slider-thumb { transform: scale(1.12); }
+.acosta2-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.35), 0 1px 6px rgba(0, 0, 0, 0.45); }
+.acosta2-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.35); }
