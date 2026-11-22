@@ -117,7 +117,16 @@ export function HeroSection() {
             { value: "Pause", label: "Daily puzzles for study breaks" },
             { value: "Study", label: "Flashcards, planner, quizzes" },
             { value: "Exam-ready", label: "Simulations and marking" },
-          ]).map((stat, i) => (
+          ]).map((stat, i) => {
+            const href = stat.value === "Pause" ? "/pause" : undefined;
+            const cardClass = "rounded-2xl border border-white/15 bg-white/[0.04] p-5";
+            const body = (
+              <>
+                <p className="font-display text-3xl">{stat.value}</p>
+                <p className="mt-1 text-sm text-white/65">{stat.label}</p>
+              </>
+            );
+            return (
             <Reveal
               key={stat.label}
               delay={0.26 + i * 0.06}
@@ -126,12 +135,16 @@ export function HeroSection() {
               blur={4}
               triggerMargin="0px 0px -12% 0px"
             >
-              <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-5">
-                <p className="font-display text-3xl">{stat.value}</p>
-                <p className="mt-1 text-sm text-white/65">{stat.label}</p>
-              </div>
+              {href ? (
+                <a href={href} className={`${cardClass} block transition hover:border-white/30 hover:bg-white/[0.07]`}>
+                  {body}
+                </a>
+              ) : (
+                <div className={cardClass}>{body}</div>
+              )}
             </Reveal>
-          ))}
+            );
+          })}
         </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import PillNav from "@/components/ui/PillNav";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePlatformUser } from "@/hooks/use-platform-user";
@@ -30,15 +31,20 @@ export function Navigation() {
   const { user } = usePlatformUser();
   const labels = getPlatformCtaLabels(user);
   const isSignedIn = Boolean(user);
-  const [activeHref, setActiveHref] = useState("");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const sectionHref = (id: string) => (isHome ? `#${id}` : `/#${id}`);
+  const [sectionActiveHref, setSectionActiveHref] = useState("");
+  const activeHref = isHome ? sectionActiveHref : pathname === "/pause" ? "/pause" : "";
   const fools = useFools();
 
   const navItems = [
-    { label: fools?.nav.features ?? "Features", href: "#features" },
-    { label: fools?.nav.testimonials ?? "Testimonials", href: "#testimonials" },
-    { label: fools?.nav.pricing ?? "Pricing", href: "#pricing" },
-    { label: "Privacy", href: "#privacy" },
-    { label: fools?.nav.faq ?? "FAQ", href: "#faq" },
+    { label: fools?.nav.features ?? "Features", href: sectionHref("features") },
+    { label: fools?.nav.testimonials ?? "Testimonials", href: sectionHref("testimonials") },
+    { label: fools?.nav.pricing ?? "Pricing", href: sectionHref("pricing") },
+    { label: "Privacy", href: sectionHref("privacy") },
+    { label: fools?.nav.faq ?? "FAQ", href: sectionHref("faq") },
+    { label: "Pause", href: "/pause" },
     {
       label: fools?.nav.trust ?? "Trust Centre",
       href: "/policies",
@@ -48,6 +54,8 @@ export function Navigation() {
   ];
 
   useEffect(() => {
+    if (!isHome) return;
+
     const sectionIds = ["features", "testimonials", "pricing", "privacy", "faq"];
 
     const handleScroll = () => {
@@ -56,11 +64,11 @@ export function Navigation() {
       if (firstEl) {
         const firstRect = firstEl.getBoundingClientRect();
         if (firstRect.top > 260) {
-          setActiveHref("");
+          setSectionActiveHref("");
           return;
         }
       } else if (window.scrollY < 200) {
-        setActiveHref("");
+        setSectionActiveHref("");
         return;
       }
 
@@ -71,7 +79,7 @@ export function Navigation() {
       const pastFaq = faqEl ? faqEl.getBoundingClientRect().bottom < 80 : false;
 
       if (isNearBottom || pastFaq) {
-        setActiveHref("");
+        setSectionActiveHref("");
         return;
       }
 
@@ -83,7 +91,7 @@ export function Navigation() {
         if (!el) continue;
         const rect = el.getBoundingClientRect();
         if (rect.top <= focalPoint && rect.bottom > focalPoint) {
-          setActiveHref(`#${id}`);
+          setSectionActiveHref(`#${id}`);
           return;
         }
       }
@@ -95,7 +103,7 @@ export function Navigation() {
         if (!el) continue;
         const rect = el.getBoundingClientRect();
         if (rect.top <= focalPoint) {
-          setActiveHref(`#${id}`);
+          setSectionActiveHref(`#${id}`);
           return;
         }
       }
@@ -116,11 +124,11 @@ export function Navigation() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [isHome]);
 
   const handleItemClick = (item: { href?: string }) => {
     if (item.href?.startsWith("#")) {
-      setActiveHref(item.href);
+      setSectionActiveHref(item.href);
     }
   };
 
@@ -152,7 +160,7 @@ export function Navigation() {
         <PillNav
           logo="/branding/favicon-on-dark-bg.png"
           logoAlt="Acosta AI"
-          logoHref="#"
+          logoHref={isHome ? "#" : "/"}
           items={navItems}
           activeHref={activeHref}
           onItemClick={handleItemClick}

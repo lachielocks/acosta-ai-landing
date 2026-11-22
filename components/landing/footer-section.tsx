@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSeason } from "@/components/season/season-provider";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { ArrowUpRight } from "lucide-react";
@@ -9,9 +10,10 @@ import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
 
 const footerLinks = {
   Product: [
-    { name: "Home", href: "#" },
-    { name: "Features", href: "#features" },
-    { name: "Pricing", href: "#pricing" },
+    { name: "Home", href: "/" },
+    { name: "Features", href: "/#features" },
+    { name: "Pricing", href: "/#pricing" },
+    { name: "Pause", href: "/pause" },
   ],
   Trust: [
     { name: "Privacy Policy", href: "/privacy" },
@@ -50,9 +52,9 @@ export function FooterSection() {
           <StaggerItem>
             <div className="md:col-span-2">
               <FoolsDodge width={180} height={64} className="fools-dodge--start">
-              <a href="#" className="link-wipe text-2xl font-display tracking-tight">
+              <Link href="/" className="link-wipe text-2xl font-display tracking-tight">
                 Acosta AI
-              </a>
+              </Link>
               </FoolsDodge>
               <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
                 {fools?.footerBlurb ?? "Private, student-first AI for deeper learning, smarter study, and better outcomes."}

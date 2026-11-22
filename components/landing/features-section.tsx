@@ -1,11 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useSeason } from "@/components/season/season-provider";
-import { Activity, Cpu, Layers, MessageSquare, Puzzle, ScanEye, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import { Activity, ArrowRight, Cpu, Layers, MessageSquare, Puzzle, ScanEye, ShieldCheck, Sparkles, UsersRound, type LucideIcon } from "lucide-react";
 import { useFools } from "@/components/season/fools";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 
-const features = [
+const features: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  color: string;
+  href?: string;
+}[] = [
   {
     icon: MessageSquare,
     title: "Chat that teaches",
@@ -47,6 +54,7 @@ const features = [
     description:
       "Five daily puzzles for a proper break: Sudoku, a mini crossword, Shift, Orbit and Echo, plus AI challenges.",
     color: "text-amber-500",
+    href: "/pause",
   },
   {
     icon: Activity,
@@ -99,9 +107,9 @@ export function FeaturesSection() {
           {features.map((feature, i) => {
             const Icon = feature.icon;
             const copy = fools?.features[feature.title] ?? feature;
-            return (
-              <StaggerItem key={feature.title}>
-                <article className="rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-7 transition-all hover:border-foreground/30 hover:-translate-y-1">
+            const cardClass = "rounded-3xl border border-foreground/10 bg-foreground/[0.02] p-7 transition-all hover:border-foreground/30 hover:-translate-y-1";
+            const body = (
+              <>
                   <div
                     className={`w-11 h-11 rounded-2xl border border-foreground/10 flex items-center justify-center ${theme.id ? "" : feature.color}`}
                     style={theme.id ? { color: i % 2 ? theme.accent2 : theme.accent, borderColor: `color-mix(in srgb, ${i % 2 ? theme.accent2 : theme.accent} 30%, transparent)` } : undefined}
@@ -110,7 +118,23 @@ export function FeaturesSection() {
                   </div>
                   <h3 className="mt-5 text-2xl font-semibold">{copy.title}</h3>
                   <p className="mt-3 text-muted-foreground leading-relaxed">{copy.description}</p>
-                </article>
+                  {feature.href ? (
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm text-foreground">
+                      Open Pause
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  ) : null}
+              </>
+            );
+            return (
+              <StaggerItem key={feature.title}>
+                {feature.href ? (
+                  <Link href={feature.href} className={`group block ${cardClass}`}>
+                    {body}
+                  </Link>
+                ) : (
+                  <article className={cardClass}>{body}</article>
+                )}
               </StaggerItem>
             );
           })}
