@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://acosta-ai.com'),
+  metadataBase: new URL('https://www.acosta-ai.com'),
   title: 'Acosta AI - Learn Smarter',
   description: 'Acosta AI is a private, student-first learning platform with tutoring, exam prep, and teacher tools.',
   generator: 'v0.app',
