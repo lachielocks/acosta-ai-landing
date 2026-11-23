@@ -10,6 +10,7 @@ import { ACOSTA_2_FIRE_LANDING, DEFAULT_LANDING } from "@/lib/seasonal";
 import { HeroParticleTitle } from "@/components/landing/hero-particle-title";
 import { usePlatformUser } from "@/hooks/use-platform-user";
 import { PLATFORM_URL, getPlatformCtaLabels } from "@/lib/platform-user";
+import { SkipLandingOption } from "@/components/landing/skip-landing-option";
 
 
 export function HeroSection() {
@@ -87,16 +88,19 @@ export function HeroSection() {
         </Reveal>
 
         <Reveal delay={0.22} distance={10} blur={4} triggerMargin="0px 0px -12% 0px">
-          <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <a
-              href={PLATFORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition hover:scale-[1.02]"
-            >
-              {fools && !user ? fools.heroPrimary : labels.primary}
-              <ArrowRight className="h-4 w-4" />
-            </a>
+          <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-start sm:gap-4">
+            <div className="flex flex-col items-center">
+              <a
+                href={PLATFORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition hover:scale-[1.02] sm:w-auto"
+              >
+                {fools && !user ? fools.heroPrimary : labels.primary}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <SkipLandingOption />
+            </div>
             <FoolsDodge width={260} height={88}>
             <a
               href={secondaryCta.href}

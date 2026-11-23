@@ -12,11 +12,16 @@ import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
 import { SeasonProvider } from "@/components/season/season-provider";
 import { SeasonDecor } from "@/components/season/season-decor";
+import { LandingRestoredToast } from "@/components/landing/landing-restored-toast";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <SeasonProvider>
     <main className="relative min-h-screen overflow-x-hidden">
+      <Suspense fallback={null}>
+        <LandingRestoredToast />
+      </Suspense>
       <SeasonDecor />
       {/* First-load intro: only the particle vortex shows; [data-intro-hide] fades in near its end (see globals.css). */}
       <noscript>
