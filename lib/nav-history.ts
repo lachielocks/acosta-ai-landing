@@ -1,52 +1,42 @@
-/**
- * Previous in-site path, so the hero can pick its entry effect.
- * In memory for client-side navigation (a reload starts fresh, so reloads always get the vortex).
- * sessionStorage only covers a back/forward document load (e.g. /policies opened directly, then Back).
- */
-const CUR = "acosta_nav_path";
-let memCur: string | null = null;
-let memPrev: string | null = null;
+const SCAN_INTRO_KEY = "acosta_scan_intro_pending";
+let scanIntroPending = false;
 
-const isScanSource = (p: string | null) =>
-  !!p && (p === "/thanks" || p === "/policies" || p.startsWith("/policies/"));
+const isScanSource = (pathname: string) =>
+  pathname === "/thanks" || pathname === "/policies" || pathname.startsWith("/policies/");
 
-function navType(): string {
+/** Mark the next homepage mount for a scan intro when leaving Thanks or the Trust Centre. */
+export function markScanIntroOnReturn(fromPath: string, toPath: string): void {
+  if (!isScanSource(fromPath) || toPath !== "/") return;
+
+  scanIntroPending = true;
   try {
-    const e = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
-    return e?.type ?? "navigate";
+    sessionStorage.setItem(SCAN_INTRO_KEY, "1");
   } catch {
-    return "navigate";
+    // The in-memory flag still covers client-side navigation when storage is unavailable.
   }
 }
 
-/** Last path from the previous document in this tab, read once before it is overwritten. */
-let docPrev: string | null | undefined;
-function readDocPrev(): string | null {
-  if (docPrev === undefined) {
-    try {
-      docPrev = sessionStorage.getItem(CUR);
-    } catch {
-      docPrev = null;
-    }
-  }
-  return docPrev;
-}
+/** Consume the one-time request before ParticleText samples the hero title on mount. */
+export function consumeScanIntroRequest(): boolean {
+  let requested = scanIntroPending;
+  scanIntroPending = false;
 
-export function recordPath(pathname: string): void {
-  readDocPrev();
-  if (memCur !== pathname) {
-    memPrev = memCur;
-    memCur = pathname;
-  }
   try {
-    sessionStorage.setItem(CUR, pathname);
+    requested ||= sessionStorage.getItem(SCAN_INTRO_KEY) === "1";
+    sessionStorage.removeItem(SCAN_INTRO_KEY);
   } catch {
-    /* storage unavailable */
+    // Storage may be disabled; fall back to the in-memory request.
   }
+
+  return requested;
 }
 
-export function cameFromScanPage(): boolean {
-  if (memCur !== null) return isScanSource(memCur); // current route before the destination effect runs
-  // First page of this document: only a Back/Forward load from Thanks or the Trust Centre counts.
-  return navType() === "back_forward" && isScanSource(readDocPrev());
+/** Read without consuming so React Strict Mode can safely evaluate an initializer twice. */
+export function hasScanIntroRequest(): boolean {
+  if (scanIntroPending) return true;
+  try {
+    return sessionStorage.getItem(SCAN_INTRO_KEY) === "1";
+  } catch {
+    return false;
+  }
 }

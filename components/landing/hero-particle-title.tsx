@@ -1,6 +1,6 @@
 "use client";
 
-import { cameFromScanPage } from "@/lib/nav-history";
+import { consumeScanIntroRequest, hasScanIntroRequest } from "@/lib/nav-history";
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import ParticleText from "@/components/ui/ParticleText";
 
@@ -38,9 +38,10 @@ function viewportScatter() {
 export function HeroParticleTitle({ text, highlightColor = "#2f2fba", onIntroEnd }: { text: string; highlightColor?: string; onIntroEnd?: () => void }) {
   const layerRef = useRef<HTMLDivElement>(null);
   const [scatter] = useState(viewportScatter);
-  // Return from Thanks or the Trust Centre with a quick scan-in instead of the full vortex.
-  const [intro] = useState<"spiral" | "scan">(() => (typeof window !== "undefined" && cameFromScanPage() ? "scan" : "spiral"));
+  // The one-shot request is set before a return navigation starts, so it survives streamed route mounts.
+  const [intro] = useState<"spiral" | "scan">(() => (typeof window !== "undefined" && hasScanIntroRequest() ? "scan" : "spiral"));
   useEffect(() => {
+    consumeScanIntroRequest();
     document.documentElement.dataset.heroIntro = intro;
   }, [intro]);
   const boxRef = useRef<HTMLDivElement>(null);

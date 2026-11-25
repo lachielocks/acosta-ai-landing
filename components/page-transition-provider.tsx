@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { markScanIntroOnReturn } from "@/lib/nav-history";
 
 const FADE_MS = 420;
 
@@ -89,6 +90,8 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
         return;
       }
 
+      markScanIntroOnReturn(current.pathname, next.pathname);
+
       e.preventDefault();
       e.stopPropagation();
 
@@ -123,6 +126,8 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
     const onPopState = () => {
       const nextPathSearch = window.location.pathname + window.location.search;
       if (nextPathSearch === lastPathSearchRef.current) return;
+      const previousPath = new URL(lastPathSearchRef.current, window.location.origin).pathname;
+      markScanIntroOnReturn(previousPath, window.location.pathname);
       lastPathSearchRef.current = nextPathSearch;
 
       if (duration === 0) return;
