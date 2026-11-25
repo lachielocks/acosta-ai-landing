@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
 import { SeasonDecor } from "@/components/season/season-decor";
 import { SeasonProvider } from "@/components/season/season-provider";
@@ -28,9 +27,8 @@ export default function ThanksPage() {
     <SeasonProvider>
       <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
         <SeasonDecor />
-        <div className="relative z-50"><Navigation /></div>
 
-        <div className="relative pt-32 sm:pt-40">
+        <div className="relative pt-16 sm:pt-20">
           <header className="mx-auto max-w-[1200px] px-6 pb-16 lg:px-8 lg:pb-24">
             <Reveal>
               <Link href="/" className="link-wipe link-wipe-flex text-sm text-muted-foreground hover:text-foreground">
@@ -39,7 +37,7 @@ export default function ThanksPage() {
               </Link>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="mb-5 mt-10 font-mono text-xs tracking-[0.2em] text-muted-foreground">A PERSONAL NOTE</p>
+              <p className="mb-5 mt-10 font-mono text-xs tracking-[0.2em] text-muted-foreground">A personal note</p>
               <h1 className="font-display text-6xl tracking-tight sm:text-7xl md:text-8xl">Thanks.</h1>
             </Reveal>
             <Reveal delay={0.14}>

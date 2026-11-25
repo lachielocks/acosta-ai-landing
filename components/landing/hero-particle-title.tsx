@@ -1,6 +1,6 @@
 "use client";
 
-import { cameFromTrustCentre } from "@/lib/nav-history";
+import { cameFromScanPage } from "@/lib/nav-history";
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import ParticleText from "@/components/ui/ParticleText";
 
@@ -38,8 +38,8 @@ function viewportScatter() {
 export function HeroParticleTitle({ text, highlightColor = "#2f2fba", onIntroEnd }: { text: string; highlightColor?: string; onIntroEnd?: () => void }) {
   const layerRef = useRef<HTMLDivElement>(null);
   const [scatter] = useState(viewportScatter);
-  // Back from the Trust Centre: a quick scan-in instead of the full vortex.
-  const [intro] = useState<"spiral" | "scan">(() => (typeof window !== "undefined" && cameFromTrustCentre() ? "scan" : "spiral"));
+  // Return from Thanks or the Trust Centre with a quick scan-in instead of the full vortex.
+  const [intro] = useState<"spiral" | "scan">(() => (typeof window !== "undefined" && cameFromScanPage() ? "scan" : "spiral"));
   useEffect(() => {
     document.documentElement.dataset.heroIntro = intro;
   }, [intro]);

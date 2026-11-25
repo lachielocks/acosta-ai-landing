@@ -7,7 +7,8 @@ const CUR = "acosta_nav_path";
 let memCur: string | null = null;
 let memPrev: string | null = null;
 
-const isTrust = (p: string | null) => !!p && (p === "/policies" || p.startsWith("/policies/"));
+const isScanSource = (p: string | null) =>
+  !!p && (p === "/thanks" || p === "/policies" || p.startsWith("/policies/"));
 
 function navType(): string {
   try {
@@ -44,8 +45,8 @@ export function recordPath(pathname: string): void {
   }
 }
 
-export function cameFromTrustCentre(): boolean {
-  if (memPrev !== null) return isTrust(memPrev); // client-side nav in this document
-  // First page of this document: only a Back/Forward load from the Trust Centre counts.
-  return navType() === "back_forward" && isTrust(readDocPrev());
+export function cameFromScanPage(): boolean {
+  if (memCur !== null) return isScanSource(memCur); // current route before the destination effect runs
+  // First page of this document: only a Back/Forward load from Thanks or the Trust Centre counts.
+  return navType() === "back_forward" && isScanSource(readDocPrev());
 }

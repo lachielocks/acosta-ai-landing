@@ -71,16 +71,16 @@ export function ThanksContent() {
   const blocks = parseBlocks(markdown);
 
   return (
-    <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-20">
+    <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <article className="min-w-0">
           {blocks.map((block, index) => {
             if (block.type === "heading") {
               const sectionIndex = blocks.slice(0, index + 1).filter((item) => item.type === "heading").length;
+              const headingText = block.text === "YOU." ? "You." : block.text;
               return (
                 <header key={`heading-${index}`} className="mb-8 mt-16 border-t border-foreground/10 pt-8 first:mt-0 first:border-0 first:pt-0">
                   <p className="mb-3 font-mono text-xs tracking-[0.18em] text-muted-foreground">{String(sectionIndex).padStart(2, "0")}</p>
-                  <h2 className="font-display text-3xl tracking-tight md:text-4xl">{renderInline(block.text)}</h2>
+                  <h2 className="font-display text-3xl tracking-tight md:text-4xl">{renderInline(headingText)}</h2>
                 </header>
               );
             }
@@ -102,15 +102,6 @@ export function ThanksContent() {
             );
           })}
         </article>
-
-        <aside className="hidden lg:block">
-          <div className="sticky top-32 rounded-3xl border border-foreground/10 bg-foreground/[0.025] p-6">
-            <p className="font-mono text-xs tracking-[0.16em] text-muted-foreground">A NOTE FROM LACHIE</p>
-            <p className="mt-4 font-display text-2xl leading-snug">“I&apos;m the only person building it, but I&apos;m certainly not the only reason it exists.”</p>
-            <p className="mt-6 text-sm text-muted-foreground">A thank you to the people, ideas and little moments behind Acosta.</p>
-          </div>
-        </aside>
-      </div>
     </div>
   );
 }
