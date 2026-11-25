@@ -27,7 +27,6 @@ export function PauseSection() {
               </div>
             </Reveal>
             <Reveal delay={0.06}>
-              <p className="mb-4 font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">A little room to reset</p>
               <h2 className="font-display text-5xl tracking-tight md:text-7xl">Pause</h2>
             </Reveal>
             <Reveal delay={0.12}>
