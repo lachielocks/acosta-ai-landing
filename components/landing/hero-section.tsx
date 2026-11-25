@@ -122,7 +122,7 @@ export function HeroSection() {
             { value: "Study", label: "Flashcards, planner, quizzes" },
             { value: "Exam-ready", label: "Simulations and marking" },
           ]).map((stat, i) => {
-            const href = stat.value === "Pause" ? "/pause" : undefined;
+            const href = stat.value === "Pause" ? "#pause" : undefined;
             const cardClass = "rounded-2xl border border-white/15 bg-white/[0.04] p-5";
             const body = (
               <>

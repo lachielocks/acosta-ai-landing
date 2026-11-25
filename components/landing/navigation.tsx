@@ -35,19 +35,23 @@ export function Navigation() {
   const isHome = pathname === "/";
   const sectionHref = (id: string) => (isHome ? `#${id}` : `/#${id}`);
   const [sectionActiveHref, setSectionActiveHref] = useState("");
-  const activeHref = isHome ? sectionActiveHref : pathname === "/pause" ? "/pause" : "";
+  const activeHref = isHome ? sectionActiveHref : "";
   const fools = useFools();
 
   const navItems = [
     { label: fools?.nav.features ?? "Features", href: sectionHref("features") },
     { label: fools?.nav.testimonials ?? "Testimonials", href: sectionHref("testimonials") },
     { label: fools?.nav.pricing ?? "Pricing", href: sectionHref("pricing") },
-    { label: "Privacy", href: sectionHref("privacy") },
-    { label: fools?.nav.faq ?? "FAQ", href: sectionHref("faq") },
-    { label: "Pause", href: "/pause" },
+    { label: "Pause", href: sectionHref("pause") },
     {
       label: fools?.nav.trust ?? "Trust Centre",
       href: "/policies",
+      icon: <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />,
+      iconPosition: "end",
+    },
+    {
+      label: "Thanks",
+      href: "/thanks",
       icon: <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />,
       iconPosition: "end",
     },
@@ -56,7 +60,7 @@ export function Navigation() {
   useEffect(() => {
     if (!isHome) return;
 
-    const sectionIds = ["features", "testimonials", "pricing", "privacy", "faq"];
+    const sectionIds = ["features", "testimonials", "pricing", "pause"];
 
     const handleScroll = () => {
       // 1. Top of page check (Hero section)
@@ -72,13 +76,13 @@ export function Navigation() {
         return;
       }
 
-      // 2. Bottom of page check (past FAQ / Footer)
+      // 2. Bottom of page check (past the final homepage section / Footer)
       const isNearBottom =
         window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
-      const faqEl = document.getElementById("faq");
-      const pastFaq = faqEl ? faqEl.getBoundingClientRect().bottom < 80 : false;
+      const pauseEl = document.getElementById("pause");
+      const pastPause = pauseEl ? pauseEl.getBoundingClientRect().bottom < 80 : false;
 
-      if (isNearBottom || pastFaq) {
+      if (isNearBottom || pastPause) {
         setSectionActiveHref("");
         return;
       }

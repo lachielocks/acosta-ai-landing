@@ -54,7 +54,7 @@ const features: {
     description:
       "Five daily puzzles for a proper break: Sudoku, a mini crossword, Shift, Orbit and Echo, plus AI challenges.",
     color: "text-amber-500",
-    href: "/pause",
+    href: "#pause",
   },
   {
     icon: Activity,

@@ -13,7 +13,8 @@ const footerLinks = {
     { name: "Home", href: "/" },
     { name: "Features", href: "/#features" },
     { name: "Pricing", href: "/#pricing" },
-    { name: "Pause", href: "/pause" },
+    { name: "Pause", href: "/#pause" },
+    { name: "Thanks", href: "/thanks" },
   ],
   Trust: [
     { name: "Privacy Policy", href: "/privacy" },

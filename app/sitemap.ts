@@ -3,7 +3,7 @@ import { SITE_URL } from "@/lib/site";
 
 const pages = [
   { path: "/", changeFrequency: "weekly" as const, priority: 1 },
-  { path: "/pause", changeFrequency: "weekly" as const, priority: 0.8 },
+  { path: "/thanks", changeFrequency: "yearly" as const, priority: 0.3 },
   { path: "/policies", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/privacy", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/safety", changeFrequency: "monthly" as const, priority: 0.5 },

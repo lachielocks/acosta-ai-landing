@@ -8,6 +8,7 @@ import { FounderSection } from "@/components/landing/founder-section";
 import { PrivacyTrustSection } from "@/components/landing/privacy-trust-section";
 import { PrivacyCompareSection } from "@/components/landing/privacy-compare-section";
 import { FaqSection } from "@/components/landing/faq-section";
+import { PauseSection } from "@/components/landing/pause-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
 import { SeasonProvider } from "@/components/season/season-provider";
@@ -40,6 +41,7 @@ export default function Home() {
       <PrivacyTrustSection />
       <PrivacyCompareSection />
       <FaqSection />
+      <PauseSection />
       <CtaSection />
       <FooterSection />
       </div>
